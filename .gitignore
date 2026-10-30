@@ -1,0 +1,6 @@
+# Git ignore for Distribusi Selayar
+data_mentah/
+__pycache__/
+*.pyc
+.DS_Store
+.env

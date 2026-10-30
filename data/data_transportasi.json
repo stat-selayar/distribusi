@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-30 17:36 WITA",
+ "updated_at": "2026-10-30 17:53 WITA",
  "dim_simpul": [
   {
    "kode_simpul": "ARO",
@@ -1387,6 +1387,30 @@
    "tahun": 2026,
    "bulan": 6,
    "periode": "2026-06",
+   "kode_simpul": "JMP",
+   "nama_simpul": "Pelabuhan Jampea",
+   "moda": "Laut",
+   "kunjungan_datang": 163,
+   "kunjungan_berangkat": 163,
+   "total_kunjungan": 326,
+   "penumpang_turun": 4784,
+   "penumpang_naik": 5133,
+   "penumpang_transit": 0,
+   "total_penumpang": 9917,
+   "barang_bongkar_ton": 681.5,
+   "barang_muat_ton": 539.0,
+   "total_barang_ton": 1220.5,
+   "kendaraan_turun": 0,
+   "kendaraan_naik": 0,
+   "total_kendaraan": 0,
+   "hewan_bongkar_ekor": 12,
+   "hewan_muat_ekor": 212,
+   "total_hewan_ekor": 224
+  },
+  {
+   "tahun": 2026,
+   "bulan": 6,
+   "periode": "2026-06",
    "kode_simpul": "PMT",
    "nama_simpul": "Pelabuhan Pamatata",
    "moda": "Laut",
@@ -2145,7 +2169,7 @@
   }
  ],
  "pelayaran_stats": {
-  "total_log": 4300,
+  "total_log": 4463,
   "top_asal": [
    {
     "pelabuhan": "BIRA/TANAH BERU",
@@ -2153,39 +2177,39 @@
    },
    {
     "pelabuhan": "SELAYAR",
-    "kunjungan": 478
+    "kunjungan": 503
    },
    {
     "pelabuhan": "JAMPEA",
-    "kunjungan": 333
+    "kunjungan": 355
+   },
+   {
+    "pelabuhan": "BONERATE",
+    "kunjungan": 315
    },
    {
     "pelabuhan": "BULUKUMBA/LAPPE'E",
     "kunjungan": 303
    },
    {
-    "pelabuhan": "BONERATE",
-    "kunjungan": 297
-   },
-   {
     "pelabuhan": "JINATO",
-    "kunjungan": 267
+    "kunjungan": 282
    },
    {
     "pelabuhan": "MAKASSAR",
-    "kunjungan": 222
+    "kunjungan": 226
    },
    {
     "pelabuhan": "KAYUADI",
-    "kunjungan": 212
+    "kunjungan": 224
    },
    {
     "pelabuhan": "KALAOTOA",
-    "kunjungan": 149
+    "kunjungan": 159
    },
    {
     "pelabuhan": "LABUAN BAJO",
-    "kunjungan": 117
+    "kunjungan": 124
    }
   ],
   "top_tujuan": [
@@ -2195,15 +2219,15 @@
    },
    {
     "pelabuhan": "SELAYAR",
-    "kunjungan": 416
+    "kunjungan": 443
    },
    {
     "pelabuhan": "JAMPEA",
-    "kunjungan": 325
+    "kunjungan": 344
    },
    {
     "pelabuhan": "BONERATE",
-    "kunjungan": 306
+    "kunjungan": 324
    },
    {
     "pelabuhan": "BULUKUMBA/LAPPE'E",
@@ -2211,33 +2235,33 @@
    },
    {
     "pelabuhan": "JINATO",
-    "kunjungan": 265
+    "kunjungan": 280
    },
    {
     "pelabuhan": "MAKASSAR",
-    "kunjungan": 263
+    "kunjungan": 268
    },
    {
     "pelabuhan": "KAYUADI",
-    "kunjungan": 193
+    "kunjungan": 205
    },
    {
     "pelabuhan": "KALAOTOA",
-    "kunjungan": 153
+    "kunjungan": 163
    },
    {
     "pelabuhan": "LABUAN BAJO",
-    "kunjungan": 114
+    "kunjungan": 121
    }
   ],
   "top_tipe_kapal": [
    {
     "tipe": "KMP",
-    "jumlah": 1082
+    "jumlah": 1148
    },
    {
     "tipe": "KLM",
-    "jumlah": 683
+    "jumlah": 719
    },
    {
     "tipe": "RO-RO FERRY",

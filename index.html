@@ -1,3677 +1,459 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distribusi Selayar - Dashboard Statistik Transportasi & Pariwisata</title>
-    <!-- Favicon SVG via Data URI -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230284c7'><path d='M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM3.5 14s-1 0-1-1 1-4 5.5-4 5.5 3 5.5 4-1 1-1 1h-9z'/></svg>">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <style>
-        :root {
-            --bg-base: #f8fafc;
-            --bg-surface: #ffffff;
-            --bg-sidebar: #0f172a;
-            --sidebar-hover: #1e293b;
-            --sidebar-active: #2563eb;
-            --sidebar-text: #94a3b8;
-            --sidebar-text-active: #ffffff;
-            --border: #e2e8f0;
-            --border-light: #f1f5f9;
-            --text-title: #0f172a;
-            --text-body: #334155;
-            --text-muted: #64748b;
-            --primary: #2563eb;
-            --primary-light: #eff6ff;
-            --success: #059669;
-            --success-light: #ecfdf5;
-            --warning: #d97706;
-            --warning-light: #fffbeb;
-            --purple: #7c3aed;
-            --purple-light: #f5f3ff;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distribusi Selayar - Statistik Transportasi</title>
+<meta name="description" content="Data penumpang, kapal, ferry, dan pesawat di Kabupaten Kepulauan Selayar, 2025–2026. Dikelola BPS Kabupaten Kepulauan Selayar.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232563eb'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --border: #e3e7ee;
+  --text: #16202e;
+  --muted: #5d6b7e;
+  --accent: #2563eb;
+  --warn-bg: #fff7e0;
+  --warn-text: #7a5300;
+  --c-pmt: #2563eb;
+  --c-btg: #0d9488;
+  --c-jmp: #d97706;
+  --c-ptb: #7c3aed;
+  --c-aro: #e11d48;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e141d;
+    --surface: #161e2a;
+    --border: #263243;
+    --text: #e8edf4;
+    --muted: #93a1b5;
+    --accent: #6ea0ff;
+    --warn-bg: #2b2410;
+    --warn-text: #f2cf7a;
+    --c-pmt: #6ea0ff;
+    --c-btg: #2dd4bf;
+    --c-jmp: #fbbf24;
+    --c-ptb: #a78bfa;
+    --c-aro: #fb7185;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px 48px; }
+header { padding: 32px 0 20px; }
+h1 { margin: 0 0 6px; font-size: clamp(1.4rem, 4vw, 1.9rem); line-height: 1.2; }
+h2 { margin: 36px 0 4px; font-size: 1.15rem; }
+.lead { margin: 0; color: var(--muted); max-width: 62ch; }
+.hint { margin: 0 0 12px; color: var(--muted); font-size: .9rem; }
+.tabs { display: flex; gap: 4px; margin-top: 20px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.tabs button {
+  border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--muted);
+  padding: 10px 14px; font: inherit; font-size: .95rem; cursor: pointer; white-space: nowrap; min-height: 44px;
+}
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.soon { margin-top: 24px; padding: 32px 20px; text-align: center; }
+.soon h2 { margin: 0 0 6px; }
+.soon .lead { margin: 0 auto; }
+[hidden] { display: none !important; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 20px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button {
+  border: 0; background: transparent; color: var(--muted); padding: 8px 16px;
+  font: inherit; font-size: .9rem; cursor: pointer; min-height: 40px;
+}
+.seg button + button { border-left: 1px solid var(--border); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.seg button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.updated { color: var(--muted); font-size: .85rem; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 20px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.kpi .label { color: var(--muted); font-size: .85rem; }
+.kpi .value { font-size: 1.8rem; font-weight: 700; line-height: 1.2; margin: 2px 0; font-variant-numeric: tabular-nums; }
+.kpi .sub { color: var(--muted); font-size: .8rem; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-body);
-            line-height: 1.5;
-            display: flex;
-            min-height: 100vh;
-        }
+.nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.node { border-top: 4px solid var(--c); }
+.node h3 { margin: 0; font-size: 1rem; }
+.node .mode { color: var(--muted); font-size: .8rem; }
+.node .desc { color: var(--muted); font-size: .85rem; margin: 6px 0 10px; }
+.node .num { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.node .small { color: var(--muted); font-size: .8rem; }
+.node .gap { color: var(--warn-text); font-size: .78rem; margin-top: 6px; }
 
-        /* SIDEBAR */
-        #sidebar {
-            width: 260px;
-            background: var(--bg-sidebar);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 50;
-            transition: transform 0.25s ease;
-        }
+.chart-box { position: relative; height: 320px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.two .chart-box { height: 260px; }
+.empty { color: var(--muted); font-size: .9rem; padding: 40px 8px; text-align: center; }
 
-        .sidebar-brand {
-            padding: 20px 22px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid #1e293b;
-        }
+.filter { margin-bottom: 10px; }
+select {
+  font: inherit; font-size: .9rem; padding: 8px 10px; min-height: 40px;
+  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px;
+}
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); max-height: 460px; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
+th, td { padding: 9px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--border); }
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+thead th { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-weight: 600; }
+tbody tr:last-child td { border-bottom: 0; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+.flag { color: var(--warn-text); }
 
-        .brand-icon {
-            width: 38px;
-            height: 38px;
-            background: var(--primary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #fff;
-        }
+.notes { background: var(--warn-bg); color: var(--warn-text); border-radius: 10px; padding: 4px 18px 8px; }
+.notes ul { margin: 8px 0; padding-left: 18px; }
+.notes li { margin: 6px 0; font-size: .92rem; }
+.notes strong { font-weight: 600; }
+.downloads { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.downloads a {
+  display: inline-block; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--accent); text-decoration: none; font-size: .88rem;
+}
+footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: .85rem; }
 
-        .brand-text h2 {
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
-
-        .brand-text span {
-            font-size: 11px;
-            color: var(--sidebar-text);
-            display: block;
-        }
-
-        .nav-menu {
-            padding: 16px 12px;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .nav-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 8px 12px 6px 12px;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            color: var(--sidebar-text);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 4px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .nav-item:hover {
-            background: var(--sidebar-hover);
-            color: #fff;
-        }
-
-        .nav-item.active {
-            background: var(--sidebar-active);
-            color: #fff;
-        }
-
-        .nav-item i {
-            font-size: 17px;
-        }
-
-        .badge-soon {
-            margin-left: auto;
-            font-size: 10px;
-            padding: 2px 7px;
-            background: #334155;
-            color: #cbd5e1;
-            border-radius: 999px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .sidebar-footer {
-            padding: 14px 20px;
-            border-top: 1px solid #1e293b;
-            font-size: 12px;
-            color: var(--sidebar-text);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .sidebar-footer a {
-            color: var(--sidebar-text);
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .sidebar-footer a:hover { color: #fff; }
-
-        /* MAIN CONTENT */
-        #main {
-            margin-left: 260px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-        }
-
-        /* TOPBAR */
-        .topbar {
-            background: var(--bg-surface);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 40;
-        }
-
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .btn-toggle-sidebar {
-            display: none;
-            background: none;
-            border: 1px solid var(--border);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 18px;
-            cursor: pointer;
-            color: var(--text-body);
-        }
-
-        .topbar-title h1 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-title);
-        }
-
-        .topbar-title p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .filter-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .select-filter {
-            padding: 6px 12px;
-            border: 1px solid var(--border);
-            background: var(--bg-surface);
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--text-body);
-            outline: none;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .select-filter:focus { border-color: var(--primary); }
-
-        /* PAGE CONTAINER */
-        .content-body {
-            padding: 24px 28px;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        /* SECTION TABS (NAV-TABS) */
-        .sub-nav {
-            display: flex;
-            gap: 8px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 24px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-
-        .sub-nav-btn {
-            background: none;
-            border: none;
-            padding: 8px 16px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-muted);
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            transition: all 0.15s ease;
-        }
-
-        .sub-nav-btn:hover {
-            color: var(--text-title);
-            background: #f1f5f9;
-        }
-
-        .sub-nav-btn.active {
-            color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        /* KPI STATS CARDS */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .kpi-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-
-        .kpi-info h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .kpi-info .val {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--text-title);
-            line-height: 1.2;
-        }
-
-        .kpi-info .sub {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .kpi-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .icon-blue { background: var(--primary-light); color: var(--primary); }
-        .icon-green { background: var(--success-light); color: var(--success); }
-        .icon-amber { background: var(--warning-light); color: var(--warning); }
-        .icon-purple { background: var(--purple-light); color: var(--purple); }
-
-        /* GRID LAYOUTS FOR CHARTS */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .grid-1-1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 22px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-        }
-
-        .card-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-title);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-subtitle {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* TABLES */
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
-        th {
-            background: var(--bg-base);
-            color: var(--text-muted);
-            font-weight: 600;
-            text-align: left;
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td {
-            padding: 11px 14px;
-            border-bottom: 1px solid var(--border-light);
-            color: var(--text-body);
-        }
-
-        tr:hover td {
-            background: #f8fafc;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .badge-ferry { background: #ecfdf5; color: #047857; }
-        .badge-laut { background: #eff6ff; color: #1d4ed8; }
-        .badge-udara { background: #f5f3ff; color: #6d28d9; }
-
-        .btn-download {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 7px 14px;
-            border-radius: 7px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.15s;
-        }
-        .btn-download:hover { background: #1d4ed8; }
-
-        /* TAB PANES */
-        .tab-pane {
-            display: none;
-        }
-        .tab-pane.active {
-            display: block;
-        }
-
-        /* HOTEL PLACEHOLDER VIEW */
-        .placeholder-box {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--bg-surface);
-            border: 2px dashed var(--border);
-            border-radius: var(--radius-lg);
-        }
-
-        .placeholder-box i {
-            font-size: 48px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            display: inline-block;
-        }
-
-        .placeholder-box h3 {
-            font-size: 18px;
-            color: var(--text-title);
-            margin-bottom: 8px;
-        }
-
-        .placeholder-box p {
-            font-size: 14px;
-            color: var(--text-muted);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* RESPONSIVE BREAKPOINTS */
-        @media (max-width: 960px) {
-            #sidebar {
-                transform: translateX(-100%);
-            }
-            #sidebar.open {
-                transform: translateX(0);
-            }
-            #main {
-                margin-left: 0;
-            }
-            .btn-toggle-sidebar {
-                display: block;
-            }
-            .grid-2, .grid-1-1 {
-                grid-template-columns: 1fr;
-            }
-            .content-body {
-                padding: 16px;
-            }
-        }
-    </style>
+@media (max-width: 520px) {
+  .kpi .value { font-size: 1.5rem; }
+  .chart-box { height: 280px; }
+  .seg button { padding: 8px 12px; }
+}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-    <!-- SIDEBAR -->
-    <aside id="sidebar">
-        <div class="sidebar-brand">
-            <div class="brand-icon">
-                <i class="bi bi-compass"></i>
-            </div>
-            <div class="brand-text">
-                <h2>DISTRIBUSI</h2>
-                <span>BPS Kepulauan Selayar</span>
-            </div>
-        </div>
+<header>
+  <h1>Transportasi Kepulauan Selayar</h1>
+  <p class="lead">Berapa banyak orang, barang, dan kendaraan yang keluar-masuk Selayar lewat pelabuhan dan bandara, 2025–2026.</p>
+  <nav class="tabs" role="tablist" aria-label="Topik">
+    <button type="button" role="tab" id="tab-transportasi" aria-selected="true" aria-controls="view-transportasi">Transportasi</button>
+    <button type="button" role="tab" id="tab-hotel" aria-selected="false" aria-controls="view-hotel">Hotel &amp; Pariwisata</button>
+  </nav>
+</header>
 
-        <nav class="nav-menu">
-            <div class="nav-label">Menu Utama</div>
-            <a class="nav-item active" onclick="switchMainTab('transportasi', this)">
-                <i class="bi bi-ship"></i>
-                <span>Transportasi</span>
-            </a>
-            <a class="nav-item" onclick="switchMainTab('hotel', this)">
-                <i class="bi bi-buildings"></i>
-                <span>Hotel & Pariwisata</span>
-                <span class="badge-soon">Segera</span>
-            </a>
+<main>
+<div id="view-hotel" role="tabpanel" aria-labelledby="tab-hotel" hidden>
+  <div class="card soon">
+    <h2>Segera hadir</h2>
+    <p class="lead">Statistik hotel dan pariwisata Selayar (tingkat penghunian kamar dan lama menginap tamu) sedang disiapkan dan akan tampil di sini.</p>
+  </div>
+</div>
 
-            <div class="nav-label" style="margin-top: 18px;">Moda Transportasi</div>
-            <a class="nav-item" onclick="switchSubTab('overview')">
-                <i class="bi bi-grid-1x2"></i>
-                <span>Overview Selayar</span>
-            </a>
-            <a class="nav-item" onclick="switchSubTab('ferry')">
-                <i class="bi bi-water"></i>
-                <span>Ferry Pamatata (ASDP)</span>
-            </a>
-            <a class="nav-item" onclick="switchSubTab('penerbangan')">
-                <i class="bi bi-airplane"></i>
-                <span>Bandara Aroeppala</span>
-            </a>
-            <a class="nav-item" onclick="switchSubTab('laut')">
-                <i class="bi bi-anchor"></i>
-                <span>Pelayaran Laut</span>
-            </a>
-            <a class="nav-item" onclick="switchSubTab('tabel')">
-                <i class="bi bi-table"></i>
-                <span>Data & Unduh</span>
-            </a>
-        </nav>
+<div id="view-transportasi" role="tabpanel" aria-labelledby="tab-transportasi">
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Pilih tahun" id="year-seg"></div>
+    <span class="updated" id="updated"></span>
+  </div>
 
-        <div class="sidebar-footer">
-            <span id="txt-updated">Update: 2026</span>
-            <a href="https://github.com/stat-selayar/distribusi" target="_blank" title="Repository GitHub">
-                <i class="bi bi-github"></i>
-            </a>
-        </div>
-    </aside>
+  <section class="kpis" id="kpis" aria-label="Ringkasan"></section>
 
-    <!-- MAIN CONTENT AREA -->
-    <div id="main">
-        <!-- TOPBAR -->
-        <header class="topbar">
-            <div class="topbar-left">
-                <button class="btn-toggle-sidebar" onclick="toggleSidebar()" aria-label="Toggle Sidebar">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="topbar-title">
-                    <h1 id="page-title">Statistik Transportasi Kepulauan Selayar</h1>
-                    <p>Integrasi Data Operasional Laut, Penyeberangan Ferry & Udara</p>
-                </div>
-            </div>
-            <div class="filter-bar">
-                <select id="filter-tahun" class="select-filter" onchange="applyFilters()">
-                    <option value="ALL">Semua Tahun</option>
-                    <option value="2025">Tahun 2025</option>
-                    <option value="2026">Tahun 2026</option>
-                </select>
-                <select id="filter-simpul" class="select-filter" onchange="applyFilters()">
-                    <option value="ALL">Semua Simpul</option>
-                    <option value="PMT">Pelabuhan Pamatata</option>
-                    <option value="BTG">Pelabuhan Benteng</option>
-                    <option value="ARO">Bandara H. Aroeppala</option>
-                    <option value="JMP">Pelabuhan Jampea</option>
-                    <option value="PTB">Pelabuhan Pattumbukang</option>
-                </select>
-            </div>
-        </header>
+  <h2>Lima simpul transportasi</h2>
+  <p class="hint">Pelabuhan dan bandara yang datanya dipantau. Angka mengikuti tahun yang dipilih.</p>
+  <section class="nodes" id="nodes"></section>
 
-        <div class="content-body">
+  <h2>Penumpang per bulan</h2>
+  <p class="hint">Penumpang naik + turun. Klik nama di legenda untuk menyembunyikan simpul. Garis putus-putus: rekap ringkasan yang belum diverifikasi. Celah: bulan tanpa data.</p>
+  <div class="card"><div class="chart-box"><canvas id="trend" role="img" aria-label="Grafik garis jumlah penumpang per bulan per simpul"></canvas></div></div>
 
-            <!-- MAIN TAB: TRANSPORTASI -->
-            <div id="view-transportasi">
-                <!-- SUB NAVIGATION BUTTONS -->
-                <div class="sub-nav">
-                    <button class="sub-nav-btn active" id="btn-tab-overview" onclick="switchSubTab('overview')">
-                        <i class="bi bi-grid-1x2"></i> Ringkasan Utama
-                    </button>
-                    <button class="sub-nav-btn" id="btn-tab-ferry" onclick="switchSubTab('ferry')">
-                        <i class="bi bi-water"></i> Penyeberangan Pamatata
-                    </button>
-                    <button class="sub-nav-btn" id="btn-tab-penerbangan" onclick="switchSubTab('penerbangan')">
-                        <i class="bi bi-airplane"></i> Penerbangan Aroeppala
-                    </button>
-                    <button class="sub-nav-btn" id="btn-tab-laut" onclick="switchSubTab('laut')">
-                        <i class="bi bi-anchor"></i> Pelayaran Laut & Logistik
-                    </button>
-                    <button class="sub-nav-btn" id="btn-tab-tabel" onclick="switchSubTab('tabel')">
-                        <i class="bi bi-table"></i> Tabel & Unduh Master
-                    </button>
-                </div>
-
-                <!-- SUBTAB 1: OVERVIEW -->
-                <div id="subtab-overview" class="tab-pane active">
-                    <!-- KPI CARDS -->
-                    <div class="kpi-grid">
-                        <div class="kpi-card">
-                            <div class="kpi-info">
-                                <h3>Total Penumpang</h3>
-                                <div class="val" id="kpi-pnp">-</div>
-                                <div class="sub" id="kpi-pnp-sub">Laut, Ferry & Udara</div>
-                            </div>
-                            <div class="kpi-icon icon-blue"><i class="bi bi-people-fill"></i></div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-info">
-                                <h3>Muatan Logistik</h3>
-                                <div class="val" id="kpi-brg">-</div>
-                                <div class="sub">Bongkar & Muat Komoditas</div>
-                            </div>
-                            <div class="kpi-icon icon-green"><i class="bi bi-box-seam-fill"></i></div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-info">
-                                <h3>Kendaraan Ferry</h3>
-                                <div class="val" id="kpi-knd">-</div>
-                                <div class="sub">Lintasan Bira – Pamatata</div>
-                            </div>
-                            <div class="kpi-icon icon-amber"><i class="bi bi-truck-front-fill"></i></div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-info">
-                                <h3>Pergerakan Armada</h3>
-                                <div class="val" id="kpi-trip">-</div>
-                                <div class="sub">Trip Kapal & Penerbangan</div>
-                            </div>
-                            <div class="kpi-icon icon-purple"><i class="bi bi-activity"></i></div>
-                        </div>
-                    </div>
-
-                    <!-- CHARTS -->
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-graph-up text-primary"></i> Tren Penumpang Bulanan Selayar</div>
-                                    <div class="card-subtitle">Perkembangan mobilitas orang antar moda transportasi</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-tren-pnp" height="130"></canvas>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-pie-chart text-primary"></i> Pangsa Penumpang Moda</div>
-                                    <div class="card-subtitle">Dominasi simpul pintu masuk Selayar</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-pie-moda" height="200"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="grid-1-1">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-box-arrow-in-down text-primary"></i> Arus Logistik Barang (Ton)</div>
-                                    <div class="card-subtitle">Perbandingan bongkar (masuk) vs muat (keluar)</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-barang-bar" height="140"></canvas>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-geo-alt text-primary"></i> Simpul Transportasi Kepulauan Selayar</div>
-                                    <div class="card-subtitle">5 Pintu Gerbang Konektivitas Wilayah</div>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Simpul</th>
-                                            <th>Moda</th>
-                                            <th>Wilayah</th>
-                                            <th>Operator</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl-simpul-body">
-                                        <!-- Diisi oleh JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBTAB 2: FERRY PAMATATA -->
-                <div id="subtab-ferry" class="tab-pane">
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-water text-primary"></i> Tren Penyeberangan Ferry Pamatata - Bira</div>
-                                    <div class="card-subtitle">Jumlah Trip dan Penumpang Dewasa / Anak per Bulan</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-ferry-pnp" height="130"></canvas>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-truck text-primary"></i> Komposisi Golongan Kendaraan</div>
-                                    <div class="card-subtitle">Distribusi Beban Kendaraan Menyeberang</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-ferry-kend" height="200"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title"><i class="bi bi-calendar3 text-primary"></i> Rekapitulasi Penyeberangan Bulanan Pelabuhan Pamatata</div>
-                                <div class="card-subtitle">Data produksi resmi lintasan penyeberangan utama Selayar</div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Bulan</th>
-                                        <th>Trip</th>
-                                        <th>Pnp Dewasa</th>
-                                        <th>Pnp Anak</th>
-                                        <th>Total Pnp</th>
-                                        <th>Motor (Gol II)</th>
-                                        <th>Mobil (Gol IV)</th>
-                                        <th>Truk (Gol V-VIII)</th>
-                                        <th>Total Kendaraan</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl-ferry-monthly"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBTAB 3: PENERBANGAN AROEPPALA -->
-                <div id="subtab-penerbangan" class="tab-pane">
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-airplane text-primary"></i> Lalu Lintas Penerbangan Bandara H. Aroeppala</div>
-                                    <div class="card-subtitle">Penumpang Datang vs Berangkat per Bulan (2026)</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-aroeppala-pnp" height="130"></canvas>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-backpack text-primary"></i> Bagasi, Kargo & Pos Udara</div>
-                                    <div class="card-subtitle">Volume muatan pesawat dalam Kg</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-aroeppala-kargo" height="200"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title"><i class="bi bi-calendar3 text-primary"></i> Rekapitulasi Lalu Lintas Penerbangan Bulanan (LLAU)</div>
-                                <div class="card-subtitle">Bandar Udara Kelas III H. Aroeppala Selayar</div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Bulan</th>
-                                        <th>Pesawat Tiba</th>
-                                        <th>Pesawat Berangkat</th>
-                                        <th>Pnp Datang</th>
-                                        <th>Pnp Berangkat</th>
-                                        <th>Total Penumpang</th>
-                                        <th>Bagasi (Kg)</th>
-                                        <th>Kargo (Kg)</th>
-                                        <th>Pos (Kg)</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl-aroeppala-monthly"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBTAB 4: PELAYARAN LAUT -->
-                <div id="subtab-laut" class="tab-pane">
-                    <div class="grid-1-1">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-signpost-2 text-primary"></i> Top 8 Pelabuhan Asal Kunjungan Kapal</div>
-                                    <div class="card-subtitle">Jaringan konektivitas maritim ke Kepulauan Selayar</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-laut-asal" height="140"></canvas>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title"><i class="bi bi-box2 text-primary"></i> Komoditas Utama Muatan Kapal (Ton)</div>
-                                    <div class="card-subtitle">Logistik sembako, semen, kopra, BBM & pupuk</div>
-                                </div>
-                            </div>
-                            <canvas id="chart-laut-komoditas" height="140"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title"><i class="bi bi-compass text-primary"></i> Distribusi Tipe Armada Kapal Laut</div>
-                                <div class="card-subtitle">Kapal Motor, Perintis, Ro-Ro Ferry, dan Kapal Layar Motor (KLM)</div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Tipe Armada Kapal</th>
-                                        <th>Jumlah Kunjungan Terdata</th>
-                                        <th>Karakteristik & Peran</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl-laut-tipe"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUBTAB 5: DATA & UNDUH -->
-                <div id="subtab-tabel" class="tab-pane">
-                    <div class="card" style="margin-bottom: 24px;">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title"><i class="bi bi-file-earmark-spreadsheet text-primary"></i> Unduh Dataset Bersih Siap Analisis</div>
-                                <div class="card-subtitle">Format terstruktur Tidy Data standar BPS untuk Excel, Power BI, Tableau, Python & R</div>
-                            </div>
-                        </div>
-                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                            <a href="data_bersih/master_transportasi_selayar.xlsx" class="btn-download" download>
-                                <i class="bi bi-file-earmark-excel"></i> Master Excel Workbook (.xlsx)
-                            </a>
-                            <a href="data_bersih/fact_rekap_bulanan.csv" class="btn-download" download style="background:#059669;">
-                                <i class="bi bi-file-earmark-csv"></i> Rekap Bulanan (.csv)
-                            </a>
-                            <a href="data_bersih/fact_pamatata_ferry_harian.csv" class="btn-download" download style="background:#0891b2;">
-                                <i class="bi bi-file-earmark-csv"></i> Ferry Pamatata Harian (.csv)
-                            </a>
-                            <a href="data_bersih/fact_aroeppala_penerbangan_harian.csv" class="btn-download" download style="background:#7c3aed;">
-                                <i class="bi bi-file-earmark-csv"></i> Penerbangan Harian (.csv)
-                            </a>
-                            <a href="data_bersih/fact_log_pelayaran.csv" class="btn-download" download style="background:#475569;">
-                                <i class="bi bi-file-earmark-csv"></i> Log Pelayaran Kapal (.csv)
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-title"><i class="bi bi-table text-primary"></i> Tabel Rekap Bulanan Transportasi</div>
-                                <div class="card-subtitle">Pratinjau data makro per periode dan simpul</div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Periode</th>
-                                        <th>Simpul</th>
-                                        <th>Moda</th>
-                                        <th>Trip/Flgt</th>
-                                        <th>Pnp Turun</th>
-                                        <th>Pnp Naik</th>
-                                        <th>Total Pnp</th>
-                                        <th>Bongkar (Ton)</th>
-                                        <th>Muat (Ton)</th>
-                                        <th>Kendaraan</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl-rekap-full"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- MAIN TAB: HOTEL & PARIWISATA (COMING SOON / PREVIEW) -->
-            <div id="view-hotel" style="display: none;">
-                <div class="placeholder-box">
-                    <i class="bi bi-buildings"></i>
-                    <h3>Modul Hotel & Pariwisata</h3>
-                    <p>Integrasi data Survei VHTS (Tingkat Penghunian Kamar Hotel / TPK, Rata-rata Lama Menginap Tamu Asing & Domestik Kabupaten Kepulauan Selayar) sedang dalam proses perapihan.</p>
-                    <div style="margin-top: 20px;">
-                        <button class="btn-download" onclick="switchMainTab('transportasi', document.querySelector('.nav-item'))">
-                            <i class="bi bi-arrow-left"></i> Kembali ke Transportasi
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <div class="two" style="margin-top:12px">
+    <div>
+      <h2 style="margin-top:24px">Kendaraan di ferry Pamatata</h2>
+      <p class="hint">Total kendaraan yang menyeberang Bira–Pamatata.</p>
+      <div class="card"><div class="chart-box"><canvas id="vehicles" role="img" aria-label="Grafik batang jenis kendaraan ferry"></canvas></div><div class="empty" id="vehicles-empty" hidden></div></div>
     </div>
+    <div>
+      <h2 style="margin-top:24px">Kapal datang dari mana</h2>
+      <p class="hint">8 pelabuhan asal tersering, seluruh periode.</p>
+      <div class="card"><div class="chart-box"><canvas id="origins" role="img" aria-label="Grafik batang pelabuhan asal kapal"></canvas></div></div>
+    </div>
+  </div>
 
-    <script>
-        // GLOBAL STATE & DATA
-        let RAW_DATA = null;
-        let CHARTS = {};
+  <h2>Tabel per bulan</h2>
+  <div class="filter">
+    <label for="node-filter" class="hint">Simpul: </label>
+    <select id="node-filter"></select>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Bulan</th><th>Simpul</th><th>Kedatangan</th><th>Penumpang turun</th><th>Penumpang naik</th><th>Kendaraan</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
 
-        // INLINE BACKUP DATA jika dibuka via file:// tanpa local web server
-        window.FALLBACK_DATA = {
-  "updated_at": "2026-10-30 17:10 WITA",
-  "dim_simpul": [
-    {
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "nama_resmi": "Kantor UPBU Kelas III H. Aroeppala Selayar",
-      "moda": "Udara",
-      "kabupaten": "Kepulauan Selayar",
-      "kecamatan": "Bontoharu",
-      "wilayah": "Daratan Pulau Selayar",
-      "latitude": "-6.196389",
-      "longitude": "120.463333",
-      "operator": "Ditjen Perhubungan Udara Kemenhub"
-    },
-    {
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "nama_resmi": "Kantor UPP Kelas III Selayar (Benteng)",
-      "moda": "Laut",
-      "kabupaten": "Kepulauan Selayar",
-      "kecamatan": "Benteng",
-      "wilayah": "Ibu Kota Kabupaten",
-      "latitude": "-6.118944",
-      "longitude": "120.457389",
-      "operator": "Ditjen Perhubungan Laut Kemenhub"
-    },
-    {
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "nama_resmi": "Satuan Pelayanan Pelabuhan Penyeberangan Pamatata (BPTD Sulsel)",
-      "moda": "Penyeberangan",
-      "kabupaten": "Kepulauan Selayar",
-      "kecamatan": "Bontomatene",
-      "wilayah": "Ujung Utara Pulau Selayar",
-      "latitude": "-5.850556",
-      "longitude": "120.448056",
-      "operator": "BPTD Kelas II Sulsel / PT ASDP Indonesia Ferry"
-    },
-    {
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "nama_resmi": "Kantor UPP Kelas III Jampea",
-      "moda": "Laut",
-      "kabupaten": "Kepulauan Selayar",
-      "kecamatan": "Pasimasunggu",
-      "wilayah": "Pulau Jampea (Kepulauan Luar)",
-      "latitude": "-7.078889",
-      "longitude": "120.675833",
-      "operator": "Ditjen Perhubungan Laut Kemenhub"
-    },
-    {
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "nama_resmi": "Wilayah Kerja Pattumbukang (UPP Kelas III Selayar)",
-      "moda": "Laut",
-      "kabupaten": "Kepulauan Selayar",
-      "kecamatan": "Bontosikuyu",
-      "wilayah": "Ujung Selatan/Timur Pulau Selayar",
-      "latitude": "-6.376944",
-      "longitude": "120.528333",
-      "operator": "Ditjen Perhubungan Laut Kemenhub"
-    }
-  ],
-  "rekap_bulanan": [
-    {
-      "tahun": 2025,
-      "bulan": 1,
-      "periode": "2025-01",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1542,
-      "penumpang_naik": 18947,
-      "penumpang_transit": 1364,
-      "total_penumpang": 21853,
-      "barang_bongkar_ton": 1793.0,
-      "barang_muat_ton": 503.0,
-      "total_barang_ton": 2296.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 1,
-      "periode": "2025-01",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 167,
-      "kunjungan_berangkat": 167,
-      "total_kunjungan": 334,
-      "penumpang_turun": 3821,
-      "penumpang_naik": 2810,
-      "penumpang_transit": 0,
-      "total_penumpang": 6631,
-      "barang_bongkar_ton": 1442.0,
-      "barang_muat_ton": 677.0,
-      "total_barang_ton": 2119.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 297,
-      "total_hewan_ekor": 417
-    },
-    {
-      "tahun": 2025,
-      "bulan": 1,
-      "periode": "2025-01",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 78,
-      "kunjungan_berangkat": 77,
-      "total_kunjungan": 155,
-      "penumpang_turun": 7603,
-      "penumpang_naik": 8001,
-      "penumpang_transit": 0,
-      "total_penumpang": 15604,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 2757,
-      "kendaraan_naik": 2788,
-      "total_kendaraan": 5545,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 2,
-      "periode": "2025-02",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1415,
-      "penumpang_naik": 1197,
-      "penumpang_transit": 1364,
-      "total_penumpang": 3976,
-      "barang_bongkar_ton": 1337.0,
-      "barang_muat_ton": 348.0,
-      "total_barang_ton": 1685.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 2,
-      "periode": "2025-02",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 105,
-      "kunjungan_berangkat": 105,
-      "total_kunjungan": 210,
-      "penumpang_turun": 2082,
-      "penumpang_naik": 1769,
-      "penumpang_transit": 0,
-      "total_penumpang": 3851,
-      "barang_bongkar_ton": 465.0,
-      "barang_muat_ton": 378.0,
-      "total_barang_ton": 843.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 80,
-      "hewan_muat_ekor": 251,
-      "total_hewan_ekor": 331
-    },
-    {
-      "tahun": 2025,
-      "bulan": 2,
-      "periode": "2025-02",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 67,
-      "kunjungan_berangkat": 69,
-      "total_kunjungan": 136,
-      "penumpang_turun": 7269,
-      "penumpang_naik": 7307,
-      "penumpang_transit": 0,
-      "total_penumpang": 14576,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 2424,
-      "kendaraan_naik": 2508,
-      "total_kendaraan": 4932,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 3,
-      "periode": "2025-03",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1625,
-      "penumpang_naik": 1616,
-      "penumpang_transit": 2387,
-      "total_penumpang": 5628,
-      "barang_bongkar_ton": 1667.0,
-      "barang_muat_ton": 310.0,
-      "total_barang_ton": 1977.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 3,
-      "periode": "2025-03",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 150,
-      "kunjungan_berangkat": 150,
-      "total_kunjungan": 300,
-      "penumpang_turun": 4779,
-      "penumpang_naik": 2679,
-      "penumpang_transit": 0,
-      "total_penumpang": 7458,
-      "barang_bongkar_ton": 656.0,
-      "barang_muat_ton": 320.0,
-      "total_barang_ton": 976.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 100,
-      "hewan_muat_ekor": 195,
-      "total_hewan_ekor": 295
-    },
-    {
-      "tahun": 2025,
-      "bulan": 3,
-      "periode": "2025-03",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 90,
-      "kunjungan_berangkat": 90,
-      "total_kunjungan": 180,
-      "penumpang_turun": 11133,
-      "penumpang_naik": 7034,
-      "penumpang_transit": 0,
-      "total_penumpang": 18167,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3736,
-      "kendaraan_naik": 2547,
-      "total_kendaraan": 6283,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 4,
-      "periode": "2025-04",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 2850,
-      "penumpang_naik": 2410,
-      "penumpang_transit": 1890,
-      "total_penumpang": 7150,
-      "barang_bongkar_ton": 1845.0,
-      "barang_muat_ton": 420.0,
-      "total_barang_ton": 2265.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 4,
-      "periode": "2025-04",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 178,
-      "kunjungan_berangkat": 178,
-      "total_kunjungan": 356,
-      "penumpang_turun": 4343,
-      "penumpang_naik": 5075,
-      "penumpang_transit": 0,
-      "total_penumpang": 9418,
-      "barang_bongkar_ton": 682.0,
-      "barang_muat_ton": 372.0,
-      "total_barang_ton": 1054.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 573,
-      "total_hewan_ekor": 693
-    },
-    {
-      "tahun": 2025,
-      "bulan": 4,
-      "periode": "2025-04",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 108,
-      "kunjungan_berangkat": 109,
-      "total_kunjungan": 217,
-      "penumpang_turun": 10733,
-      "penumpang_naik": 15741,
-      "penumpang_transit": 0,
-      "total_penumpang": 26474,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3417,
-      "kendaraan_naik": 5359,
-      "total_kendaraan": 8776,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 5,
-      "periode": "2025-05",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1380,
-      "penumpang_naik": 1290,
-      "penumpang_transit": 1120,
-      "total_penumpang": 3790,
-      "barang_bongkar_ton": 1420.0,
-      "barang_muat_ton": 380.0,
-      "total_barang_ton": 1800.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 5,
-      "periode": "2025-05",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 183,
-      "kunjungan_berangkat": 183,
-      "total_kunjungan": 366,
-      "penumpang_turun": 4466,
-      "penumpang_naik": 3453,
-      "penumpang_transit": 0,
-      "total_penumpang": 7919,
-      "barang_bongkar_ton": 793.0,
-      "barang_muat_ton": 512.5,
-      "total_barang_ton": 1305.5,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 498,
-      "total_hewan_ekor": 618
-    },
-    {
-      "tahun": 2025,
-      "bulan": 5,
-      "periode": "2025-05",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 93,
-      "kunjungan_berangkat": 92,
-      "total_kunjungan": 185,
-      "penumpang_turun": 9942,
-      "penumpang_naik": 10428,
-      "penumpang_transit": 0,
-      "total_penumpang": 20370,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3246,
-      "kendaraan_naik": 3403,
-      "total_kendaraan": 6649,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 6,
-      "periode": "2025-06",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1490,
-      "penumpang_naik": 1520,
-      "penumpang_transit": 1430,
-      "total_penumpang": 4440,
-      "barang_bongkar_ton": 1560.0,
-      "barang_muat_ton": 415.0,
-      "total_barang_ton": 1975.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 6,
-      "periode": "2025-06",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 160,
-      "kunjungan_berangkat": 160,
-      "total_kunjungan": 320,
-      "penumpang_turun": 5217,
-      "penumpang_naik": 5028,
-      "penumpang_transit": 0,
-      "total_penumpang": 10245,
-      "barang_bongkar_ton": 737.0,
-      "barang_muat_ton": 355.0,
-      "total_barang_ton": 1092.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 100,
-      "hewan_muat_ekor": 400,
-      "total_hewan_ekor": 500
-    },
-    {
-      "tahun": 2025,
-      "bulan": 6,
-      "periode": "2025-06",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 95,
-      "kunjungan_berangkat": 95,
-      "total_kunjungan": 190,
-      "penumpang_turun": 10886,
-      "penumpang_naik": 12374,
-      "penumpang_transit": 0,
-      "total_penumpang": 23260,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3628,
-      "kendaraan_naik": 3838,
-      "total_kendaraan": 7466,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 7,
-      "periode": "2025-07",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1510,
-      "penumpang_naik": 1480,
-      "penumpang_transit": 1350,
-      "total_penumpang": 4340,
-      "barang_bongkar_ton": 1680.0,
-      "barang_muat_ton": 390.0,
-      "total_barang_ton": 2070.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 7,
-      "periode": "2025-07",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 175,
-      "kunjungan_berangkat": 175,
-      "total_kunjungan": 350,
-      "penumpang_turun": 5876,
-      "penumpang_naik": 3510,
-      "penumpang_transit": 0,
-      "total_penumpang": 9386,
-      "barang_bongkar_ton": 986.0,
-      "barang_muat_ton": 470.5,
-      "total_barang_ton": 1456.5,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 306,
-      "total_hewan_ekor": 426
-    },
-    {
-      "tahun": 2025,
-      "bulan": 7,
-      "periode": "2025-07",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 95,
-      "kunjungan_berangkat": 98,
-      "total_kunjungan": 193,
-      "penumpang_turun": 9113,
-      "penumpang_naik": 11013,
-      "penumpang_transit": 0,
-      "total_penumpang": 20126,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3267,
-      "kendaraan_naik": 3185,
-      "total_kendaraan": 6452,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 8,
-      "periode": "2025-08",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1630,
-      "penumpang_naik": 1590,
-      "penumpang_transit": 1280,
-      "total_penumpang": 4500,
-      "barang_bongkar_ton": 1710.0,
-      "barang_muat_ton": 450.0,
-      "total_barang_ton": 2160.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 8,
-      "periode": "2025-08",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 184,
-      "kunjungan_berangkat": 184,
-      "total_kunjungan": 368,
-      "penumpang_turun": 4279,
-      "penumpang_naik": 3560,
-      "penumpang_transit": 0,
-      "total_penumpang": 7839,
-      "barang_bongkar_ton": 945.0,
-      "barang_muat_ton": 484.35,
-      "total_barang_ton": 1429.35,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 299,
-      "total_hewan_ekor": 419
-    },
-    {
-      "tahun": 2025,
-      "bulan": 8,
-      "periode": "2025-08",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 86,
-      "kunjungan_berangkat": 86,
-      "total_kunjungan": 172,
-      "penumpang_turun": 7427,
-      "penumpang_naik": 8707,
-      "penumpang_transit": 0,
-      "total_penumpang": 16134,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 2934,
-      "kendaraan_naik": 3072,
-      "total_kendaraan": 6006,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 9,
-      "periode": "2025-09",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1470,
-      "penumpang_naik": 1450,
-      "penumpang_transit": 1200,
-      "total_penumpang": 4120,
-      "barang_bongkar_ton": 1590.0,
-      "barang_muat_ton": 430.0,
-      "total_barang_ton": 2020.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 9,
-      "periode": "2025-09",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 123,
-      "kunjungan_berangkat": 123,
-      "total_kunjungan": 246,
-      "penumpang_turun": 3532,
-      "penumpang_naik": 2430,
-      "penumpang_transit": 0,
-      "total_penumpang": 5962,
-      "barang_bongkar_ton": 828.04,
-      "barang_muat_ton": 608.0,
-      "total_barang_ton": 1436.04,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 104,
-      "hewan_muat_ekor": 179,
-      "total_hewan_ekor": 283
-    },
-    {
-      "tahun": 2025,
-      "bulan": 9,
-      "periode": "2025-09",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 71,
-      "kunjungan_berangkat": 72,
-      "total_kunjungan": 143,
-      "penumpang_turun": 8005,
-      "penumpang_naik": 9247,
-      "penumpang_transit": 0,
-      "total_penumpang": 17252,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 2889,
-      "kendaraan_naik": 3036,
-      "total_kendaraan": 5925,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 10,
-      "periode": "2025-10",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1520,
-      "penumpang_naik": 1500,
-      "penumpang_transit": 1310,
-      "total_penumpang": 4330,
-      "barang_bongkar_ton": 1640.0,
-      "barang_muat_ton": 400.0,
-      "total_barang_ton": 2040.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 10,
-      "periode": "2025-10",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 168,
-      "kunjungan_berangkat": 168,
-      "total_kunjungan": 336,
-      "penumpang_turun": 5026,
-      "penumpang_naik": 3760,
-      "penumpang_transit": 0,
-      "total_penumpang": 8786,
-      "barang_bongkar_ton": 863.0,
-      "barang_muat_ton": 572.0,
-      "total_barang_ton": 1435.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 219,
-      "total_hewan_ekor": 339
-    },
-    {
-      "tahun": 2025,
-      "bulan": 10,
-      "periode": "2025-10",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 77,
-      "kunjungan_berangkat": 77,
-      "total_kunjungan": 154,
-      "penumpang_turun": 8074,
-      "penumpang_naik": 8740,
-      "penumpang_transit": 0,
-      "total_penumpang": 16814,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3140,
-      "kendaraan_naik": 2887,
-      "total_kendaraan": 6027,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 11,
-      "periode": "2025-11",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 1390,
-      "penumpang_naik": 1360,
-      "penumpang_transit": 1180,
-      "total_penumpang": 3930,
-      "barang_bongkar_ton": 1510.0,
-      "barang_muat_ton": 370.0,
-      "total_barang_ton": 1880.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 11,
-      "periode": "2025-11",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 165,
-      "kunjungan_berangkat": 165,
-      "total_kunjungan": 330,
-      "penumpang_turun": 4395,
-      "penumpang_naik": 3550,
-      "penumpang_transit": 0,
-      "total_penumpang": 7945,
-      "barang_bongkar_ton": 1064.08,
-      "barang_muat_ton": 465.0,
-      "total_barang_ton": 1529.08,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 100,
-      "hewan_muat_ekor": 152,
-      "total_hewan_ekor": 252
-    },
-    {
-      "tahun": 2025,
-      "bulan": 11,
-      "periode": "2025-11",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 78,
-      "kunjungan_berangkat": 77,
-      "total_kunjungan": 155,
-      "penumpang_turun": 6681,
-      "penumpang_naik": 7611,
-      "penumpang_transit": 0,
-      "total_penumpang": 14292,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 2736,
-      "kendaraan_naik": 2683,
-      "total_kendaraan": 5419,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 12,
-      "periode": "2025-12",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 35,
-      "kunjungan_berangkat": 35,
-      "total_kunjungan": 70,
-      "penumpang_turun": 2100,
-      "penumpang_naik": 2250,
-      "penumpang_transit": 1750,
-      "total_penumpang": 6100,
-      "barang_bongkar_ton": 1890.0,
-      "barang_muat_ton": 510.0,
-      "total_barang_ton": 2400.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2025,
-      "bulan": 12,
-      "periode": "2025-12",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 167,
-      "kunjungan_berangkat": 167,
-      "total_kunjungan": 334,
-      "penumpang_turun": 4214,
-      "penumpang_naik": 4880,
-      "penumpang_transit": 0,
-      "total_penumpang": 9094,
-      "barang_bongkar_ton": 906.0,
-      "barang_muat_ton": 435.0,
-      "total_barang_ton": 1341.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 182,
-      "total_hewan_ekor": 302
-    },
-    {
-      "tahun": 2025,
-      "bulan": 12,
-      "periode": "2025-12",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Penyeberangan",
-      "kunjungan_datang": 88,
-      "kunjungan_berangkat": 90,
-      "total_kunjungan": 178,
-      "penumpang_turun": 8284,
-      "penumpang_naik": 9045,
-      "penumpang_transit": 0,
-      "total_penumpang": 17329,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 3133,
-      "kendaraan_naik": 3076,
-      "total_kendaraan": 6209,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 1,
-      "periode": "2026-01",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 6,
-      "kunjungan_berangkat": 6,
-      "total_kunjungan": 12,
-      "penumpang_turun": 362,
-      "penumpang_naik": 396,
-      "penumpang_transit": 0,
-      "total_penumpang": 758,
-      "barang_bongkar_ton": 2.06,
-      "barang_muat_ton": 1.81,
-      "total_barang_ton": 3.88,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 1,
-      "periode": "2026-01",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 254,
-      "kunjungan_berangkat": 254,
-      "total_kunjungan": 508,
-      "penumpang_turun": 6284,
-      "penumpang_naik": 3864,
-      "penumpang_transit": 0,
-      "total_penumpang": 10148,
-      "barang_bongkar_ton": 1563.0,
-      "barang_muat_ton": 823.0,
-      "total_barang_ton": 2386.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 180,
-      "hewan_muat_ekor": 302,
-      "total_hewan_ekor": 482
-    },
-    {
-      "tahun": 2026,
-      "bulan": 2,
-      "periode": "2026-02",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 7,
-      "kunjungan_berangkat": 7,
-      "total_kunjungan": 14,
-      "penumpang_turun": 248,
-      "penumpang_naik": 293,
-      "penumpang_transit": 0,
-      "total_penumpang": 541,
-      "barang_bongkar_ton": 1.17,
-      "barang_muat_ton": 1.12,
-      "total_barang_ton": 2.29,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 3,
-      "periode": "2026-03",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 13,
-      "kunjungan_berangkat": 13,
-      "total_kunjungan": 26,
-      "penumpang_turun": 693,
-      "penumpang_naik": 743,
-      "penumpang_transit": 0,
-      "total_penumpang": 1436,
-      "barang_bongkar_ton": 4.3,
-      "barang_muat_ton": 3.75,
-      "total_barang_ton": 8.05,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 3,
-      "periode": "2026-03",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 85,
-      "kunjungan_berangkat": 85,
-      "total_kunjungan": 170,
-      "penumpang_turun": 2633,
-      "penumpang_naik": 2866,
-      "penumpang_transit": 0,
-      "total_penumpang": 5499,
-      "barang_bongkar_ton": 5356.0,
-      "barang_muat_ton": 778.0,
-      "total_barang_ton": 6134.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 7,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 7
-    },
-    {
-      "tahun": 2026,
-      "bulan": 3,
-      "periode": "2026-03",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 144,
-      "kunjungan_berangkat": 144,
-      "total_kunjungan": 288,
-      "penumpang_turun": 12219,
-      "penumpang_naik": 13768,
-      "penumpang_transit": 0,
-      "total_penumpang": 25987,
-      "barang_bongkar_ton": 13654.4,
-      "barang_muat_ton": 280.0,
-      "total_barang_ton": 13934.4,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 3,
-      "periode": "2026-03",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 12,
-      "kunjungan_berangkat": 12,
-      "total_kunjungan": 24,
-      "penumpang_turun": 472,
-      "penumpang_naik": 760,
-      "penumpang_transit": 0,
-      "total_penumpang": 1232,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 4,
-      "periode": "2026-04",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 11,
-      "kunjungan_berangkat": 11,
-      "total_kunjungan": 22,
-      "penumpang_turun": 423,
-      "penumpang_naik": 601,
-      "penumpang_transit": 0,
-      "total_penumpang": 1024,
-      "barang_bongkar_ton": 2.24,
-      "barang_muat_ton": 2.59,
-      "total_barang_ton": 4.83,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 4,
-      "periode": "2026-04",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 118,
-      "kunjungan_berangkat": 118,
-      "total_kunjungan": 236,
-      "penumpang_turun": 2202,
-      "penumpang_naik": 2480,
-      "penumpang_transit": 0,
-      "total_penumpang": 4682,
-      "barang_bongkar_ton": 5732.0,
-      "barang_muat_ton": 1078.0,
-      "total_barang_ton": 6810.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 13,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 13
-    },
-    {
-      "tahun": 2026,
-      "bulan": 4,
-      "periode": "2026-04",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 97,
-      "kunjungan_berangkat": 97,
-      "total_kunjungan": 194,
-      "penumpang_turun": 7622,
-      "penumpang_naik": 9016,
-      "penumpang_transit": 0,
-      "total_penumpang": 16638,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 4,
-      "periode": "2026-04",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 16,
-      "kunjungan_berangkat": 16,
-      "total_kunjungan": 32,
-      "penumpang_turun": 361,
-      "penumpang_naik": 450,
-      "penumpang_transit": 0,
-      "total_penumpang": 811,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 5,
-      "periode": "2026-05",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 13,
-      "kunjungan_berangkat": 13,
-      "total_kunjungan": 26,
-      "penumpang_turun": 576,
-      "penumpang_naik": 723,
-      "penumpang_transit": 0,
-      "total_penumpang": 1299,
-      "barang_bongkar_ton": 3.08,
-      "barang_muat_ton": 3.64,
-      "total_barang_ton": 6.72,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 5,
-      "periode": "2026-05",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 105,
-      "kunjungan_berangkat": 105,
-      "total_kunjungan": 210,
-      "penumpang_turun": 1928,
-      "penumpang_naik": 2180,
-      "penumpang_transit": 0,
-      "total_penumpang": 4108,
-      "barang_bongkar_ton": 6758.0,
-      "barang_muat_ton": 1282.0,
-      "total_barang_ton": 8040.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 86,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 86
-    },
-    {
-      "tahun": 2026,
-      "bulan": 5,
-      "periode": "2026-05",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 153,
-      "kunjungan_berangkat": 153,
-      "total_kunjungan": 306,
-      "penumpang_turun": 3545,
-      "penumpang_naik": 2736,
-      "penumpang_transit": 0,
-      "total_penumpang": 6281,
-      "barang_bongkar_ton": 776.0,
-      "barang_muat_ton": 531.0,
-      "total_barang_ton": 1307.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 346,
-      "total_hewan_ekor": 466
-    },
-    {
-      "tahun": 2026,
-      "bulan": 5,
-      "periode": "2026-05",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 94,
-      "kunjungan_berangkat": 94,
-      "total_kunjungan": 188,
-      "penumpang_turun": 8837,
-      "penumpang_naik": 9259,
-      "penumpang_transit": 0,
-      "total_penumpang": 18096,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 5,
-      "periode": "2026-05",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 13,
-      "kunjungan_berangkat": 13,
-      "total_kunjungan": 26,
-      "penumpang_turun": 449,
-      "penumpang_naik": 973,
-      "penumpang_transit": 0,
-      "total_penumpang": 1422,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 6,
-      "periode": "2026-06",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 13,
-      "kunjungan_berangkat": 13,
-      "total_kunjungan": 26,
-      "penumpang_turun": 581,
-      "penumpang_naik": 699,
-      "penumpang_transit": 0,
-      "total_penumpang": 1280,
-      "barang_bongkar_ton": 3.46,
-      "barang_muat_ton": 3.54,
-      "total_barang_ton": 7.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 6,
-      "periode": "2026-06",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 112,
-      "kunjungan_berangkat": 112,
-      "total_kunjungan": 224,
-      "penumpang_turun": 3324,
-      "penumpang_naik": 3680,
-      "penumpang_transit": 0,
-      "total_penumpang": 7004,
-      "barang_bongkar_ton": 5404.0,
-      "barang_muat_ton": 1074.0,
-      "total_barang_ton": 6478.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 117,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 117
-    },
-    {
-      "tahun": 2026,
-      "bulan": 6,
-      "periode": "2026-06",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 112,
-      "kunjungan_berangkat": 112,
-      "total_kunjungan": 224,
-      "penumpang_turun": 10389,
-      "penumpang_naik": 13114,
-      "penumpang_transit": 0,
-      "total_penumpang": 23503,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 6,
-      "periode": "2026-06",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 17,
-      "kunjungan_berangkat": 17,
-      "total_kunjungan": 34,
-      "penumpang_turun": 640,
-      "penumpang_naik": 1064,
-      "penumpang_transit": 0,
-      "total_penumpang": 1704,
-      "barang_bongkar_ton": 184.6,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 184.6,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 7,
-      "periode": "2026-07",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 13,
-      "kunjungan_berangkat": 13,
-      "total_kunjungan": 26,
-      "penumpang_turun": 530,
-      "penumpang_naik": 542,
-      "penumpang_transit": 0,
-      "total_penumpang": 1072,
-      "barang_bongkar_ton": 3.02,
-      "barang_muat_ton": 2.97,
-      "total_barang_ton": 5.98,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 7,
-      "periode": "2026-07",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 86,
-      "kunjungan_berangkat": 86,
-      "total_kunjungan": 172,
-      "penumpang_turun": 2197,
-      "penumpang_naik": 1828,
-      "penumpang_transit": 0,
-      "total_penumpang": 4025,
-      "barang_bongkar_ton": 15770.0,
-      "barang_muat_ton": 1304.0,
-      "total_barang_ton": 17074.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 87,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 87
-    },
-    {
-      "tahun": 2026,
-      "bulan": 7,
-      "periode": "2026-07",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 161,
-      "kunjungan_berangkat": 161,
-      "total_kunjungan": 322,
-      "penumpang_turun": 5053,
-      "penumpang_naik": 4460,
-      "penumpang_transit": 0,
-      "total_penumpang": 9513,
-      "barang_bongkar_ton": 689.0,
-      "barang_muat_ton": 506.0,
-      "total_barang_ton": 1195.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 20,
-      "hewan_muat_ekor": 234,
-      "total_hewan_ekor": 254
-    },
-    {
-      "tahun": 2026,
-      "bulan": 7,
-      "periode": "2026-07",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 96,
-      "kunjungan_berangkat": 96,
-      "total_kunjungan": 192,
-      "penumpang_turun": 8865,
-      "penumpang_naik": 9299,
-      "penumpang_transit": 0,
-      "total_penumpang": 18164,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 7,
-      "periode": "2026-07",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 12,
-      "kunjungan_berangkat": 12,
-      "total_kunjungan": 24,
-      "penumpang_turun": 458,
-      "penumpang_naik": 926,
-      "penumpang_transit": 0,
-      "total_penumpang": 1384,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 8,
-      "periode": "2026-08",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 0,
-      "kunjungan_berangkat": 0,
-      "total_kunjungan": 0,
-      "penumpang_turun": 0,
-      "penumpang_naik": 0,
-      "penumpang_transit": 0,
-      "total_penumpang": 0,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 8,
-      "periode": "2026-08",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 100,
-      "kunjungan_berangkat": 100,
-      "total_kunjungan": 200,
-      "penumpang_turun": 1984,
-      "penumpang_naik": 2235,
-      "penumpang_transit": 0,
-      "total_penumpang": 4219,
-      "barang_bongkar_ton": 6086.0,
-      "barang_muat_ton": 1686.0,
-      "total_barang_ton": 7772.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 96,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 96
-    },
-    {
-      "tahun": 2026,
-      "bulan": 8,
-      "periode": "2026-08",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 158,
-      "kunjungan_berangkat": 158,
-      "total_kunjungan": 316,
-      "penumpang_turun": 3535,
-      "penumpang_naik": 2845,
-      "penumpang_transit": 0,
-      "total_penumpang": 6380,
-      "barang_bongkar_ton": 765.0,
-      "barang_muat_ton": 599.0,
-      "total_barang_ton": 1364.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 120,
-      "hewan_muat_ekor": 335,
-      "total_hewan_ekor": 455
-    },
-    {
-      "tahun": 2026,
-      "bulan": 8,
-      "periode": "2026-08",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 84,
-      "kunjungan_berangkat": 84,
-      "total_kunjungan": 168,
-      "penumpang_turun": 6963,
-      "penumpang_naik": 9180,
-      "penumpang_transit": 0,
-      "total_penumpang": 16143,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 8,
-      "periode": "2026-08",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 12,
-      "kunjungan_berangkat": 12,
-      "total_kunjungan": 24,
-      "penumpang_turun": 398,
-      "penumpang_naik": 551,
-      "penumpang_transit": 0,
-      "total_penumpang": 949,
-      "barang_bongkar_ton": 0.0,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 0.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 9,
-      "periode": "2026-09",
-      "kode_simpul": "ARO",
-      "nama_simpul": "Bandar Udara H. Aroeppala",
-      "moda": "Udara",
-      "kunjungan_datang": 3,
-      "kunjungan_berangkat": 3,
-      "total_kunjungan": 6,
-      "penumpang_turun": 90,
-      "penumpang_naik": 126,
-      "penumpang_transit": 0,
-      "total_penumpang": 216,
-      "barang_bongkar_ton": 0.39,
-      "barang_muat_ton": 0.7,
-      "total_barang_ton": 1.09,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 9,
-      "periode": "2026-09",
-      "kode_simpul": "BTG",
-      "nama_simpul": "Pelabuhan Benteng",
-      "moda": "Laut",
-      "kunjungan_datang": 104,
-      "kunjungan_berangkat": 104,
-      "total_kunjungan": 208,
-      "penumpang_turun": 2080,
-      "penumpang_naik": 2404,
-      "penumpang_transit": 0,
-      "total_penumpang": 4484,
-      "barang_bongkar_ton": 5834.95,
-      "barang_muat_ton": 1342.6,
-      "total_barang_ton": 7177.55,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 141,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 141
-    },
-    {
-      "tahun": 2026,
-      "bulan": 9,
-      "periode": "2026-09",
-      "kode_simpul": "JMP",
-      "nama_simpul": "Pelabuhan Jampea",
-      "moda": "Laut",
-      "kunjungan_datang": 146,
-      "kunjungan_berangkat": 146,
-      "total_kunjungan": 292,
-      "penumpang_turun": 3820,
-      "penumpang_naik": 3233,
-      "penumpang_transit": 0,
-      "total_penumpang": 7053,
-      "barang_bongkar_ton": 680.0,
-      "barang_muat_ton": 573.0,
-      "total_barang_ton": 1253.0,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 20,
-      "hewan_muat_ekor": 288,
-      "total_hewan_ekor": 308
-    },
-    {
-      "tahun": 2026,
-      "bulan": 9,
-      "periode": "2026-09",
-      "kode_simpul": "PMT",
-      "nama_simpul": "Pelabuhan Pamatata",
-      "moda": "Laut",
-      "kunjungan_datang": 73,
-      "kunjungan_berangkat": 73,
-      "total_kunjungan": 146,
-      "penumpang_turun": 6979,
-      "penumpang_naik": 8924,
-      "penumpang_transit": 0,
-      "total_penumpang": 15903,
-      "barang_bongkar_ton": 25032.8,
-      "barang_muat_ton": 0.0,
-      "total_barang_ton": 25032.8,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    },
-    {
-      "tahun": 2026,
-      "bulan": 9,
-      "periode": "2026-09",
-      "kode_simpul": "PTB",
-      "nama_simpul": "Pelabuhan Pattumbukang",
-      "moda": "Laut",
-      "kunjungan_datang": 11,
-      "kunjungan_berangkat": 11,
-      "total_kunjungan": 22,
-      "penumpang_turun": 390,
-      "penumpang_naik": 599,
-      "penumpang_transit": 0,
-      "total_penumpang": 989,
-      "barang_bongkar_ton": 8.6,
-      "barang_muat_ton": 8.6,
-      "total_barang_ton": 17.2,
-      "kendaraan_turun": 0,
-      "kendaraan_naik": 0,
-      "total_kendaraan": 0,
-      "hewan_bongkar_ekor": 0,
-      "hewan_muat_ekor": 0,
-      "total_hewan_ekor": 0
-    }
-  ],
-  "pamatata_monthly": [
-    {
-      "periode": "2025-01",
-      "trip": 155,
-      "pnp_dewasa": 15347,
-      "pnp_anak": 257,
-      "total_pnp": 15604,
-      "gol_1": 0,
-      "gol_2": 2701,
-      "gol_3": 1,
-      "gol_4_pnp": 1231,
-      "gol_4_brg": 640,
-      "gol_5_pnp": 28,
-      "gol_5_brg": 462,
-      "gol_6_pnp": 155,
-      "gol_6_brg": 171,
-      "gol_7": 108,
-      "gol_8": 39,
-      "gol_9": 9,
-      "total_kend": 5545
-    },
-    {
-      "periode": "2025-10",
-      "trip": 154,
-      "pnp_dewasa": 16448,
-      "pnp_anak": 366,
-      "total_pnp": 16814,
-      "gol_1": 3,
-      "gol_2": 2868,
-      "gol_3": 3,
-      "gol_4_pnp": 1441,
-      "gol_4_brg": 640,
-      "gol_5_pnp": 41,
-      "gol_5_brg": 607,
-      "gol_6_pnp": 148,
-      "gol_6_brg": 212,
-      "gol_7": 64,
-      "gol_8": 0,
-      "gol_9": 0,
-      "total_kend": 6027
-    },
-    {
-      "periode": "2025-11",
-      "trip": 155,
-      "pnp_dewasa": 14127,
-      "pnp_anak": 165,
-      "total_pnp": 14292,
-      "gol_1": 0,
-      "gol_2": 2508,
-      "gol_3": 4,
-      "gol_4_pnp": 1272,
-      "gol_4_brg": 645,
-      "gol_5_pnp": 32,
-      "gol_5_brg": 542,
-      "gol_6_pnp": 144,
-      "gol_6_brg": 194,
-      "gol_7": 78,
-      "gol_8": 0,
-      "gol_9": 0,
-      "total_kend": 5419
-    },
-    {
-      "periode": "2025-12",
-      "trip": 178,
-      "pnp_dewasa": 17225,
-      "pnp_anak": 104,
-      "total_pnp": 17329,
-      "gol_1": 1,
-      "gol_2": 2991,
-      "gol_3": 11,
-      "gol_4_pnp": 1412,
-      "gol_4_brg": 689,
-      "gol_5_pnp": 71,
-      "gol_5_brg": 617,
-      "gol_6_pnp": 149,
-      "gol_6_brg": 200,
-      "gol_7": 67,
-      "gol_8": 0,
-      "gol_9": 1,
-      "total_kend": 6209
-    },
-    {
-      "periode": "2025-02",
-      "trip": 136,
-      "pnp_dewasa": 14420,
-      "pnp_anak": 156,
-      "total_pnp": 14576,
-      "gol_1": 0,
-      "gol_2": 2333,
-      "gol_3": 0,
-      "gol_4_pnp": 1043,
-      "gol_4_brg": 659,
-      "gol_5_pnp": 21,
-      "gol_5_brg": 430,
-      "gol_6_pnp": 147,
-      "gol_6_brg": 155,
-      "gol_7": 102,
-      "gol_8": 42,
-      "gol_9": 0,
-      "total_kend": 4932
-    },
-    {
-      "periode": "2025-03",
-      "trip": 180,
-      "pnp_dewasa": 18073,
-      "pnp_anak": 95,
-      "total_pnp": 18167,
-      "gol_1": 0,
-      "gol_2": 3312,
-      "gol_3": 1,
-      "gol_4_pnp": 1385,
-      "gol_4_brg": 690,
-      "gol_5_pnp": 32,
-      "gol_5_brg": 412,
-      "gol_6_pnp": 155,
-      "gol_6_brg": 165,
-      "gol_7": 93,
-      "gol_8": 38,
-      "gol_9": 0,
-      "total_kend": 6283
-    },
-    {
-      "periode": "2025-04",
-      "trip": 217,
-      "pnp_dewasa": 26118,
-      "pnp_anak": 356,
-      "total_pnp": 26474,
-      "gol_1": 0,
-      "gol_2": 4901,
-      "gol_3": 1,
-      "gol_4_pnp": 2288,
-      "gol_4_brg": 668,
-      "gol_5_pnp": 32,
-      "gol_5_brg": 429,
-      "gol_6_pnp": 170,
-      "gol_6_brg": 162,
-      "gol_7": 91,
-      "gol_8": 34,
-      "gol_9": 0,
-      "total_kend": 8776
-    },
-    {
-      "periode": "2025-05",
-      "trip": 185,
-      "pnp_dewasa": 20190,
-      "pnp_anak": 180,
-      "total_pnp": 20370,
-      "gol_1": 0,
-      "gol_2": 3476,
-      "gol_3": 1,
-      "gol_4_pnp": 1549,
-      "gol_4_brg": 657,
-      "gol_5_pnp": 47,
-      "gol_5_brg": 453,
-      "gol_6_pnp": 170,
-      "gol_6_brg": 187,
-      "gol_7": 79,
-      "gol_8": 29,
-      "gol_9": 1,
-      "total_kend": 6649
-    },
-    {
-      "periode": "2025-06",
-      "trip": 190,
-      "pnp_dewasa": 23248,
-      "pnp_anak": 12,
-      "total_pnp": 23260,
-      "gol_1": 0,
-      "gol_2": 4182,
-      "gol_3": 1,
-      "gol_4_pnp": 2223,
-      "gol_4_brg": 118,
-      "gol_5_pnp": 44,
-      "gol_5_brg": 425,
-      "gol_6_pnp": 173,
-      "gol_6_brg": 172,
-      "gol_7": 79,
-      "gol_8": 49,
-      "gol_9": 0,
-      "total_kend": 7466
-    },
-    {
-      "periode": "2025-07",
-      "trip": 193,
-      "pnp_dewasa": 20101,
-      "pnp_anak": 25,
-      "total_pnp": 20126,
-      "gol_1": 1,
-      "gol_2": 3197,
-      "gol_3": 0,
-      "gol_4_pnp": 1800,
-      "gol_4_brg": 420,
-      "gol_5_pnp": 61,
-      "gol_5_brg": 531,
-      "gol_6_pnp": 163,
-      "gol_6_brg": 195,
-      "gol_7": 56,
-      "gol_8": 24,
-      "gol_9": 4,
-      "total_kend": 6452
-    },
-    {
-      "periode": "2025-08",
-      "trip": 172,
-      "pnp_dewasa": 16134,
-      "pnp_anak": 0,
-      "total_pnp": 16134,
-      "gol_1": 0,
-      "gol_2": 3017,
-      "gol_3": 0,
-      "gol_4_pnp": 1936,
-      "gol_4_brg": 0,
-      "gol_5_pnp": 52,
-      "gol_5_brg": 570,
-      "gol_6_pnp": 158,
-      "gol_6_brg": 216,
-      "gol_7": 57,
-      "gol_8": 0,
-      "gol_9": 0,
-      "total_kend": 6006
-    },
-    {
-      "periode": "2025-09",
-      "trip": 143,
-      "pnp_dewasa": 17231,
-      "pnp_anak": 21,
-      "total_pnp": 17252,
-      "gol_1": 0,
-      "gol_2": 3086,
-      "gol_3": 2,
-      "gol_4_pnp": 1243,
-      "gol_4_brg": 550,
-      "gol_5_pnp": 43,
-      "gol_5_brg": 620,
-      "gol_6_pnp": 147,
-      "gol_6_brg": 189,
-      "gol_7": 44,
-      "gol_8": 1,
-      "gol_9": 0,
-      "total_kend": 5925
-    }
-  ],
-  "aroeppala_monthly": [
-    {
-      "periode": "2026-01",
-      "pesawat_datang": 6,
-      "pesawat_berangkat": 6,
-      "pnp_datang": 362,
-      "pnp_berangkat": 396,
-      "pnp_transit": 0,
-      "total_pnp": 758,
-      "bagasi_kg": 3878.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-02",
-      "pesawat_datang": 7,
-      "pesawat_berangkat": 7,
-      "pnp_datang": 248,
-      "pnp_berangkat": 293,
-      "pnp_transit": 0,
-      "total_pnp": 541,
-      "bagasi_kg": 2287.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-03",
-      "pesawat_datang": 13,
-      "pesawat_berangkat": 13,
-      "pnp_datang": 693,
-      "pnp_berangkat": 743,
-      "pnp_transit": 0,
-      "total_pnp": 1436,
-      "bagasi_kg": 8049.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-04",
-      "pesawat_datang": 11,
-      "pesawat_berangkat": 11,
-      "pnp_datang": 423,
-      "pnp_berangkat": 601,
-      "pnp_transit": 0,
-      "total_pnp": 1024,
-      "bagasi_kg": 4830.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-05",
-      "pesawat_datang": 13,
-      "pesawat_berangkat": 13,
-      "pnp_datang": 576,
-      "pnp_berangkat": 723,
-      "pnp_transit": 0,
-      "total_pnp": 1299,
-      "bagasi_kg": 6723.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-06",
-      "pesawat_datang": 13,
-      "pesawat_berangkat": 13,
-      "pnp_datang": 581,
-      "pnp_berangkat": 699,
-      "pnp_transit": 0,
-      "total_pnp": 1280,
-      "bagasi_kg": 6999.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-07",
-      "pesawat_datang": 13,
-      "pesawat_berangkat": 13,
-      "pnp_datang": 530,
-      "pnp_berangkat": 542,
-      "pnp_transit": 0,
-      "total_pnp": 1072,
-      "bagasi_kg": 5984.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-08",
-      "pesawat_datang": 0,
-      "pesawat_berangkat": 0,
-      "pnp_datang": 0,
-      "pnp_berangkat": 0,
-      "pnp_transit": 0,
-      "total_pnp": 0,
-      "bagasi_kg": 0.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    },
-    {
-      "periode": "2026-09",
-      "pesawat_datang": 3,
-      "pesawat_berangkat": 3,
-      "pnp_datang": 90,
-      "pnp_berangkat": 126,
-      "pnp_transit": 0,
-      "total_pnp": 216,
-      "bagasi_kg": 1094.0,
-      "kargo_kg": 0.0,
-      "pos_kg": 0.0
-    }
-  ],
-  "pelayaran_stats": {
-    "total_log": 4300,
-    "top_asal": [
-      {
-        "pelabuhan": "BIRA/TANAH BERU",
-        "kunjungan": 675
-      },
-      {
-        "pelabuhan": "SELAYAR",
-        "kunjungan": 478
-      },
-      {
-        "pelabuhan": "JAMPEA",
-        "kunjungan": 333
-      },
-      {
-        "pelabuhan": "BULUKUMBA/LAPPE'E",
-        "kunjungan": 303
-      },
-      {
-        "pelabuhan": "BONERATE",
-        "kunjungan": 297
-      },
-      {
-        "pelabuhan": "JINATO",
-        "kunjungan": 267
-      },
-      {
-        "pelabuhan": "MAKASSAR",
-        "kunjungan": 222
-      },
-      {
-        "pelabuhan": "KAYUADI",
-        "kunjungan": 212
-      },
-      {
-        "pelabuhan": "KALAOTOA",
-        "kunjungan": 149
-      },
-      {
-        "pelabuhan": "LABUAN BAJO",
-        "kunjungan": 117
-      }
-    ],
-    "top_tujuan": [
-      {
-        "pelabuhan": "BIRA/TANAH BERU",
-        "kunjungan": 682
-      },
-      {
-        "pelabuhan": "SELAYAR",
-        "kunjungan": 416
-      },
-      {
-        "pelabuhan": "JAMPEA",
-        "kunjungan": 325
-      },
-      {
-        "pelabuhan": "BONERATE",
-        "kunjungan": 306
-      },
-      {
-        "pelabuhan": "BULUKUMBA/LAPPE'E",
-        "kunjungan": 298
-      },
-      {
-        "pelabuhan": "JINATO",
-        "kunjungan": 265
-      },
-      {
-        "pelabuhan": "MAKASSAR",
-        "kunjungan": 263
-      },
-      {
-        "pelabuhan": "KAYUADI",
-        "kunjungan": 193
-      },
-      {
-        "pelabuhan": "KALAOTOA",
-        "kunjungan": 153
-      },
-      {
-        "pelabuhan": "LABUAN BAJO",
-        "kunjungan": 114
-      }
-    ],
-    "top_bongkar": [
-      {
-        "komoditas": "0.1",
-        "ton": 50065.6
-      },
-      {
-        "komoditas": "1.4",
-        "ton": 25032.8
-      },
-      {
-        "komoditas": "7.0",
-        "ton": 25032.8
-      },
-      {
-        "komoditas": "SOLAR",
-        "ton": 16627.0
-      },
-      {
-        "komoditas": "BBM",
-        "ton": 12485.0
-      },
-      {
-        "komoditas": "LPG",
-        "ton": 11307.0
-      },
-      {
-        "komoditas": "SEMEN",
-        "ton": 7214.0
-      },
-      {
-        "komoditas": "BATU KERIKIL",
-        "ton": 4968.0
-      },
-      {
-        "komoditas": "KOPRA",
-        "ton": 3810.0
-      },
-      {
-        "komoditas": "BERAS",
-        "ton": 3712.0
-      }
-    ],
-    "top_muat": [
-      {
-        "komoditas": "B.CAMP",
-        "ton": 2825.0
-      },
-      {
-        "komoditas": "LPG",
-        "ton": 2819.0
-      },
-      {
-        "komoditas": "KOPRA",
-        "ton": 2458.0
-      },
-      {
-        "komoditas": "BBM",
-        "ton": 2041.0
-      },
-      {
-        "komoditas": "SEMEN",
-        "ton": 2014.0
-      },
-      {
-        "komoditas": "21",
-        "ton": 1958.0
-      },
-      {
-        "komoditas": "BERAS",
-        "ton": 1271.0
-      },
-      {
-        "komoditas": "KAYU KELAPA",
-        "ton": 910.0
-      },
-      {
-        "komoditas": "LPG KOSONG",
-        "ton": 715.0
-      },
-      {
-        "komoditas": "BOX",
-        "ton": 540.0
-      }
-    ],
-    "top_tipe_kapal": [
-      {
-        "tipe": "KMP",
-        "jumlah": 1082
-      },
-      {
-        "tipe": "KLM",
-        "jumlah": 683
-      },
-      {
-        "tipe": "RO-RO FERRY",
-        "jumlah": 630
-      },
-      {
-        "tipe": "MOTORIZED SAILING / LAYAR MOTOR",
-        "jumlah": 382
-      },
-      {
-        "tipe": "PASSENGER",
-        "jumlah": 285
-      },
-      {
-        "tipe": "KAPAL PENUMPANG TRADISIONAL",
-        "jumlah": 43
-      },
-      {
-        "tipe": "KAPAL CARGO PENUMPANG",
-        "jumlah": 35
-      },
-      {
-        "tipe": "SELF-PROPELLED OIL BARGE (SPOB)",
-        "jumlah": 20
-      }
-    ]
-  }
+  <h2>Cara membaca &amp; catatan data</h2>
+  <div class="notes">
+    <ul>
+      <li><strong>Penumpang</strong> = naik + turun. Penumpang transit (yang hanya singgah) tidak dihitung agar tidak ganda.</li>
+      <li><strong>Kedatangan</strong> = jumlah kapal atau pesawat yang tiba. Untuk ferry Pamatata, satu kedatangan = satu pelayaran.</li>
+      <li><strong>Barang (tonase)</strong> sengaja tidak ditampilkan: angka dari laporan 2026 belum lolos pengecekan (banyak bulan bernilai 0 atau melonjak tidak wajar). Datanya tetap ada di file unduhan.</li>
+      <li><strong>Benteng 2025</strong> berasal dari rekap ringkasan, bukan log per kapal. Jumlah kedatangannya tidak tersedia (tampil &ldquo;–&rdquo; dan tidak dijumlahkan), dan angka Januari 2025 (penumpang naik 18.947, sekitar 10× bulan lain) masih perlu dicek ke laporan asli.</li>
+      <li><strong>Pamatata</strong>: 2025 dari log harian ferry (lengkap dengan kendaraan); 2026 dari laporan SIMOPEL tanpa data kendaraan. Perbandingan antartahun sebaiknya hati-hati.</li>
+      <li><strong>Bulan kosong</strong> berarti laporan belum ada atau belum terbaca, bukan berarti tidak ada aktivitas.</li>
+    </ul>
+  </div>
+
+  <h2>Unduh data</h2>
+  <ul class="downloads">
+    <li><a href="data_bersih/master_transportasi_selayar.xlsx" download>Excel lengkap (.xlsx)</a></li>
+    <li><a href="data_bersih/fact_rekap_bulanan.csv" download>Rekap bulanan (.csv)</a></li>
+    <li><a href="data_bersih/fact_pamatata_ferry_harian.csv" download>Ferry Pamatata harian (.csv)</a></li>
+    <li><a href="data_bersih/fact_aroeppala_penerbangan_harian.csv" download>Penerbangan harian (.csv)</a></li>
+    <li><a href="data_bersih/fact_log_pelayaran.csv" download>Log pelayaran (.csv)</a></li>
+  </ul>
+</div>
+</main>
+
+<footer>
+  Sumber: SIMOPPEL Ditjen Perhubungan Laut, BPTD Kelas II Sulsel (Satpel Pamatata), dan UPBU Kelas III H. Aroeppala.
+  Dikelola BPS Kabupaten Kepulauan Selayar.
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const NODES = {
+  PMT: { name: 'Pamatata', mode: 'Ferry ASDP', color: '--c-pmt', desc: 'Penyeberangan Bira–Pamatata, pintu utama dari daratan Sulawesi.' },
+  BTG: { name: 'Benteng', mode: 'Pelabuhan laut', color: '--c-btg', desc: 'Pelabuhan ibu kota kabupaten: kapal perintis, Pelni, dan kapal layar motor.' },
+  JMP: { name: 'Jampea', mode: 'Pelabuhan laut', color: '--c-jmp', desc: 'Penghubung Pulau Jampea dengan Selayar, Bulukumba, dan Flores.' },
+  PTB: { name: 'Pattumbukang', mode: 'Pelabuhan laut', color: '--c-ptb', desc: 'Simpul pelayaran wilayah timur dan selatan pulau.' },
+  ARO: { name: 'Aroeppala', mode: 'Bandar udara', color: '--c-aro', desc: 'Penerbangan Makassar–Selayar.' },
 };
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const fmt = new Intl.NumberFormat('id-ID');
 
-        async function init() {
-            try {
-                const res = await fetch('data/data_transportasi.json');
-                if (!res.ok) throw new Error('Fetch failed');
-                RAW_DATA = await res.json();
-            } catch (err) {
-                console.warn('Menggunakan fallback data:', err);
-                if (window.FALLBACK_DATA) RAW_DATA = window.FALLBACK_DATA;
-            }
+let DATA = null;
+let state = { year: 'all', node: 'all' };
+const charts = {};
 
-            if (!RAW_DATA) {
-                console.error('Data transportasi tidak dapat dimuat.');
-                return;
-            }
+const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const monthLabel = p => `${MONTHS[+p.slice(5) - 1]} ${p.slice(0, 4)}`;
+const titleCase = s => s.toLowerCase().replace(/(^|[\s/(-])\p{L}/gu, m => m.toUpperCase());
 
-            document.getElementById('txt-updated').innerText = `Update: ${RAW_DATA.updated_at || '2026'}`;
-            renderSimpulTable();
-            renderFerryTable();
-            renderAroeppalaTable();
-            renderLautTable();
-            applyFilters();
-        }
+// Benteng 2025 comes from a summary table: no per-ship arrivals, and values are unverified.
+const isSummary = r => r.kode_simpul === 'BTG' && r.tahun === 2025;
+const hasData = r => r.total_kunjungan > 0 || r.penumpang_naik + r.penumpang_turun > 0;
+const pax = r => r.penumpang_naik + r.penumpang_turun;
+const inYear = r => state.year === 'all' || String(r.tahun) === state.year;
 
-        // TABS & NAVIGATION
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
+function init(data) {
+  DATA = data;
+  DATA.rekap_bulanan = DATA.rekap_bulanan.filter(hasData);
+  document.getElementById('updated').textContent = `Diperbarui ${data.updated_at}`;
 
-        function switchMainTab(tabName, el) {
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if (el) el.classList.add('active');
+  const years = [...new Set(DATA.rekap_bulanan.map(r => String(r.tahun)))].sort();
+  const seg = document.getElementById('year-seg');
+  seg.innerHTML = ['all', ...years].map(y => `<button type="button" data-year="${y}">${y === 'all' ? 'Semua' : y}</button>`).join('');
+  seg.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.year = b.dataset.year;
+    render();
+  });
 
-            if (tabName === 'transportasi') {
-                document.getElementById('view-transportasi').style.display = 'block';
-                document.getElementById('view-hotel').style.display = 'none';
-                document.getElementById('page-title').innerText = 'Statistik Transportasi Kepulauan Selayar';
-            } else {
-                document.getElementById('view-transportasi').style.display = 'none';
-                document.getElementById('view-hotel').style.display = 'block';
-                document.getElementById('page-title').innerText = 'Statistik Hotel & Akomodasi Pariwisata';
-            }
-            if (window.innerWidth <= 960) toggleSidebar();
-        }
+  const sel = document.getElementById('node-filter');
+  sel.innerHTML = '<option value="all">Semua simpul</option>' +
+    Object.entries(NODES).map(([k, n]) => `<option value="${k}">${n.name}</option>`).join('');
+  sel.addEventListener('change', () => { state.node = sel.value; renderTable(); });
 
-        function switchSubTab(subId) {
-            document.querySelectorAll('.sub-nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+  document.querySelector('.tabs').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    const hotel = b.id === 'tab-hotel';
+    document.getElementById('tab-transportasi').setAttribute('aria-selected', String(!hotel));
+    document.getElementById('tab-hotel').setAttribute('aria-selected', String(hotel));
+    document.getElementById('view-transportasi').hidden = hotel;
+    document.getElementById('view-hotel').hidden = !hotel;
+  });
 
-            const btn = document.getElementById(`btn-tab-${subId}`);
-            const pane = document.getElementById(`subtab-${subId}`);
-            if (btn) btn.classList.add('active');
-            if (pane) pane.classList.add('active');
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  render();
+}
 
-            // Resize charts upon tab change
-            setTimeout(() => {
-                Object.values(CHARTS).forEach(c => c && c.resize && c.resize());
-            }, 50);
+function render() {
+  document.querySelectorAll('#year-seg button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.year === state.year)));
+  renderKpis();
+  renderNodes();
+  renderTrend();
+  renderVehicles();
+  renderOrigins();
+  renderTable();
+}
 
-            if (window.innerWidth <= 960) {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar.classList.contains('open')) sidebar.classList.remove('open');
-            }
-        }
+function renderKpis() {
+  const rows = DATA.rekap_bulanan.filter(inYear);
+  const penumpang = rows.reduce((a, r) => a + pax(r), 0);
+  const kedatangan = rows.filter(r => !isSummary(r)).reduce((a, r) => a + r.kunjungan_datang, 0);
+  const kendaraan = DATA.pamatata_monthly.filter(r => state.year === 'all' || r.periode.startsWith(state.year))
+    .reduce((a, r) => a + r.total_kend, 0);
 
-        // FILTER LOGIC
-        function applyFilters() {
-            if (!RAW_DATA) return;
-            const thn = document.getElementById('filter-tahun').value;
-            const simpul = document.getElementById('filter-simpul').value;
+  const items = [
+    ['Penumpang', fmt.format(penumpang), 'Naik + turun di semua simpul'],
+    ['Kedatangan', fmt.format(kedatangan), 'Kapal, ferry, dan pesawat tiba'],
+    ['Kendaraan ferry', kendaraan ? fmt.format(kendaraan) : '–', kendaraan ? 'Menyeberang lewat Pamatata' : 'Data kendaraan hanya ada untuk 2025'],
+  ];
+  document.getElementById('kpis').innerHTML = items.map(([l, v, s]) =>
+    `<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join('');
+}
 
-            let filtered = RAW_DATA.rekap_bulanan.filter(r => {
-                let matchThn = (thn === 'ALL') || (String(r.tahun) === thn);
-                let matchSimpul = (simpul === 'ALL') || (r.kode_simpul === simpul);
-                return matchThn && matchSimpul;
-            });
+function missingPeriods(code) {
+  const all = DATA.rekap_bulanan.filter(r => r.kode_simpul === code).map(r => r.periode);
+  if (!all.length) return [];
+  const have = new Set(all);
+  const out = [];
+  let [y, m] = all[0].split('-').map(Number);
+  const [ly, lm] = all[all.length - 1].split('-').map(Number);
+  while (y < ly || (y === ly && m <= lm)) {
+    const p = `${y}-${String(m).padStart(2, '0')}`;
+    if (!have.has(p) && (state.year === 'all' || String(y) === state.year)) out.push(p);
+    if (++m > 12) { m = 1; y++; }
+  }
+  return out;
+}
 
-            updateOverview(filtered);
-            renderFullRekapTable(filtered);
-        }
+function renderNodes() {
+  document.getElementById('nodes').innerHTML = Object.entries(NODES).map(([code, n]) => {
+    const rows = DATA.rekap_bulanan.filter(r => r.kode_simpul === code && inYear(r));
+    const total = rows.reduce((a, r) => a + pax(r), 0);
+    const periods = rows.map(r => r.periode);
+    const span = periods.length
+      ? `${monthLabel(periods[0])}${periods.length > 1 ? ' – ' + monthLabel(periods[periods.length - 1]) : ''}`
+      : 'Belum ada data';
+    const gaps = missingPeriods(code);
+    const gapText = gaps.length
+      ? `<div class="gap">Tanpa data: ${gaps.length > 4 ? gaps.length + ' bulan' : gaps.map(monthLabel).join(', ')}</div>` : '';
+    return `<article class="card node" style="--c:var(${n.color})">
+      <h3>${n.name}</h3><div class="mode">${n.mode}</div>
+      <p class="desc">${n.desc}</p>
+      <div class="num">${fmt.format(total)}</div><div class="small">penumpang · ${esc(span)}</div>${gapText}
+    </article>`;
+  }).join('');
+}
 
-        function updateOverview(records) {
-            let totPnp = records.reduce((acc, r) => acc + r.total_penumpang, 0);
-            let totBrg = records.reduce((acc, r) => acc + r.total_barang_ton, 0);
-            let totKnd = records.reduce((acc, r) => acc + r.total_kendaraan, 0);
-            let totTrip = records.reduce((acc, r) => acc + r.total_kunjungan, 0);
+function chartDefaults() {
+  Chart.defaults.color = cssVar('--muted');
+  Chart.defaults.borderColor = cssVar('--border');
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+}
 
-            document.getElementById('kpi-pnp').innerText = totPnp.toLocaleString('id-ID');
-            document.getElementById('kpi-brg').innerHTML = `${totBrg.toLocaleString('id-ID', {maximumFractionDigits:1})} <span style="font-size:14px;">Ton</span>`;
-            document.getElementById('kpi-knd').innerText = totKnd.toLocaleString('id-ID');
-            document.getElementById('kpi-trip').innerText = totTrip.toLocaleString('id-ID');
+function renderTrend() {
+  chartDefaults();
+  const periods = [...new Set(DATA.rekap_bulanan.filter(inYear).map(r => r.periode))].sort();
+  // Continuous month axis so missing months show as gaps instead of being skipped.
+  const axis = [];
+  if (periods.length) {
+    let [y, m] = periods[0].split('-').map(Number);
+    const last = periods[periods.length - 1];
+    for (let p = periods[0]; p <= last; p = `${y}-${String(m).padStart(2, '0')}`) {
+      axis.push(p);
+      if (++m > 12) { m = 1; y++; }
+    }
+  }
+  const datasets = Object.entries(NODES).map(([code, n]) => {
+    const byPeriod = Object.fromEntries(DATA.rekap_bulanan.filter(r => r.kode_simpul === code).map(r => [r.periode, r]));
+    return {
+      label: n.name,
+      data: axis.map(p => byPeriod[p] ? pax(byPeriod[p]) : null),
+      borderColor: cssVar(n.color),
+      backgroundColor: cssVar(n.color),
+      borderWidth: 2, pointRadius: 3, tension: 0.25, spanGaps: false,
+      segment: { borderDash: ctx => (code === 'BTG' && axis[ctx.p1DataIndex].startsWith('2025') ? [5, 4] : undefined) },
+    };
+  });
+  draw('trend', {
+    type: 'line',
+    data: { labels: axis.map(monthLabel), datasets },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
+        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}` } },
+      },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } }, x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } } },
+    },
+  });
+}
 
-            // Render Overview Charts
-            renderOverviewCharts(records);
-        }
+function renderVehicles() {
+  const rows = DATA.pamatata_monthly.filter(r => state.year === 'all' || r.periode.startsWith(state.year));
+  const sum = keys => rows.reduce((a, r) => a + keys.reduce((b, k) => b + r[k], 0), 0);
+  const groups = [
+    ['Sepeda motor', sum(['gol_1', 'gol_2', 'gol_3'])],
+    ['Mobil penumpang', sum(['gol_4_pnp'])],
+    ['Pickup / mobil barang', sum(['gol_4_brg'])],
+    ['Bus', sum(['gol_5_pnp', 'gol_6_pnp'])],
+    ['Truk', sum(['gol_5_brg', 'gol_6_brg'])],
+    ['Tronton, trailer, alat berat', sum(['gol_7', 'gol_8', 'gol_9'])],
+  ].sort((a, b) => b[1] - a[1]);
+  const empty = groups.every(g => g[1] === 0);
+  document.getElementById('vehicles').parentElement.hidden = empty;
+  const note = document.getElementById('vehicles-empty');
+  note.hidden = !empty;
+  note.textContent = 'Data kendaraan hanya tersedia untuk 2025.';
+  if (empty) { charts.vehicles?.destroy(); delete charts.vehicles; return; }
+  drawBar('vehicles', groups.map(g => g[0]), groups.map(g => g[1]), cssVar('--c-pmt'));
+}
 
-        // CHARTS BUILDER
-        function renderOverviewCharts(records) {
-            // Group by periode
-            let perMap = {};
-            records.forEach(r => {
-                if (!perMap[r.periode]) {
-                    perMap[r.periode] = { periode: r.periode, pamatata: 0, benteng: 0, aroeppala: 0, jampea: 0, bongkar: 0, muat: 0 };
-                }
-                let item = perMap[r.periode];
-                if (r.kode_simpul === 'PMT') item.pamatata += r.total_penumpang;
-                else if (r.kode_simpul === 'BTG') item.benteng += r.total_penumpang;
-                else if (r.kode_simpul === 'ARO') item.aroeppala += r.total_penumpang;
-                else if (r.kode_simpul === 'JMP') item.jampea += r.total_penumpang;
+function renderOrigins() {
+  const top = DATA.pelayaran_stats.top_asal.slice(0, 8);
+  drawBar('origins', top.map(t => titleCase(t.pelabuhan)), top.map(t => t.kunjungan), cssVar('--c-btg'));
+}
 
-                item.bongkar += r.barang_bongkar_ton;
-                item.muat += r.barang_muat_ton;
-            });
+function drawBar(id, labels, values, color) {
+  chartDefaults();
+  draw(id, {
+    type: 'bar',
+    data: { labels, datasets: [{ data: values, backgroundColor: color, borderRadius: 4 }] },
+    options: {
+      indexAxis: 'y', maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmt.format(c.parsed.x) } } },
+      scales: { x: { ticks: { callback: v => fmt.format(v) } }, y: { grid: { display: false } } },
+    },
+  });
+}
 
-            let sortedPers = Object.keys(perMap).sort();
-            let pnpPmt = sortedPers.map(p => perMap[p].pamatata);
-            let pnpBtg = sortedPers.map(p => perMap[p].benteng);
-            let pnpAro = sortedPers.map(p => perMap[p].aroeppala);
-            let pnpJmp = sortedPers.map(p => perMap[p].jampea);
+function draw(id, config) {
+  charts[id]?.destroy();
+  charts[id] = new Chart(document.getElementById(id), config);
+}
 
-            // Chart 1: Line Tren Penumpang
-            if (CHARTS.trenPnp) CHARTS.trenPnp.destroy();
-            CHARTS.trenPnp = new Chart(document.getElementById('chart-tren-pnp'), {
-                type: 'line',
-                data: {
-                    labels: sortedPers,
-                    datasets: [
-                        { label: 'Ferry Pamatata', data: pnpPmt, borderColor: '#0284c7', backgroundColor: 'rgba(2,132,199,0.08)', fill: true, tension: 0.3 },
-                        { label: 'Pelabuhan Benteng', data: pnpBtg, borderColor: '#059669', tension: 0.3 },
-                        { label: 'Bandara Aroeppala', data: pnpAro, borderColor: '#7c3aed', tension: 0.3 },
-                        { label: 'Pelabuhan Jampea', data: pnpJmp, borderColor: '#d97706', tension: 0.3 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 12 } } } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-                        x: { grid: { display: false } }
-                    }
-                }
-            });
+function renderTable() {
+  const rows = DATA.rekap_bulanan
+    .filter(r => inYear(r) && (state.node === 'all' || r.kode_simpul === state.node))
+    .sort((a, b) => b.periode.localeCompare(a.periode) || a.kode_simpul.localeCompare(b.kode_simpul));
+  document.getElementById('tbody').innerHTML = rows.map(r => {
+    const n = NODES[r.kode_simpul];
+    const arrivals = isSummary(r) ? '<span class="flag" title="Rekap ringkasan, tidak tersedia">–</span>' : fmt.format(r.kunjungan_datang);
+    return `<tr style="--c:var(${n.color})">
+      <td>${monthLabel(r.periode)}</td>
+      <td><span class="dot"></span>${n.name}</td>
+      <td>${arrivals}</td>
+      <td>${fmt.format(r.penumpang_turun)}</td>
+      <td>${fmt.format(r.penumpang_naik)}</td>
+      <td>${r.total_kendaraan ? fmt.format(r.total_kendaraan) : '–'}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="6" class="empty">Tidak ada data.</td></tr>';
+}
 
-            // Chart 2: Pie Moda
-            let totPmt = records.filter(r => r.kode_simpul === 'PMT').reduce((a, r) => a + r.total_penumpang, 0);
-            let totBtg = records.filter(r => r.kode_simpul === 'BTG').reduce((a, r) => a + r.total_penumpang, 0);
-            let totAro = records.filter(r => r.kode_simpul === 'ARO').reduce((a, r) => a + r.total_penumpang, 0);
-            let totJmp = records.filter(r => r.kode_simpul === 'JMP').reduce((a, r) => a + r.total_penumpang, 0);
-            let totPtb = records.filter(r => r.kode_simpul === 'PTB').reduce((a, r) => a + r.total_penumpang, 0);
-
-            if (CHARTS.pieModa) CHARTS.pieModa.destroy();
-            CHARTS.pieModa = new Chart(document.getElementById('chart-pie-moda'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Pamatata (ASDP)', 'Benteng (Laut)', 'Aroeppala (Udara)', 'Jampea (Laut)', 'Pattumbukang'],
-                    datasets: [{
-                        data: [totPmt, totBtg, totAro, totJmp, totPtb],
-                        backgroundColor: ['#0284c7', '#059669', '#7c3aed', '#d97706', '#64748b']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } }
-                }
-            });
-
-            // Chart 3: Bar Barang Bongkar vs Muat
-            let bBongkar = sortedPers.map(p => Math.round(perMap[p].bongkar));
-            let bMuat = sortedPers.map(p => Math.round(perMap[p].muat));
-
-            if (CHARTS.barangBar) CHARTS.barangBar.destroy();
-            CHARTS.barangBar = new Chart(document.getElementById('chart-barang-bar'), {
-                type: 'bar',
-                data: {
-                    labels: sortedPers,
-                    datasets: [
-                        { label: 'Bongkar (Masuk) Ton', data: bBongkar, backgroundColor: '#38bdf8' },
-                        { label: 'Muat (Keluar) Ton', data: bMuat, backgroundColor: '#34d399' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 12 } } } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-                        x: { grid: { display: false } }
-                    }
-                }
-            });
-        }
-
-        function renderSimpulTable() {
-            let html = '';
-            RAW_DATA.dim_simpul.forEach(s => {
-                let badge = s.moda === 'Penyeberangan' ? 'badge-ferry' : (s.moda === 'Udara' ? 'badge-udara' : 'badge-laut');
-                html += `<tr>
-                    <td><b>${s.nama_simpul}</b></td>
-                    <td><span class="badge ${badge}">${s.moda}</span></td>
-                    <td>${s.wilayah}</td>
-                    <td>${s.operator}</td>
-                </tr>`;
-            });
-            document.getElementById('tbl-simpul-body').innerHTML = html;
-        }
-
-        function renderFerryTable() {
-            let months = RAW_DATA.pamatata_monthly;
-            let html = '';
-            months.forEach(m => {
-                html += `<tr>
-                    <td><b>${m.periode}</b></td>
-                    <td>${m.trip.toLocaleString('id-ID')}</td>
-                    <td>${m.pnp_dewasa.toLocaleString('id-ID')}</td>
-                    <td>${m.pnp_anak.toLocaleString('id-ID')}</td>
-                    <td><b>${m.total_pnp.toLocaleString('id-ID')}</b></td>
-                    <td>${m.gol_2.toLocaleString('id-ID')}</td>
-                    <td>${(m.gol_4_pnp + m.gol_4_brg).toLocaleString('id-ID')}</td>
-                    <td>${(m.gol_5_brg + m.gol_6_brg + m.gol_7 + m.gol_8).toLocaleString('id-ID')}</td>
-                    <td><b>${m.total_kend.toLocaleString('id-ID')}</b></td>
-                </tr>`;
-            });
-            document.getElementById('tbl-ferry-monthly').innerHTML = html;
-
-            // Chart Ferry
-            let labels = months.map(m => m.periode);
-            let trips = months.map(m => m.trip);
-            let pnps = months.map(m => m.total_pnp);
-
-            if (CHARTS.ferryPnp) CHARTS.ferryPnp.destroy();
-            CHARTS.ferryPnp = new Chart(document.getElementById('chart-ferry-pnp'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { type: 'line', label: 'Total Penumpang', data: pnps, borderColor: '#0284c7', yAxisID: 'y', tension: 0.3 },
-                        { type: 'bar', label: 'Jumlah Trip Kapal', data: trips, backgroundColor: '#93c5fd', yAxisID: 'y1' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { position: 'left', beginAtZero: true, title: { display: true, text: 'Orang' } },
-                        y1: { position: 'right', beginAtZero: true, grid: { display: false }, title: { display: true, text: 'Trip' } }
-                    }
-                }
-            });
-
-            // Pie Kendaraan
-            let sumGol2 = months.reduce((a, m) => a + m.gol_2, 0);
-            let sumGol4Pnp = months.reduce((a, m) => a + m.gol_4_pnp, 0);
-            let sumGol4Brg = months.reduce((a, m) => a + m.gol_4_brg, 0);
-            let sumTruk = months.reduce((a, m) => a + m.gol_5_brg + m.gol_6_brg + m.gol_7 + m.gol_8, 0);
-            let sumBus = months.reduce((a, m) => a + m.gol_5_pnp + m.gol_6_pnp, 0);
-
-            if (CHARTS.ferryKend) CHARTS.ferryKend.destroy();
-            CHARTS.ferryKend = new Chart(document.getElementById('chart-ferry-kend'), {
-                type: 'pie',
-                data: {
-                    labels: ['Motor (Gol II)', 'Mobil Penumpang', 'Pick Up Barang', 'Truk Logistik', 'Bus Sedang/Besar'],
-                    datasets: [{
-                        data: [sumGol2, sumGol4Pnp, sumGol4Brg, sumTruk, sumBus],
-                        backgroundColor: ['#0284c7', '#34d399', '#fbbf24', '#f87171', '#818cf8']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } }
-                }
-            });
-        }
-
-        function renderAroeppalaTable() {
-            let months = RAW_DATA.aroeppala_monthly;
-            let html = '';
-            months.forEach(m => {
-                html += `<tr>
-                    <td><b>${m.periode}</b></td>
-                    <td>${m.pesawat_datang}</td>
-                    <td>${m.pesawat_berangkat}</td>
-                    <td>${m.pnp_datang.toLocaleString('id-ID')}</td>
-                    <td>${m.pnp_berangkat.toLocaleString('id-ID')}</td>
-                    <td><b>${m.total_pnp.toLocaleString('id-ID')}</b></td>
-                    <td>${m.bagasi_kg.toLocaleString('id-ID')}</td>
-                    <td>${m.kargo_kg.toLocaleString('id-ID')}</td>
-                    <td>${m.pos_kg.toLocaleString('id-ID')}</td>
-                </tr>`;
-            });
-            document.getElementById('tbl-aroeppala-monthly').innerHTML = html;
-
-            // Chart Aroeppala
-            let labels = months.map(m => m.periode);
-            let pIn = months.map(m => m.pnp_datang);
-            let pOut = months.map(m => m.pnp_berangkat);
-
-            if (CHARTS.aroeppalaPnp) CHARTS.aroeppalaPnp.destroy();
-            CHARTS.aroeppalaPnp = new Chart(document.getElementById('chart-aroeppala-pnp'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Penumpang Datang', data: pIn, backgroundColor: '#c084fc' },
-                        { label: 'Penumpang Berangkat', data: pOut, backgroundColor: '#a855f7' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-
-            let bagasi = months.map(m => m.bagasi_kg);
-            let kargo = months.map(m => m.kargo_kg);
-            if (CHARTS.aroeppalaKargo) CHARTS.aroeppalaKargo.destroy();
-            CHARTS.aroeppalaKargo = new Chart(document.getElementById('chart-aroeppala-kargo'), {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Bagasi (Kg)', data: bagasi, borderColor: '#7c3aed', tension: 0.3 },
-                        { label: 'Kargo (Kg)', data: kargo, borderColor: '#059669', tension: 0.3 }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-        }
-
-        function renderLautTable() {
-            let st = RAW_DATA.pelayaran_stats;
-            // Bar Asal
-            if (CHARTS.lautAsal) CHARTS.lautAsal.destroy();
-            CHARTS.lautAsal = new Chart(document.getElementById('chart-laut-asal'), {
-                type: 'bar',
-                data: {
-                    labels: st.top_asal.slice(0, 8).map(x => x.pelabuhan),
-                    datasets: [{
-                        label: 'Frekuensi Kunjungan Masuk',
-                        data: st.top_asal.slice(0, 8).map(x => x.kunjungan),
-                        backgroundColor: '#0284c7'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-
-            // Bar Komoditas
-            if (CHARTS.lautKomoditas) CHARTS.lautKomoditas.destroy();
-            CHARTS.lautKomoditas = new Chart(document.getElementById('chart-laut-komoditas'), {
-                type: 'bar',
-                data: {
-                    labels: st.top_bongkar.slice(0, 7).map(x => x.komoditas),
-                    datasets: [{
-                        label: 'Volume Bongkar (Ton)',
-                        data: st.top_bongkar.slice(0, 7).map(x => x.ton),
-                        backgroundColor: '#10b981'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } }
-                }
-            });
-
-            // Tipe Armada
-            let html = '';
-            st.top_tipe_kapal.forEach(t => {
-                let desc = t.tipe.includes('CARGO') ? 'Distribusi logistik barang & perintis antar pulau' :
-                          (t.tipe.includes('KLM') ? 'Pelayaran rakyat tradisional pengangkut komoditas pulau' :
-                          (t.tipe.includes('FERRY') ? 'Kapal penyeberangan lintas pulau utama' : 'Armada penumpang & logistik umum'));
-                html += `<tr>
-                    <td><b>${t.tipe}</b></td>
-                    <td>${t.jumlah.toLocaleString('id-ID')} trip/kunjungan</td>
-                    <td>${desc}</td>
-                </tr>`;
-            });
-            document.getElementById('tbl-laut-tipe').innerHTML = html;
-        }
-
-        function renderFullRekapTable(records) {
-            let html = '';
-            records.forEach(r => {
-                let badge = r.moda === 'Penyeberangan' ? 'badge-ferry' : (r.moda === 'Udara' ? 'badge-udara' : 'badge-laut');
-                html += `<tr>
-                    <td><b>${r.periode}</b></td>
-                    <td>${r.nama_simpul}</td>
-                    <td><span class="badge ${badge}">${r.moda}</span></td>
-                    <td>${r.total_kunjungan.toLocaleString('id-ID')}</td>
-                    <td>${r.penumpang_turun.toLocaleString('id-ID')}</td>
-                    <td>${r.penumpang_naik.toLocaleString('id-ID')}</td>
-                    <td><b>${r.total_penumpang.toLocaleString('id-ID')}</b></td>
-                    <td>${r.barang_bongkar_ton.toLocaleString('id-ID', {maximumFractionDigits:1})}</td>
-                    <td>${r.barang_muat_ton.toLocaleString('id-ID', {maximumFractionDigits:1})}</td>
-                    <td>${r.total_kendaraan.toLocaleString('id-ID')}</td>
-                </tr>`;
-            });
-            document.getElementById('tbl-rekap-full').innerHTML = html;
-        }
-
-        // Jalankan saat halaman siap
-        window.addEventListener('DOMContentLoaded', init);
-    </script>
+fetch('data/data_transportasi.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(init)
+  .catch(err => {
+    console.error(err);
+    document.querySelector('main').innerHTML = '<p class="empty">Data tidak dapat dimuat. Coba muat ulang halaman.</p>';
+  });
+</script>
 </body>
 </html>

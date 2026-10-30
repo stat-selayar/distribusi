@@ -10,6 +10,7 @@ import os
 import glob
 import re
 import csv
+import json
 import datetime
 import openpyxl
 import fitz  # PyMuPDF
@@ -242,6 +243,27 @@ def process_aroeppala_flights():
 # -------------------------------------------------------------
 # 4. LOG PELAYARAN KAPAL LAUT (KUNJUNGAN KAPAL)
 # -------------------------------------------------------------
+BULAN_MAP = {'JANUARI': 1, 'FEBRUARI': 2, 'MARET': 3, 'APRIL': 4, 'MEI': 5, 'JUNI': 6,
+             'JULI': 7, 'AGUSTUS': 8, 'SEPTEMBER': 9, 'OKTOBER': 10, 'NOVEMBER': 11, 'DESEMBER': 12}
+
+
+def parse_period_from_path(fpath):
+    """Return (tahun, bulan) for a report file; bulan is None if it cannot be read.
+
+    Month comes from a numeric `YYYY_MM_` prefix or an Indonesian month name.
+    Year comes from the filename, else from the parent folder (e.g. Jampea/2026/).
+    """
+    name = os.path.basename(fpath)
+    m_num = re.match(r'(20\d\d)_(\d\d)_', name)
+    if m_num and 1 <= int(m_num.group(2)) <= 12:
+        return int(m_num.group(1)), int(m_num.group(2))
+
+    m_yr = re.search(r'20[2-9]\d', name) or re.fullmatch(r'20[2-9]\d', os.path.basename(os.path.dirname(fpath)))
+    tahun = int(m_yr.group(0)) if m_yr else None
+    bulan = next((v for k, v in BULAN_MAP.items() if k in name.upper()), None)
+    return tahun, bulan
+
+
 def process_ship_logs():
     records = []
 
@@ -331,17 +353,10 @@ def process_ship_logs():
                          glob.glob(os.path.join(RAW_DIR, 'Jampea/2026/*.PDF')))
 
     for fpath in jampea_pdfs:
-        # Ambil tahun & bulan
-        m_yr = re.search(r'202[56]', os.path.basename(fpath))
-        tahun = int(m_yr.group(0)) if m_yr else 2025
-
-        bln_map = {'JANUARI': 1, 'FEBRUARI': 2, 'MARET': 3, 'APRIL': 4, 'MEI': 5, 'JUNI': 6,
-                   'JULI': 7, 'AGUSTUS': 8, 'SEPTEMBER': 9, 'OKTOBER': 10, 'NOVEMBER': 11, 'DESEMBER': 12}
-        bulan = 1
-        for k, v in bln_map.items():
-            if k in os.path.basename(fpath).upper():
-                bulan = v
-                break
+        tahun, bulan = parse_period_from_path(fpath)
+        if bulan is None:
+            print(f"Warning: bulan tidak terbaca dari nama file, dilewati: {os.path.basename(fpath)}")
+            continue
 
         try:
             doc = fitz.open(fpath)
@@ -618,6 +633,83 @@ def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, s
 
 
 # -------------------------------------------------------------
+# 6b. EXPORT JSON UNTUK WEBSITE
+# -------------------------------------------------------------
+def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows):
+    def by_period(rows):
+        grouped = {}
+        for r in rows:
+            grouped.setdefault(f"{r['tahun']}-{r['bulan']:02d}", []).append(r)
+        return sorted(grouped.items())
+
+    pamatata_monthly = []
+    for periode, rows in by_period(pamatata_rows):
+        pamatata_monthly.append({
+            'periode': periode,
+            'trip': sum(r['trip'] for r in rows),
+            'pnp_dewasa': sum(r['pnp_dewasa'] for r in rows),
+            'pnp_anak': sum(r['pnp_anak'] for r in rows),
+            'total_pnp': sum(r['total_penumpang'] for r in rows),
+            'gol_1': sum(r['gol_1_sepeda'] for r in rows),
+            'gol_2': sum(r['gol_2_motor'] for r in rows),
+            'gol_3': sum(r['gol_3_moge'] for r in rows),
+            'gol_4_pnp': sum(r['gol_4_pnp_mobil'] for r in rows),
+            'gol_4_brg': sum(r['gol_4_brg_pickup'] for r in rows),
+            'gol_5_pnp': sum(r['gol_5_pnp_bus'] for r in rows),
+            'gol_5_brg': sum(r['gol_5_brg_truk'] for r in rows),
+            'gol_6_pnp': sum(r['gol_6_pnp_busbesar'] for r in rows),
+            'gol_6_brg': sum(r['gol_6_brg_trukbesar'] for r in rows),
+            'gol_7': sum(r['gol_7_tronton'] for r in rows),
+            'gol_8': sum(r['gol_8_trailer'] for r in rows),
+            'gol_9': sum(r['gol_9_alatberat'] for r in rows),
+            'total_kend': sum(r['total_kendaraan'] for r in rows),
+        })
+
+    aroeppala_monthly = []
+    for periode, rows in by_period(aroeppala_rows):
+        aroeppala_monthly.append({
+            'periode': periode,
+            'pesawat_datang': sum(r['pesawat_datang'] for r in rows),
+            'pesawat_berangkat': sum(r['pesawat_berangkat'] for r in rows),
+            'pnp_datang': sum(r['penumpang_datang'] for r in rows),
+            'pnp_berangkat': sum(r['penumpang_berangkat'] for r in rows),
+            'pnp_transit': sum(r['penumpang_transit'] for r in rows),
+            'total_pnp': sum(r['total_penumpang'] for r in rows),
+            'bagasi_kg': sum(r['total_bagasi_kg'] for r in rows),
+            'kargo_kg': sum(r['total_kargo_kg'] for r in rows),
+            'pos_kg': sum(r['total_pos_kg'] for r in rows),
+        })
+
+    def top_counts(key, n):
+        counts = {}
+        for r in ship_rows:
+            v = (r[key] or '').strip().upper()
+            if len(v) > 2 and v not in ('-', 'NIL', 'NONE'):
+                counts[v] = counts.get(v, 0) + 1
+        return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:n]
+
+    wita = datetime.timezone(datetime.timedelta(hours=8))
+    payload = {
+        'updated_at': datetime.datetime.now(wita).strftime('%Y-%m-%d %H:%M WITA'),
+        'dim_simpul': dim_simpul,
+        'rekap_bulanan': fact_rekap,
+        'pamatata_monthly': pamatata_monthly,
+        'aroeppala_monthly': aroeppala_monthly,
+        'pelayaran_stats': {
+            'total_log': len(ship_rows),
+            'top_asal': [{'pelabuhan': k, 'kunjungan': v} for k, v in top_counts('pelabuhan_asal', 10)],
+            'top_tujuan': [{'pelabuhan': k, 'kunjungan': v} for k, v in top_counts('pelabuhan_tujuan', 10)],
+            'top_tipe_kapal': [{'tipe': k, 'jumlah': v} for k, v in top_counts('tipe_kapal', 8)],
+        },
+    }
+    out_json = os.path.join(BASE_DIR, 'data', 'data_transportasi.json')
+    os.makedirs(os.path.dirname(out_json), exist_ok=True)
+    with open(out_json, 'w', encoding='utf-8') as f:
+        json.dump(payload, f, ensure_ascii=False, indent=1)
+    print(f"[OK] data/data_transportasi.json ({len(fact_rekap)} rekap bulanan)")
+
+
+# -------------------------------------------------------------
 # 7. RUNNABLE SELF-CHECK (ASSERTION-BASED)
 # -------------------------------------------------------------
 def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap):
@@ -642,6 +734,7 @@ def main():
     ship_rows = process_ship_logs()
     fact_rekap = build_fact_rekap(pamatata_rows, aroeppala_rows, ship_rows)
     export_master_excel(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows)
+    export_json(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows)
     run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap)
     print("=== SELESAI: SEMUA DATA BERSIH TELAH TERSIMPAN DI data_bersih/ ===")
 

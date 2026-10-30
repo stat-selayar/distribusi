@@ -28,7 +28,7 @@ Dataset disusun dengan prinsip **Tidy Data** (1 baris = 1 observasi) yang siap d
 4. **`fact_aroeppala_penerbangan_harian.csv`** (273 hari kalender penerbangan: pesawat, penumpang datang/berangkat, bagasi, kargo, dan pos).
 5. **`fact_log_pelayaran.csv`** (4.300+ record kunjungan kapal laut: nama kapal, GT, asal/tujuan, muatan komoditas, dan ternak).
 6. **`dim_simpul.csv`** (Metadata geospasial simpul transportasi).
-7. **`data/data_transportasi.json`** (Data ringkas terindeks untuk konsumsi langsung oleh dashboard web).
+7. **`data/data_transportasi.json`** (Data ringkas yang dibaca langsung oleh `index.html`; dihasilkan otomatis oleh `build_datasets.py`).
 
 ---
 
@@ -39,8 +39,9 @@ Untuk memperbarui data saat ada file laporan baru:
 2. Jalankan pipeline transformasi:
    ```bash
    python3 build_datasets.py
-   python3 generate_dashboard.py
    ```
+   Perintah ini memperbarui `data_bersih/` dan `data/data_transportasi.json`, sehingga website (`index.html`) otomatis menampilkan data terbaru. `generate_dashboard.py` hanya membuat `dashboard_transportasi.html` (versi statis lama) dan tidak diperlukan untuk website.
+   Butuh paket `openpyxl` dan `PyMuPDF`. Tes: `python3 -m unittest tests.test_build_datasets`.
 3. Commit dan push ke GitHub:
    ```bash
    git add .

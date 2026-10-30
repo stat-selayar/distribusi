@@ -9,6 +9,7 @@ Ceiling: 80 file (2025-2026). Upgrade: pasang watcher jika ada update data baru.
 import os
 import glob
 import re
+import bisect
 import csv
 import json
 import datetime
@@ -264,6 +265,148 @@ def parse_period_from_path(fpath):
     return tahun, bulan
 
 
+JAMPEA_NCOLS = 35
+
+
+def parse_id_number(s):
+    """Parse '1.913', '1,5', '22,00' or '21.63' to float; None if `s` is not a number.
+
+    A comma is always the decimal mark; a dot followed by exactly three digits is
+    a thousands separator ('2.097' -> 2097), otherwise it is a decimal mark.
+    """
+    s = (s or '').strip()
+    if not re.fullmatch(r'\d+(?:[.,]\d+)*', s):
+        return None
+    if ',' in s:
+        return float(s.replace('.', '').replace(',', '.'))
+    if re.fullmatch(r'\d{1,3}(?:\.\d{3})+', s):
+        return float(s.replace('.', ''))
+    return float(s)
+
+
+def jampea_column_edges(page):
+    """x positions of the report table's vertical rules, or [] if the layout is unrecognised."""
+    length = {}
+    for g in page.get_drawings():
+        for it in g['items']:
+            if it[0] == 'l' and abs(it[1].x - it[2].x) < 0.05:
+                x, h = round(it[1].x, 1), abs(it[1].y - it[2].y)
+            elif it[0] == 're' and it[1].width < 0.6:
+                x, h = round(it[1].x0, 1), it[1].height
+            else:
+                continue
+            length[x] = length.get(x, 0) + h
+    if not length:
+        return []
+    edges = []
+    for x in sorted(x for x, h in length.items() if h >= 0.5 * max(length.values())):
+        if not edges or x - edges[-1] >= 1.0:
+            edges.append(x)
+    return edges if len(edges) == JAMPEA_NCOLS + 1 else []
+
+
+def jampea_cells_from_words(page, edges):
+    """Group the words of a text PDF page into text lines and assign each word to a table column."""
+    boxes = [(w[0], (w[1] + w[3]) / 2, w[4]) for w in page.get_text('words')]
+    return jampea_cells_from_boxes(boxes, edges, line_gap=1.0)
+
+
+def jampea_cells_from_boxes(boxes, edges, line_gap):
+    """Turn (x0, y_center, text) word boxes into rows of 35 column cells.
+
+    Words closer than `line_gap` vertically are one text line; units follow `boxes`
+    (PDF points for text pages, pixels for OCR).
+    """
+    lines, last_y = [], None
+    for x0, y, text in sorted(boxes, key=lambda b: (b[1], b[0])):
+        if last_y is None or y - last_y > line_gap:
+            lines.append([])
+        lines[-1].append((x0, text))
+        last_y = y
+
+    rows = []
+    for line in lines:
+        cells = [''] * JAMPEA_NCOLS
+        for x0, text in sorted(line):
+            i = bisect.bisect_right(edges, x0) - 1
+            if 0 <= i < JAMPEA_NCOLS:
+                cells[i] = f"{cells[i]} {text}".strip()
+        rows.append(cells)
+    return rows
+
+
+def jampea_vessel_from_rows(rows, tahun, bulan):
+    """Build one ship-visit record from a vessel row plus its extra-cargo continuation rows."""
+    r = rows[0]
+    rec = {
+        'pelabuhan': 'Pelabuhan Jampea',
+        'tahun': tahun,
+        'bulan': bulan,
+        'tanggal_tiba': r[7],
+        'tanggal_berangkat': r[13],
+        'nama_kapal': r[1],
+        'tipe_kapal': r[12],
+        'bendera': r[2] or 'ID',
+        'gt': parse_id_number(r[5]) or 0.0,
+        'loa': parse_id_number(r[4]) or 0.0,
+        'pelabuhan_asal': r[9],
+        'pelabuhan_tujuan': r[15],
+        'penumpang_turun': int(parse_id_number(r[28]) or 0),
+        'penumpang_naik': int(parse_id_number(r[29]) or 0),
+        'barang_bongkar_ton': 0.0,
+        'barang_muat_ton': 0.0,
+        'jenis_barang_bongkar': [],
+        'jenis_barang_muat': [],
+        'hewan_turun_ekor': 0,
+        'hewan_naik_ekor': 0,
+    }
+    for c in rows:
+        for col_j, col_t, jenis_key, ton_key in [(16, 17, 'jenis_barang_bongkar', 'barang_bongkar_ton'),
+                                                 (20, 21, 'jenis_barang_muat', 'barang_muat_ton')]:
+            ton = parse_id_number(c[col_t])
+            if ton is not None:
+                rec[ton_key] += ton
+                if c[col_j] not in ('', '-'):
+                    rec[jenis_key].append(c[col_j])
+        rec['hewan_turun_ekor'] += int(parse_id_number(c[19]) or 0)
+        rec['hewan_naik_ekor'] += int(parse_id_number(c[23]) or 0)
+    return rec
+
+
+def jampea_records_from_rows(rows, tahun, bulan):
+    """Split table rows (35 cells each) into vessel blocks and build their records."""
+    def is_subtotal(c):
+        # Unlabelled section subtotal: numbers in the quantity columns but no commodity/animal type.
+        return any(c[i] for i in (17, 19, 21, 23, 28, 29)) and not any(c[i] for i in (16, 18, 20, 22))
+
+    records, block = [], None
+    for c in rows:
+        is_vessel = re.fullmatch(r'\d+|#+', c[0]) and re.search(r'[A-Za-z]', c[1])
+        if is_vessel:
+            if block:
+                records.append(jampea_vessel_from_rows(block, tahun, bulan))
+            block = [c]
+        elif block and not c[0] and not c[1].upper().startswith('JUMLAH') and not is_subtotal(c):
+            block.append(c)
+        else:
+            if block:
+                records.append(jampea_vessel_from_rows(block, tahun, bulan))
+            block = None
+    if block:
+        records.append(jampea_vessel_from_rows(block, tahun, bulan))
+    return records
+
+
+def parse_jampea_words_pdf(doc, tahun, bulan):
+    """Parse a Jampea report whose table is plain text/vector rules with no detectable table object."""
+    records = []
+    for page in doc:
+        edges = jampea_column_edges(page)
+        if edges:
+            records.extend(jampea_records_from_rows(jampea_cells_from_words(page, edges), tahun, bulan))
+    return records
+
+
 def process_ship_logs():
     records = []
 
@@ -360,6 +503,7 @@ def process_ship_logs():
 
         try:
             doc = fitz.open(fpath)
+            n_before = len(records)
             for page in doc:
                 tf = page.find_tables()
                 for table_obj in tf.tables:
@@ -421,6 +565,11 @@ def process_ship_logs():
 
                     if curr_j_vessel:
                         records.append(curr_j_vessel)
+            if len(records) == n_before:
+                records.extend(parse_jampea_words_pdf(doc, tahun, bulan))
+            if len(records) == n_before:
+                print(f"Warning: tidak ada data terbaca dari {os.path.basename(fpath)} "
+                      f"(kemungkinan hasil pindaian gambar; butuh versi Excel)")
         except Exception as e:
             print(f"Warning parsing {os.path.basename(fpath)}: {e}")
 

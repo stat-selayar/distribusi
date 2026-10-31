@@ -9,9 +9,9 @@ import datetime
 import fitz
 import openpyxl
 
-from build_datasets import (RAW_DIR, jampea_records_from_rows, jampea_rows_from_sheet, jampea_total_diffs,
-                            normalize_komoditas, parse_id_number, parse_jampea_pdf, parse_jampea_words_pdf,
-                            parse_period_from_path)
+from build_datasets import (RAW_DIR, VHTS_TPK_CSV, hotel_formula_diffs, hotel_record_from_row, jampea_records_from_rows,
+                            jampea_rows_from_sheet, jampea_total_diffs, normalize_komoditas, parse_id_number,
+                            parse_jampea_pdf, parse_jampea_words_pdf, parse_period_from_path, read_vhts_tpk)
 
 
 class ParsePeriodFromPathTest(unittest.TestCase):
@@ -254,3 +254,44 @@ class JampeaTotalDiffsTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# January 2024 as exported from the VHTS sheet TPK (Indonesian number format).
+VHTS_JAN_2024 = ['2024', 'Januari', '39', '8495', '9335', '516', '336', '329', '22', '954', '12', '662', '8', '639',
+                 '8495', '523', '6,157%', '6,81%', '674', '26', '977', '1.003', '1,49', '10,74', '1,87', '', '2,17', '1,48']
+
+
+class HotelRecordTest(unittest.TestCase):
+    def test_indicators_computed_from_base_counts(self):
+        r = hotel_record_from_row(VHTS_JAN_2024)
+        self.assertEqual((r['tahun'], r['bulan'], r['jumlah_sampel']), (2024, 1, 39))
+        self.assertEqual((r['malam_kamar_tersedia'], r['malam_kamar_terpakai']), (8495, 523))
+        self.assertEqual((r['tamu_asing'], r['tamu_indonesia'], r['tamu_total']), (12, 662, 674))
+        self.assertEqual((r['malam_tamu_asing'], r['malam_tamu_indonesia'], r['malam_tamu']), (26, 977, 1003))
+        self.assertEqual((r['tpk'], r['tptt']), (6.16, 10.74))
+        self.assertEqual((r['rlmt_asing'], r['rlmt_indonesia'], r['rlmt_gabungan']), (2.17, 1.48, 1.49))
+
+    def test_months_not_yet_filled_are_skipped(self):
+        empty = ['2026', 'April'] + ['0'] * 14 + ['#DIV/0!', '', '0', '0', '0', '0'] + ['#DIV/0!'] * 3 + ['', '#DIV/0!', '#DIV/0!']
+        self.assertIsNone(hotel_record_from_row(empty))
+        self.assertIsNone(hotel_record_from_row(['', '', '', 'room_w', 'bed_w']))
+
+    def test_no_foreign_guests_gives_no_average_stay(self):
+        row = list(VHTS_JAN_2024)
+        row[8] = row[10] = row[12] = '0'
+        self.assertIsNone(hotel_record_from_row(row)['rlmt_asing'])
+
+    def test_formula_cells_checked_against_computation(self):
+        self.assertEqual(hotel_formula_diffs(hotel_record_from_row(VHTS_JAN_2024), VHTS_JAN_2024), [])
+        row = list(VHTS_JAN_2024)
+        row[16] = '7,5%'
+        self.assertEqual(hotel_formula_diffs(hotel_record_from_row(row), row), [('tpk', 6.16, 7.5)])
+
+
+@unittest.skipUnless(os.path.exists(VHTS_TPK_CSV), 'raw data not available')
+class HotelRealFileTest(unittest.TestCase):
+    def test_sheet_months_and_formulas(self):
+        records, diffs = read_vhts_tpk(VHTS_TPK_CSV)
+        self.assertEqual((records[0]['tahun'], records[0]['bulan']), (2024, 1))
+        self.assertGreaterEqual(len(records), 27)
+        self.assertEqual(diffs, [])

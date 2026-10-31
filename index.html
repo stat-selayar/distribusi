@@ -21,6 +21,8 @@
   --c-jmp: #d97706;
   --c-ptb: #7c3aed;
   --c-aro: #e11d48;
+  --c-wni: #0d9488;
+  --c-wna: #d97706;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -59,9 +61,6 @@ h2 { margin: 36px 0 4px; font-size: 1.15rem; }
 }
 .tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
 .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.soon { margin-top: 24px; padding: 32px 20px; text-align: center; }
-.soon h2 { margin: 0 0 6px; }
-.soon .lead { margin: 0 auto; }
 [hidden] { display: none !important; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 20px; }
 .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
@@ -88,6 +87,8 @@ h2 { margin: 36px 0 4px; font-size: 1.15rem; }
 .node .num { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .node .small { color: var(--muted); font-size: .8rem; }
 .node .gap { color: var(--warn-text); font-size: .78rem; margin-top: 6px; }
+.card > .gap { color: var(--warn-text); font-size: .8rem; margin-top: 6px; }
+#hotel-table th:nth-child(2), #hotel-table td:nth-child(2) { text-align: right; }
 
 .chart-box { position: relative; height: 320px; }
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
@@ -148,10 +149,45 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 
 <main>
 <div id="view-hotel" role="tabpanel" aria-labelledby="tab-hotel" hidden>
-  <div class="card soon">
-    <h2>Segera hadir</h2>
-    <p class="lead">Statistik hotel dan pariwisata Selayar (tingkat penghunian kamar dan lama menginap tamu) sedang disiapkan dan akan tampil di sini.</p>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Pilih tahun" id="hotel-year-seg"></div>
+    <span class="updated">Survei VHTS, 39–43 akomodasi sampel</span>
   </div>
+
+  <section class="kpis" id="hotel-kpis" aria-label="Ringkasan hotel"></section>
+
+  <h2>Tingkat penghunian kamar (TPK) per bulan</h2>
+  <p class="hint">Persentase malam kamar yang terisi dari seluruh malam kamar yang tersedia di akomodasi sampel.</p>
+  <div class="card"><div class="chart-box"><canvas id="hotel-tpk" role="img" aria-label="Grafik garis tingkat penghunian kamar per bulan"></canvas></div><div class="gap" id="hotel-gap" hidden></div></div>
+
+  <h2>Tamu per bulan</h2>
+  <p class="hint">Tamu yang check-in di akomodasi sampel, menurut asal.</p>
+  <div class="card"><div class="chart-box"><canvas id="hotel-tamu" role="img" aria-label="Grafik batang bertumpuk tamu Indonesia dan asing per bulan"></canvas></div></div>
+
+  <h2>Tabel per bulan</h2>
+  <div class="table-wrap">
+    <table id="hotel-table">
+      <thead><tr>
+        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPTT (%)</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Lama menginap (malam)</th>
+      </tr></thead>
+      <tbody id="hotel-tbody"></tbody>
+    </table>
+  </div>
+
+  <h2>Cara membaca &amp; catatan data</h2>
+  <div class="notes">
+    <ul>
+      <li><strong>Sumber</strong>: Survei VHTS (Volume Hotel dan Tempat Usaha Akomodasi Lainnya) BPS Kabupaten Kepulauan Selayar, 39–43 hotel bintang dan nonbintang sampel. Angka ini gambaran akomodasi sampel, bukan jumlah seluruh tamu di Selayar.</li>
+      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in.</li>
+      <li><strong>Angka olahan BPS Kabupaten</strong>: untuk beberapa bulan bisa berbeda dengan angka yang dikirim ke BPS Provinsi atau dimuat di publikasi Daerah Dalam Angka.</li>
+      <li><strong>Bulan kosong</strong> berarti hasil survei belum diolah.</li>
+    </ul>
+  </div>
+
+  <h2>Unduh data</h2>
+  <ul class="downloads">
+    <li><a href="data_bersih/fact_hotel_bulanan.csv" download>Hotel per bulan (.csv)</a></li>
+  </ul>
 </div>
 
 <div id="view-transportasi" role="tabpanel" aria-labelledby="tab-transportasi">
@@ -255,7 +291,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
 </main>
 
 <footer>
-  Sumber: SIMOPPEL Ditjen Perhubungan Laut, BPTD Kelas II Sulsel (Satpel Pamatata), dan UPBU Kelas III H. Aroeppala.
+  Sumber: SIMOPPEL Ditjen Perhubungan Laut, BPTD Kelas II Sulsel (Satpel Pamatata), UPBU Kelas III H. Aroeppala, dan Survei VHTS BPS.
   Dikelola BPS Kabupaten Kepulauan Selayar.
 </footer>
 
@@ -274,7 +310,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', '
 const fmt = new Intl.NumberFormat('id-ID');
 
 let DATA = null;
-let state = { year: 'all', node: 'all', arah: 'bongkar' };
+let state = { year: 'all', node: 'all', arah: 'bongkar', hotelYear: 'all' };
 const charts = {};
 
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -318,6 +354,16 @@ function init(data) {
     renderKomoditas();
   });
 
+  const hotelYears = [...new Set(DATA.hotel_bulanan.map(r => r.periode.slice(0, 4)))].sort();
+  const hotelSeg = document.getElementById('hotel-year-seg');
+  hotelSeg.innerHTML = ['all', ...hotelYears].map(y => `<button type="button" data-year="${y}">${y === 'all' ? 'Semua' : y}</button>`).join('');
+  hotelSeg.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.hotelYear = b.dataset.year;
+    renderHotel();
+  });
+
   document.querySelector('.tabs').addEventListener('click', e => {
     const b = e.target.closest('button');
     if (!b) return;
@@ -326,10 +372,13 @@ function init(data) {
     document.getElementById('tab-hotel').setAttribute('aria-selected', String(hotel));
     document.getElementById('view-transportasi').hidden = hotel;
     document.getElementById('view-hotel').hidden = !hotel;
+    // Charts drawn while the panel was hidden have no size, so draw the visible panel again.
+    hotel ? renderHotel() : render();
   });
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { render(); renderHotel(); });
   render();
+  renderHotel();
 }
 
 function render() {
@@ -533,6 +582,90 @@ function renderKomoditas() {
       <td>${pct(k.jumlah)}</td>
       <td>${k.periods.size}</td>
     </tr>`).join('') || '<tr><td colspan="4" class="empty">Tidak ada data.</td></tr>';
+}
+
+const fmt1 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const orDash = (v, f) => v == null ? '–' : f.format(v);
+
+function renderHotel() {
+  document.querySelectorAll('#hotel-year-seg button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.year === state.hotelYear)));
+  const rows = DATA.hotel_bulanan.filter(r => state.hotelYear === 'all' || r.periode.startsWith(state.hotelYear));
+  const sum = k => rows.reduce((a, r) => a + r[k], 0);
+
+  // Period indicators come from summed counts, not from averaging the monthly percentages.
+  const tpk = sum('malam_kamar_tersedia') ? sum('malam_kamar_terpakai') / sum('malam_kamar_tersedia') * 100 : null;
+  const tamu = sum('tamu_total');
+  const rlmt = tamu ? sum('malam_tamu') / tamu : null;
+  const span = rows.length ? `${monthLabel(rows[0].periode)}${rows.length > 1 ? ' – ' + monthLabel(rows[rows.length - 1].periode) : ''}` : '';
+  const items = [
+    ['Tingkat penghunian kamar', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}`],
+    ['Tamu', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Indonesia · ${fmt.format(sum('tamu_asing'))} asing`],
+    ['Lama menginap', rlmt == null ? '–' : `${fmt2.format(rlmt)} malam`, 'Rata-rata per tamu'],
+  ];
+  document.getElementById('hotel-kpis').innerHTML = items.map(([l, v, s]) =>
+    `<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join('');
+
+  // Continuous month axis so months not processed yet show as gaps.
+  const byPeriod = Object.fromEntries(rows.map(r => [r.periode, r]));
+  const axis = [];
+  if (rows.length) {
+    let [y, m] = rows[0].periode.split('-').map(Number);
+    for (let p = rows[0].periode; p <= rows[rows.length - 1].periode; p = `${y}-${String(m).padStart(2, '0')}`) {
+      axis.push(p);
+      if (++m > 12) { m = 1; y++; }
+    }
+  }
+  const gaps = axis.filter(p => !byPeriod[p]);
+  const gapEl = document.getElementById('hotel-gap');
+  gapEl.hidden = !gaps.length;
+  gapEl.textContent = `Belum diolah: ${gaps.map(monthLabel).join(', ')}`;
+
+  chartDefaults();
+  const xAxis = { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } };
+  draw('hotel-tpk', {
+    type: 'line',
+    data: { labels: axis.map(monthLabel), datasets: [{
+      label: 'TPK', data: axis.map(p => byPeriod[p]?.tpk ?? null),
+      borderColor: cssVar('--accent'), backgroundColor: cssVar('--accent'), borderWidth: 2, pointRadius: 3, tension: 0.25, spanGaps: false,
+    }] },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `TPK ${fmt2.format(c.parsed.y)}%` } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => `${fmt.format(v)}%` } }, x: xAxis },
+    },
+  });
+
+  const surface = cssVar('--surface');
+  draw('hotel-tamu', {
+    type: 'bar',
+    data: { labels: axis.map(monthLabel), datasets: [
+      { label: 'Indonesia', data: axis.map(p => byPeriod[p]?.tamu_indonesia ?? null), backgroundColor: cssVar('--c-wni') },
+      { label: 'Asing', data: axis.map(p => byPeriod[p]?.tamu_asing ?? null), backgroundColor: cssVar('--c-wna'),
+        borderColor: surface, borderWidth: { bottom: 2 }, borderSkipped: false, borderRadius: { topLeft: 4, topRight: 4 } },
+    ] },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
+        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}` } },
+      },
+      scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { callback: v => fmt.format(v) } } },
+    },
+  });
+
+  document.getElementById('hotel-tbody').innerHTML = rows.slice().reverse().map(r => `<tr>
+      <td>${monthLabel(r.periode)}</td>
+      <td>${r.jumlah_sampel}</td>
+      <td>${orDash(r.tpk, fmt2)}</td>
+      <td>${orDash(r.tptt, fmt2)}</td>
+      <td>${fmt.format(r.tamu_indonesia)}</td>
+      <td>${fmt.format(r.tamu_asing)}</td>
+      <td>${orDash(r.rlmt_gabungan, fmt2)}</td>
+    </tr>`).join('') || '<tr><td colspan="7" class="empty">Tidak ada data.</td></tr>';
 }
 
 function drawBar(id, labels, values, color, label = c => fmt.format(c.parsed.x)) {

@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-30 17:53 WITA",
+ "updated_at": "2026-10-31 08:03 WITA",
  "dim_simpul": [
   {
    "kode_simpul": "ARO",
@@ -94,22 +94,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 167,
-   "kunjungan_berangkat": 167,
-   "total_kunjungan": 334,
-   "penumpang_turun": 3821,
-   "penumpang_naik": 2810,
+   "kunjungan_datang": 161,
+   "kunjungan_berangkat": 161,
+   "total_kunjungan": 322,
+   "penumpang_turun": 3653,
+   "penumpang_naik": 2636,
    "penumpang_transit": 0,
-   "total_penumpang": 6631,
-   "barang_bongkar_ton": 1442.0,
-   "barang_muat_ton": 677.0,
-   "total_barang_ton": 2119.0,
+   "total_penumpang": 6289,
+   "barang_bongkar_ton": 1725.0,
+   "barang_muat_ton": 571.0,
+   "total_barang_ton": 2296.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 297,
-   "total_hewan_ekor": 417
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 162,
+   "total_hewan_ekor": 162
   },
   {
    "tahun": 2025,
@@ -166,22 +166,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 105,
-   "kunjungan_berangkat": 105,
-   "total_kunjungan": 210,
-   "penumpang_turun": 2082,
-   "penumpang_naik": 1769,
+   "kunjungan_datang": 101,
+   "kunjungan_berangkat": 101,
+   "total_kunjungan": 202,
+   "penumpang_turun": 1970,
+   "penumpang_naik": 1653,
    "penumpang_transit": 0,
-   "total_penumpang": 3851,
-   "barang_bongkar_ton": 465.0,
-   "barang_muat_ton": 378.0,
-   "total_barang_ton": 843.0,
+   "total_penumpang": 3623,
+   "barang_bongkar_ton": 588.0,
+   "barang_muat_ton": 312.0,
+   "total_barang_ton": 900.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 80,
-   "hewan_muat_ekor": 251,
-   "total_hewan_ekor": 331
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 159,
+   "total_hewan_ekor": 159
   },
   {
    "tahun": 2025,
@@ -238,22 +238,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 150,
-   "kunjungan_berangkat": 150,
-   "total_kunjungan": 300,
-   "penumpang_turun": 4779,
-   "penumpang_naik": 2679,
+   "kunjungan_datang": 145,
+   "kunjungan_berangkat": 145,
+   "total_kunjungan": 290,
+   "penumpang_turun": 4639,
+   "penumpang_naik": 2534,
    "penumpang_transit": 0,
-   "total_penumpang": 7458,
-   "barang_bongkar_ton": 656.0,
-   "barang_muat_ton": 320.0,
-   "total_barang_ton": 976.0,
+   "total_penumpang": 7173,
+   "barang_bongkar_ton": 723.0,
+   "barang_muat_ton": 225.0,
+   "total_barang_ton": 948.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 100,
-   "hewan_muat_ekor": 195,
-   "total_hewan_ekor": 295
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 96,
+   "total_hewan_ekor": 96
   },
   {
    "tahun": 2025,
@@ -310,22 +310,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 178,
-   "kunjungan_berangkat": 178,
-   "total_kunjungan": 356,
-   "penumpang_turun": 4343,
-   "penumpang_naik": 5075,
+   "kunjungan_datang": 172,
+   "kunjungan_berangkat": 172,
+   "total_kunjungan": 344,
+   "penumpang_turun": 4175,
+   "penumpang_naik": 4901,
    "penumpang_transit": 0,
-   "total_penumpang": 9418,
-   "barang_bongkar_ton": 682.0,
-   "barang_muat_ton": 372.0,
-   "total_barang_ton": 1054.0,
+   "total_penumpang": 9076,
+   "barang_bongkar_ton": 797.0,
+   "barang_muat_ton": 271.0,
+   "total_barang_ton": 1068.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 573,
-   "total_hewan_ekor": 693
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 446,
+   "total_hewan_ekor": 446
   },
   {
    "tahun": 2025,
@@ -382,22 +382,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 183,
-   "kunjungan_berangkat": 183,
-   "total_kunjungan": 366,
-   "penumpang_turun": 4466,
-   "penumpang_naik": 3453,
+   "kunjungan_datang": 177,
+   "kunjungan_berangkat": 177,
+   "total_kunjungan": 354,
+   "penumpang_turun": 4298,
+   "penumpang_naik": 3279,
    "penumpang_transit": 0,
-   "total_penumpang": 7919,
-   "barang_bongkar_ton": 793.0,
-   "barang_muat_ton": 512.5,
-   "total_barang_ton": 1305.5,
+   "total_penumpang": 7577,
+   "barang_bongkar_ton": 960.0,
+   "barang_muat_ton": 430.5,
+   "total_barang_ton": 1390.5,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 498,
-   "total_hewan_ekor": 618
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 388,
+   "total_hewan_ekor": 388
   },
   {
    "tahun": 2025,
@@ -454,22 +454,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 160,
-   "kunjungan_berangkat": 160,
-   "total_kunjungan": 320,
-   "penumpang_turun": 5217,
-   "penumpang_naik": 5028,
+   "kunjungan_datang": 155,
+   "kunjungan_berangkat": 155,
+   "total_kunjungan": 310,
+   "penumpang_turun": 5077,
+   "penumpang_naik": 4883,
    "penumpang_transit": 0,
-   "total_penumpang": 10245,
-   "barang_bongkar_ton": 737.0,
-   "barang_muat_ton": 355.0,
-   "total_barang_ton": 1092.0,
+   "total_penumpang": 9960,
+   "barang_bongkar_ton": 1125.0,
+   "barang_muat_ton": 293.0,
+   "total_barang_ton": 1418.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 100,
-   "hewan_muat_ekor": 400,
-   "total_hewan_ekor": 500
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 285,
+   "total_hewan_ekor": 285
   },
   {
    "tahun": 2025,
@@ -526,22 +526,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 175,
-   "kunjungan_berangkat": 175,
-   "total_kunjungan": 350,
-   "penumpang_turun": 5876,
-   "penumpang_naik": 3510,
+   "kunjungan_datang": 169,
+   "kunjungan_berangkat": 169,
+   "total_kunjungan": 338,
+   "penumpang_turun": 5708,
+   "penumpang_naik": 3336,
    "penumpang_transit": 0,
-   "total_penumpang": 9386,
-   "barang_bongkar_ton": 986.0,
-   "barang_muat_ton": 470.5,
-   "total_barang_ton": 1456.5,
+   "total_penumpang": 9044,
+   "barang_bongkar_ton": 3415.6,
+   "barang_muat_ton": 437.5,
+   "total_barang_ton": 3853.1,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 306,
-   "total_hewan_ekor": 426
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 169,
+   "total_hewan_ekor": 169
   },
   {
    "tahun": 2025,
@@ -598,22 +598,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 184,
-   "kunjungan_berangkat": 184,
-   "total_kunjungan": 368,
-   "penumpang_turun": 4279,
-   "penumpang_naik": 3560,
+   "kunjungan_datang": 178,
+   "kunjungan_berangkat": 178,
+   "total_kunjungan": 356,
+   "penumpang_turun": 4111,
+   "penumpang_naik": 3386,
    "penumpang_transit": 0,
-   "total_penumpang": 7839,
-   "barang_bongkar_ton": 945.0,
-   "barang_muat_ton": 484.35,
-   "total_barang_ton": 1429.35,
+   "total_penumpang": 7497,
+   "barang_bongkar_ton": 1119.0,
+   "barang_muat_ton": 470.37,
+   "total_barang_ton": 1589.37,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 299,
-   "total_hewan_ekor": 419
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 187,
+   "total_hewan_ekor": 187
   },
   {
    "tahun": 2025,
@@ -670,22 +670,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 123,
-   "kunjungan_berangkat": 123,
-   "total_kunjungan": 246,
-   "penumpang_turun": 3532,
-   "penumpang_naik": 2430,
+   "kunjungan_datang": 118,
+   "kunjungan_berangkat": 118,
+   "total_kunjungan": 236,
+   "penumpang_turun": 3392,
+   "penumpang_naik": 2285,
    "penumpang_transit": 0,
-   "total_penumpang": 5962,
-   "barang_bongkar_ton": 828.04,
-   "barang_muat_ton": 608.0,
-   "total_barang_ton": 1436.04,
+   "total_penumpang": 5677,
+   "barang_bongkar_ton": 1919.0,
+   "barang_muat_ton": 677.0,
+   "total_barang_ton": 2596.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 104,
-   "hewan_muat_ekor": 179,
-   "total_hewan_ekor": 283
+   "hewan_bongkar_ekor": 4,
+   "hewan_muat_ekor": 69,
+   "total_hewan_ekor": 73
   },
   {
    "tahun": 2025,
@@ -742,22 +742,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 168,
-   "kunjungan_berangkat": 168,
-   "total_kunjungan": 336,
-   "penumpang_turun": 5026,
-   "penumpang_naik": 3760,
+   "kunjungan_datang": 162,
+   "kunjungan_berangkat": 162,
+   "total_kunjungan": 324,
+   "penumpang_turun": 4858,
+   "penumpang_naik": 3586,
    "penumpang_transit": 0,
-   "total_penumpang": 8786,
-   "barang_bongkar_ton": 863.0,
-   "barang_muat_ton": 572.0,
-   "total_barang_ton": 1435.0,
+   "total_penumpang": 8444,
+   "barang_bongkar_ton": 874.0,
+   "barang_muat_ton": 652.0,
+   "total_barang_ton": 1526.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 219,
-   "total_hewan_ekor": 339
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 81,
+   "total_hewan_ekor": 81
   },
   {
    "tahun": 2025,
@@ -814,22 +814,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 165,
-   "kunjungan_berangkat": 165,
-   "total_kunjungan": 330,
-   "penumpang_turun": 4395,
-   "penumpang_naik": 3550,
+   "kunjungan_datang": 160,
+   "kunjungan_berangkat": 160,
+   "total_kunjungan": 320,
+   "penumpang_turun": 4255,
+   "penumpang_naik": 3405,
    "penumpang_transit": 0,
-   "total_penumpang": 7945,
-   "barang_bongkar_ton": 1064.08,
-   "barang_muat_ton": 465.0,
-   "total_barang_ton": 1529.08,
+   "total_penumpang": 7660,
+   "barang_bongkar_ton": 1255.08,
+   "barang_muat_ton": 485.0,
+   "total_barang_ton": 1740.08,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 100,
-   "hewan_muat_ekor": 152,
-   "total_hewan_ekor": 252
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 37,
+   "total_hewan_ekor": 37
   },
   {
    "tahun": 2025,
@@ -886,22 +886,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 167,
-   "kunjungan_berangkat": 167,
-   "total_kunjungan": 334,
-   "penumpang_turun": 4214,
-   "penumpang_naik": 4880,
+   "kunjungan_datang": 161,
+   "kunjungan_berangkat": 161,
+   "total_kunjungan": 322,
+   "penumpang_turun": 4046,
+   "penumpang_naik": 4706,
    "penumpang_transit": 0,
-   "total_penumpang": 9094,
-   "barang_bongkar_ton": 906.0,
-   "barang_muat_ton": 435.0,
-   "total_barang_ton": 1341.0,
+   "total_penumpang": 8752,
+   "barang_bongkar_ton": 875.0,
+   "barang_muat_ton": 392.0,
+   "total_barang_ton": 1267.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 182,
-   "total_hewan_ekor": 302
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 47,
+   "total_hewan_ekor": 47
   },
   {
    "tahun": 2025,
@@ -958,22 +958,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 105,
-   "kunjungan_berangkat": 105,
-   "total_kunjungan": 210,
-   "penumpang_turun": 3635,
-   "penumpang_naik": 1812,
+   "kunjungan_datang": 101,
+   "kunjungan_berangkat": 101,
+   "total_kunjungan": 202,
+   "penumpang_turun": 3523,
+   "penumpang_naik": 1696,
    "penumpang_transit": 0,
-   "total_penumpang": 5447,
-   "barang_bongkar_ton": 839.0,
-   "barang_muat_ton": 285.0,
-   "total_barang_ton": 1124.0,
+   "total_penumpang": 5219,
+   "barang_bongkar_ton": 1082.0,
+   "barang_muat_ton": 229.0,
+   "total_barang_ton": 1311.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 80,
-   "hewan_muat_ekor": 143,
-   "total_hewan_ekor": 223
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 51,
+   "total_hewan_ekor": 51
   },
   {
    "tahun": 2026,
@@ -1006,22 +1006,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 149,
-   "kunjungan_berangkat": 149,
-   "total_kunjungan": 298,
-   "penumpang_turun": 2649,
-   "penumpang_naik": 2052,
+   "kunjungan_datang": 144,
+   "kunjungan_berangkat": 144,
+   "total_kunjungan": 288,
+   "penumpang_turun": 2509,
+   "penumpang_naik": 1907,
    "penumpang_transit": 0,
-   "total_penumpang": 4701,
-   "barang_bongkar_ton": 724.0,
-   "barang_muat_ton": 538.0,
-   "total_barang_ton": 1262.0,
+   "total_penumpang": 4416,
+   "barang_bongkar_ton": 701.0,
+   "barang_muat_ton": 507.0,
+   "total_barang_ton": 1208.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 100,
-   "hewan_muat_ekor": 159,
-   "total_hewan_ekor": 259
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 59,
+   "total_hewan_ekor": 59
   },
   {
    "tahun": 2026,
@@ -1270,22 +1270,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 153,
-   "kunjungan_berangkat": 153,
-   "total_kunjungan": 306,
-   "penumpang_turun": 3545,
-   "penumpang_naik": 2736,
+   "kunjungan_datang": 147,
+   "kunjungan_berangkat": 147,
+   "total_kunjungan": 294,
+   "penumpang_turun": 3377,
+   "penumpang_naik": 2562,
    "penumpang_transit": 0,
-   "total_penumpang": 6281,
-   "barang_bongkar_ton": 776.0,
-   "barang_muat_ton": 531.0,
-   "total_barang_ton": 1307.0,
+   "total_penumpang": 5939,
+   "barang_bongkar_ton": 860.0,
+   "barang_muat_ton": 495.0,
+   "total_barang_ton": 1355.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 346,
-   "total_hewan_ekor": 466
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 234,
+   "total_hewan_ekor": 234
   },
   {
    "tahun": 2026,
@@ -1510,22 +1510,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 161,
-   "kunjungan_berangkat": 161,
-   "total_kunjungan": 322,
-   "penumpang_turun": 5053,
-   "penumpang_naik": 4460,
+   "kunjungan_datang": 160,
+   "kunjungan_berangkat": 160,
+   "total_kunjungan": 320,
+   "penumpang_turun": 5025,
+   "penumpang_naik": 4431,
    "penumpang_transit": 0,
-   "total_penumpang": 9513,
-   "barang_bongkar_ton": 689.0,
-   "barang_muat_ton": 506.0,
-   "total_barang_ton": 1195.0,
+   "total_penumpang": 9456,
+   "barang_bongkar_ton": 984.0,
+   "barang_muat_ton": 603.5,
+   "total_barang_ton": 1587.5,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 20,
-   "hewan_muat_ekor": 234,
-   "total_hewan_ekor": 254
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 243,
+   "total_hewan_ekor": 243
   },
   {
    "tahun": 2026,
@@ -1630,22 +1630,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 158,
-   "kunjungan_berangkat": 158,
-   "total_kunjungan": 316,
-   "penumpang_turun": 3535,
-   "penumpang_naik": 2845,
+   "kunjungan_datang": 152,
+   "kunjungan_berangkat": 152,
+   "total_kunjungan": 304,
+   "penumpang_turun": 3367,
+   "penumpang_naik": 2671,
    "penumpang_transit": 0,
-   "total_penumpang": 6380,
-   "barang_bongkar_ton": 765.0,
-   "barang_muat_ton": 599.0,
-   "total_barang_ton": 1364.0,
+   "total_penumpang": 6038,
+   "barang_bongkar_ton": 831.0,
+   "barang_muat_ton": 688.0,
+   "total_barang_ton": 1519.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 120,
-   "hewan_muat_ekor": 335,
-   "total_hewan_ekor": 455
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 219,
+   "total_hewan_ekor": 219
   },
   {
    "tahun": 2026,
@@ -1750,22 +1750,22 @@
    "kode_simpul": "JMP",
    "nama_simpul": "Pelabuhan Jampea",
    "moda": "Laut",
-   "kunjungan_datang": 146,
-   "kunjungan_berangkat": 146,
-   "total_kunjungan": 292,
-   "penumpang_turun": 3820,
-   "penumpang_naik": 3233,
+   "kunjungan_datang": 145,
+   "kunjungan_berangkat": 145,
+   "total_kunjungan": 290,
+   "penumpang_turun": 3792,
+   "penumpang_naik": 3204,
    "penumpang_transit": 0,
-   "total_penumpang": 7053,
-   "barang_bongkar_ton": 680.0,
-   "barang_muat_ton": 573.0,
-   "total_barang_ton": 1253.0,
+   "total_penumpang": 6996,
+   "barang_bongkar_ton": 942.0,
+   "barang_muat_ton": 780.0,
+   "total_barang_ton": 1722.0,
    "kendaraan_turun": 0,
    "kendaraan_naik": 0,
    "total_kendaraan": 0,
-   "hewan_bongkar_ekor": 20,
-   "hewan_muat_ekor": 288,
-   "total_hewan_ekor": 308
+   "hewan_bongkar_ekor": 0,
+   "hewan_muat_ekor": 290,
+   "total_hewan_ekor": 290
   },
   {
    "tahun": 2026,
@@ -2058,6 +2058,6371 @@
    "total_kend": 6209
   }
  ],
+ "komoditas_bulanan": [
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 103.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 78.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 19.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 74.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "OLI BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 16.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 168.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 1131.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TIDAK DISEBUT",
+   "satuan": "ton_m3",
+   "jumlah": 0.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 5991.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 121.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 275.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TIDAK DISEBUT",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ALAT BERAT",
+   "satuan": "ton_m3",
+   "jumlah": 300.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI BETON",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 149.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 36.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 150.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2025-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "ASPAL",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 92.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 85.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "OLI BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 200.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 402.5
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 131.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG GUDE",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 205.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 42.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 120.0
+  },
+  {
+   "periode": "2025-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 126.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI 12",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX AYAM",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GAPURA",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LEMARI",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 90.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 343.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SENG ASBES",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.8
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3369.5
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 58.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 120.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KARDUS BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 37.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 98.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 58.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 52.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 32.0
+  },
+  {
+   "periode": "2025-03",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 210.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 65.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX ES",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LEMARI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 113.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 298.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2715.4
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 41.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 19.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KARDUS BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 81.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 64.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 388.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 46.0
+  },
+  {
+   "periode": "2025-04",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 167.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX ES",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 60.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 58.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 557.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SENG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3624.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 716.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 177.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN HIDUP",
+   "satuan": "ton_m3",
+   "jumlah": 0.5
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG TANAH",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KARDUS BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KANAFA",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 122.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 36.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 295.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 52.0
+  },
+  {
+   "periode": "2025-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 41.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 69.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 70.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI BETON",
+   "satuan": "ton_m3",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 84.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 401.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SENG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TIANG PANCANG",
+   "satuan": "ton_m3",
+   "jumlah": 374.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TRIPLEKS",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3357.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 146.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 26.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 132.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG HIJAU",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KANAFA",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 34.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 57.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 285.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "ABU BATU",
+   "satuan": "ton_m3",
+   "jumlah": 544.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 72.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATU PECAH",
+   "satuan": "ton_m3",
+   "jumlah": 1198.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATU PONDASI",
+   "satuan": "ton_m3",
+   "jumlah": 878.6
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 73.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 180.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TANAH",
+   "satuan": "ton_m3",
+   "jumlah": 346.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ABU BATU",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 18.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BATU PECAH",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BATU PONDASI",
+   "satuan": "ton_m3",
+   "jumlah": 43.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3536.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 67.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TANAH",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 78.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BALOK KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 24.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 43.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 42.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "CUMI KERING",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN HIDUP",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 7.5
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG HIJAU",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 81.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 87.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 57.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 154.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KUDA",
+   "satuan": "ekor",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 79.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATU PONDASI",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 16.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 38.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 87.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PAVING BLOK",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 555.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "AIR BERSIH",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 36.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 32.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG KELONTONG",
+   "satuan": "ton_m3",
+   "jumlah": 250.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BESI BETON",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 1452.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU OLAHAN",
+   "satuan": "ton_m3",
+   "jumlah": 935.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 88.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KRG GRONIK",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PALA",
+   "satuan": "ton_m3",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SUSU SOYA",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TABUNG PEMADAM",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TERIGU",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TIDAK DISEBUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 95.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERAPU",
+   "satuan": "ton_m3",
+   "jumlah": 0.35
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 98.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 127.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LOBSTER",
+   "satuan": "ton_m3",
+   "jumlah": 0.02
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 49.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "TERIGU",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 143.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 19.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KUDA",
+   "satuan": "ekor",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 23.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "B.GUNUNG,B.KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 1038.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 148.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATA RINGAN",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 40.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 23.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 84.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PAKAN AYAM",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 457.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TIDAK DISEBUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 66.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BALOK KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 45.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 64.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2343.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 68.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PINANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 133.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 84.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 60.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DOS KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 29.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 98.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG GUDE",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 95.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 235.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KUDA",
+   "satuan": "ekor",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 161.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 28.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 234.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 77.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 276.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BALOK KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 23.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 98.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 37.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 5128.13
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 244.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 75.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 55.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 237.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG GUDE",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KARDUS BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KANAFA",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 150.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 49.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 75.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-10",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 149.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 23.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 38.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI ULIR DAN POLOS",
+   "satuan": "ton_m3",
+   "jumlah": 151.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GULA PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 76.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PIPA 508",
+   "satuan": "ton_m3",
+   "jumlah": 238.08
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 413.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 4917.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PERALATAN PANCANG",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PIPA 711",
+   "satuan": "ton_m3",
+   "jumlah": 173.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 426.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TERIGU",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 172.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG GUDE",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 139.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 56.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2025-11",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 112.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATA RINGAN",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 22.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 16.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GARAM",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 93.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "MATERIAL",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 230.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 283.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEPEDA LISTRIK",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEPEDA MOTOR",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TEGEL",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 6349.5
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 206.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 32.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 28.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 93.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 53.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 112.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 49.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 40.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2025-12",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 86.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 33.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "KURSI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LEMARI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 51.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK UREA",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 778.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TEGEL",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2978.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 76.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN ASIN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 24.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 119.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 34.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "TIDAK DISEBUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2026-01",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 79.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 49.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LEMARI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 71.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 170.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 229.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 681.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KAYU OLAHAN",
+   "satuan": "ton_m3",
+   "jumlah": 545.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PERALATAN PANCANG",
+   "satuan": "ton_m3",
+   "jumlah": 100.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PIPA 711",
+   "satuan": "ton_m3",
+   "jumlah": 36.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 148.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SPAREPART",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TERIGU",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 22.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 47.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 69.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 300.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 48.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 41.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-02",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 121.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 105.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 87.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI KAWAT BETON",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 25.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 83.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "MINYAK",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMBAKO",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 346.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TEGEL",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2883.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "JAGUNG",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KACANG HIJAU",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 40.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 76.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 51.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BESI TUA",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 27.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG HIJAU",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KARDUS BEKAS",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 110.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 202.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 58.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 176.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 26.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "RUSA",
+   "satuan": "ekor",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-05",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 31.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 140.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATA RINGAN",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 83.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 24.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 26.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 24.5
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 105.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 192.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 70.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3450.6
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 60.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 120.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 18.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 64.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG HIJAU",
+   "satuan": "ton_m3",
+   "jumlah": 19.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 66.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 237.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 63.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 145.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2026-06",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 52.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAHAN BANGUNAN",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 104.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 52.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 72.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GALON KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 56.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GULA PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 91.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 120.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 297.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3210.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 116.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 44.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 39.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "COKLAT",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN/DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KANAFA",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 92.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 277.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 18.5
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 42.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 186.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 9.0
+  },
+  {
+   "periode": "2026-07",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 48.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 120.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 19.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI,TEGEL,SENG",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM",
+   "satuan": "ton_m3",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM BBM",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 0.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 54.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 90.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 192.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 211.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "TEGEL",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 150.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 32.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 2532.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "HEWAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KACANG",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KERIKIL",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "MATERIAL",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PASIR",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 62.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 22.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 160.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "TABUNG OKSIGEN",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 48.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 94.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 18.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 15.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 6.9
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 1.1
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 53.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN K./DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 11.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 286.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 46.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "PISANG",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "SKAM PADI",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "UM & GABUS KOSO",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 101.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 17.0
+  },
+  {
+   "periode": "2026-08",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 101.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BARANG CAMPURAN",
+   "satuan": "ton_m3",
+   "jumlah": 140.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BATANG BESI",
+   "satuan": "ton_m3",
+   "jumlah": 13.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BAWANG",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BBM",
+   "satuan": "ton_m3",
+   "jumlah": 57.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 34.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BERAS BULOG",
+   "satuan": "ton_m3",
+   "jumlah": 30.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "BESI",
+   "satuan": "ton_m3",
+   "jumlah": 14.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM",
+   "satuan": "ton_m3",
+   "jumlah": 21.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM BBM",
+   "satuan": "ton_m3",
+   "jumlah": 35.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 7.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 37.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LEMARI",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "LPG",
+   "satuan": "ton_m3",
+   "jumlah": 111.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "MATERIAL",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 31.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMBAKO, BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 319.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "bongkar",
+   "kategori": "barang",
+   "komoditas": "SOLAR",
+   "satuan": "ton_m3",
+   "jumlah": 80.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "ASAM",
+   "satuan": "ton_m3",
+   "jumlah": 85.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 3454.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "KACANG",
+   "satuan": "ton_m3",
+   "jumlah": 3.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "PUPUK",
+   "satuan": "ton_m3",
+   "jumlah": 124.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 22.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "lanjutan",
+   "kategori": "barang",
+   "komoditas": "SEMEN",
+   "satuan": "ton_m3",
+   "jumlah": 69.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "ARANG",
+   "satuan": "ton_m3",
+   "jumlah": 50.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BERAS",
+   "satuan": "ton_m3",
+   "jumlah": 53.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BOX",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BOX IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "BUAH KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 20.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DEDAK",
+   "satuan": "ton_m3",
+   "jumlah": 5.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "DRUM KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 10.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GABUS IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 6.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "GENERAL CARGO",
+   "satuan": "ton_m3",
+   "jumlah": 87.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN",
+   "satuan": "ton_m3",
+   "jumlah": 27.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "IKAN KERING",
+   "satuan": "ton_m3",
+   "jumlah": 12.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "JAMBU MENTE",
+   "satuan": "ton_m3",
+   "jumlah": 83.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KACANG GUDE",
+   "satuan": "ton_m3",
+   "jumlah": 4.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KAYU KELAPA",
+   "satuan": "ton_m3",
+   "jumlah": 48.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "KOPRA",
+   "satuan": "ton_m3",
+   "jumlah": 283.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "LPG KOSONG",
+   "satuan": "ton_m3",
+   "jumlah": 86.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "RUMPUT LAUT",
+   "satuan": "ton_m3",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "barang",
+   "komoditas": "SKAM PADI",
+   "satuan": "ton_m3",
+   "jumlah": 2.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KAMBING",
+   "satuan": "ekor",
+   "jumlah": 239.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KERBAU",
+   "satuan": "ekor",
+   "jumlah": 8.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "KUDA",
+   "satuan": "ekor",
+   "jumlah": 1.0
+  },
+  {
+   "periode": "2026-09",
+   "pelabuhan": "Pelabuhan Jampea",
+   "arah": "muat",
+   "kategori": "hewan",
+   "komoditas": "SAPI",
+   "satuan": "ekor",
+   "jumlah": 42.0
+  }
+ ],
  "aroeppala_monthly": [
   {
    "periode": "2026-01",
@@ -2169,7 +8534,7 @@
   }
  ],
  "pelayaran_stats": {
-  "total_log": 4463,
+  "total_log": 4374,
   "top_asal": [
    {
     "pelabuhan": "BIRA/TANAH BERU",

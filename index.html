@@ -93,6 +93,14 @@ h2 { margin: 36px 0 4px; font-size: 1.15rem; }
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
 .two .chart-box { height: 260px; }
 .empty { color: var(--muted); font-size: .9rem; padding: 40px 8px; text-align: center; }
+.card .ct { margin: 0 0 2px; font-size: .95rem; }
+.card .cs { margin: 0 0 8px; color: var(--muted); font-size: .8rem; }
+#kom .chart-box { height: 340px; }
+#kom .gap { color: var(--warn-text); font-size: .8rem; margin-top: 6px; }
+#kom details { margin-top: 12px; }
+#kom summary { cursor: pointer; color: var(--accent); font-size: .9rem; padding: 6px 0; }
+#kom summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#kom table th:nth-child(2), #kom table td:nth-child(2) { text-align: right; }
 
 .filter { margin-bottom: 10px; }
 select {
@@ -175,6 +183,38 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
     </div>
   </div>
 
+  <section id="kom" aria-labelledby="kom-title">
+    <h2 id="kom-title">Barang lewat Pelabuhan Jampea</h2>
+    <p class="hint">Muatan per komoditas dari laporan UPP Jampea, termasuk Posker Ujung dan wilker Kayuadi, Bonerate, Kalaotoa, serta Jinato. Satuan ton atau m³ sesuai laporan. Muatan lanjutan (tetap di kapal) tidak dihitung.</p>
+    <div class="seg" role="group" aria-label="Pilih arah barang" id="arah-seg">
+      <button type="button" data-arah="bongkar">Masuk (dibongkar)</button>
+      <button type="button" data-arah="muat">Keluar (dimuat)</button>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="card">
+        <h3 class="ct">10 komoditas terbesar</h3>
+        <p class="cs" id="kom-top-sub"></p>
+        <div class="chart-box"><canvas id="kom-top" role="img" aria-label="Grafik batang sepuluh komoditas terbesar di Pelabuhan Jampea"></canvas></div>
+      </div>
+      <div class="card">
+        <h3 class="ct">Total barang per bulan</h3>
+        <p class="cs">Ton/m³, semua komoditas</p>
+        <div class="chart-box"><canvas id="kom-trend" role="img" aria-label="Grafik batang total barang per bulan di Pelabuhan Jampea"></canvas></div>
+        <div class="gap" id="kom-gap" hidden></div>
+      </div>
+    </div>
+    <p class="hint" id="kom-hewan" style="margin-top:12px"></p>
+    <details>
+      <summary id="kom-summary">Semua komoditas</summary>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Komoditas</th><th>Ton/m³</th><th>Porsi</th><th>Bulan tercatat</th></tr></thead>
+          <tbody id="kom-tbody"></tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
   <h2>Tabel per bulan</h2>
   <div class="filter">
     <label for="node-filter" class="hint">Simpul: </label>
@@ -194,7 +234,8 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
     <ul>
       <li><strong>Penumpang</strong> = naik + turun. Penumpang transit (yang hanya singgah) tidak dihitung agar tidak ganda.</li>
       <li><strong>Kedatangan</strong> = jumlah kapal atau pesawat yang tiba. Untuk ferry Pamatata, satu kedatangan = satu pelayaran.</li>
-      <li><strong>Barang (tonase)</strong> sengaja tidak ditampilkan: angka dari laporan 2026 belum lolos pengecekan (banyak bulan bernilai 0 atau melonjak tidak wajar). Datanya tetap ada di file unduhan.</li>
+      <li><strong>Barang (tonase)</strong> hanya ditampilkan untuk Jampea, karena angka per kapalnya sudah dicocokkan dengan baris JUMLAH TOTAL tiap laporan. Tonase simpul lain belum lolos pengecekan (banyak bulan bernilai 0 atau melonjak tidak wajar), tetapi datanya tetap ada di file unduhan.</li>
+      <li><strong>Barang Jampea</strong>: laporan mencampur ton dan m³ dalam satu kolom, jadi totalnya perkiraan kasar berat/volume. Maret dan April 2026 belum ada (laporan terpotong dan hasil pindaian). Dua muatan MITRA SINDO 20 di November 2025 tertulis dalam kg dan sudah dibagi 1.000.</li>
       <li><strong>Benteng 2025</strong> berasal dari rekap ringkasan, bukan log per kapal. Jumlah kedatangannya tidak tersedia (tampil &ldquo;–&rdquo; dan tidak dijumlahkan), dan angka Januari 2025 (penumpang naik 18.947, sekitar 10× bulan lain) masih perlu dicek ke laporan asli.</li>
       <li><strong>Pamatata</strong>: 2025 dari log harian ferry (lengkap dengan kendaraan); 2026 dari laporan SIMOPEL tanpa data kendaraan. Perbandingan antartahun sebaiknya hati-hati.</li>
       <li><strong>Bulan kosong</strong> berarti laporan belum ada atau belum terbaca, bukan berarti tidak ada aktivitas.</li>
@@ -208,6 +249,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
     <li><a href="data_bersih/fact_pamatata_ferry_harian.csv" download>Ferry Pamatata harian (.csv)</a></li>
     <li><a href="data_bersih/fact_aroeppala_penerbangan_harian.csv" download>Penerbangan harian (.csv)</a></li>
     <li><a href="data_bersih/fact_log_pelayaran.csv" download>Log pelayaran (.csv)</a></li>
+    <li><a href="data_bersih/fact_muatan_komoditas.csv" download>Muatan per komoditas Jampea (.csv)</a></li>
   </ul>
 </div>
 </main>
@@ -232,13 +274,16 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', '
 const fmt = new Intl.NumberFormat('id-ID');
 
 let DATA = null;
-let state = { year: 'all', node: 'all' };
+let state = { year: 'all', node: 'all', arah: 'bongkar' };
 const charts = {};
 
 const cssVar = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const monthLabel = p => `${MONTHS[+p.slice(5) - 1]} ${p.slice(0, 4)}`;
 const titleCase = s => s.toLowerCase().replace(/(^|[\s/(-])\p{L}/gu, m => m.toUpperCase());
+const ACRONYMS = new Set(['LPG', 'BBM']);
+const komLabel = s => s.split(' ').map(w => ACRONYMS.has(w) ? w : w.toLowerCase().replace(/(^|[.,/&(-])\p{L}/gu, m => m.toUpperCase())).join(' ');
+const ARAH = { bongkar: { label: 'masuk (dibongkar)', hewan: 'Hewan turun' }, muat: { label: 'keluar (dimuat)', hewan: 'Hewan naik' } };
 
 // Benteng 2025 comes from a summary table: no per-ship arrivals, and values are unverified.
 const isSummary = r => r.kode_simpul === 'BTG' && r.tahun === 2025;
@@ -266,6 +311,13 @@ function init(data) {
     Object.entries(NODES).map(([k, n]) => `<option value="${k}">${n.name}</option>`).join('');
   sel.addEventListener('change', () => { state.node = sel.value; renderTable(); });
 
+  document.getElementById('arah-seg').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.arah = b.dataset.arah;
+    renderKomoditas();
+  });
+
   document.querySelector('.tabs').addEventListener('click', e => {
     const b = e.target.closest('button');
     if (!b) return;
@@ -288,6 +340,7 @@ function render() {
   renderTrend();
   renderVehicles();
   renderOrigins();
+  renderKomoditas();
   renderTable();
 }
 
@@ -411,14 +464,85 @@ function renderOrigins() {
   drawBar('origins', top.map(t => titleCase(t.pelabuhan)), top.map(t => t.kunjungan), cssVar('--c-btg'));
 }
 
-function drawBar(id, labels, values, color) {
+function renderKomoditas() {
+  document.querySelectorAll('#arah-seg button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.arah === state.arah)));
+  const all = DATA.komoditas_bulanan.filter(r => state.year === 'all' || r.periode.startsWith(state.year));
+  const rows = all.filter(r => r.arah === state.arah);
+
+  // Totals per commodity (goods only: livestock is counted in heads, not tons).
+  const byKom = {};
+  rows.filter(r => r.kategori === 'barang').forEach(r => {
+    const k = byKom[r.komoditas] ??= { jumlah: 0, periods: new Set() };
+    k.jumlah += r.jumlah;
+    k.periods.add(r.periode);
+  });
+  const ranked = Object.entries(byKom).sort((a, b) => b[1].jumlah - a[1].jumlah);
+  const total = ranked.reduce((a, [, k]) => a + k.jumlah, 0);
+  const top = ranked.slice(0, 10);
+  const topShare = total ? top.reduce((a, [, k]) => a + k.jumlah, 0) / total : 0;
+  const pct = v => total ? `${fmt.format(Math.round(v / total * 1000) / 10)}%` : '–';
+
+  document.getElementById('kom-top-sub').textContent = total
+    ? `Barang ${ARAH[state.arah].label}, total ${fmt.format(Math.round(total))} ton/m³. ` +
+      (ranked.length > 10 ? `10 teratas = ${pct(topShare * total)}; ${ranked.length - 10} komoditas lain tidak digambar.` : '')
+    : 'Tidak ada data.';
+  drawBar('kom-top', top.map(([n]) => komLabel(n)), top.map(([, k]) => Math.round(k.jumlah * 10) / 10), cssVar('--c-jmp'),
+    c => `${fmt.format(c.parsed.x)} ton/m³ (${pct(c.parsed.x)})`);
+
+  // Continuous month axis over every month with a Jampea report, so missing reports show as gaps.
+  const reported = [...new Set(all.map(r => r.periode))].sort();
+  const axis = [];
+  if (reported.length) {
+    let [y, m] = reported[0].split('-').map(Number);
+    for (let p = reported[0]; p <= reported[reported.length - 1]; p = `${y}-${String(m).padStart(2, '0')}`) {
+      axis.push(p);
+      if (++m > 12) { m = 1; y++; }
+    }
+  }
+  const perMonth = {};
+  rows.filter(r => r.kategori === 'barang').forEach(r => { perMonth[r.periode] = (perMonth[r.periode] || 0) + r.jumlah; });
+  const have = new Set(reported);
+  chartDefaults();
+  draw('kom-trend', {
+    type: 'bar',
+    data: { labels: axis.map(monthLabel), datasets: [{ data: axis.map(p => have.has(p) ? Math.round((perMonth[p] || 0) * 10) / 10 : null), backgroundColor: cssVar('--c-jmp'), borderRadius: 4 }] },
+    options: {
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${fmt.format(c.parsed.y)} ton/m³` } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } }, x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } } },
+    },
+  });
+  const gaps = axis.filter(p => !have.has(p));
+  const gapEl = document.getElementById('kom-gap');
+  gapEl.hidden = !gaps.length;
+  gapEl.textContent = `Belum ada laporan: ${gaps.map(monthLabel).join(', ')}`;
+
+  const hewan = {};
+  rows.filter(r => r.kategori === 'hewan').forEach(r => { hewan[r.komoditas] = (hewan[r.komoditas] || 0) + r.jumlah; });
+  const hewanList = Object.entries(hewan).sort((a, b) => b[1] - a[1]);
+  const hewanTotal = hewanList.reduce((a, [, v]) => a + v, 0);
+  document.getElementById('kom-hewan').textContent = hewanTotal
+    ? `${ARAH[state.arah].hewan}: ${fmt.format(hewanTotal)} ekor (${hewanList.map(([n, v]) => `${komLabel(n)} ${fmt.format(v)}`).join(', ')}).`
+    : `${ARAH[state.arah].hewan}: tidak ada.`;
+
+  document.getElementById('kom-summary').textContent = `Semua komoditas (${ranked.length})`;
+  document.getElementById('kom-tbody').innerHTML = ranked.map(([n, k]) => `<tr>
+      <td>${esc(komLabel(n))}</td>
+      <td>${fmt.format(Math.round(k.jumlah * 10) / 10)}</td>
+      <td>${pct(k.jumlah)}</td>
+      <td>${k.periods.size}</td>
+    </tr>`).join('') || '<tr><td colspan="4" class="empty">Tidak ada data.</td></tr>';
+}
+
+function drawBar(id, labels, values, color, label = c => fmt.format(c.parsed.x)) {
   chartDefaults();
   draw(id, {
     type: 'bar',
     data: { labels, datasets: [{ data: values, backgroundColor: color, borderRadius: 4 }] },
     options: {
       indexAxis: 'y', maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => fmt.format(c.parsed.x) } } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label } } },
       scales: { x: { ticks: { callback: v => fmt.format(v) } }, y: { grid: { display: false } } },
     },
   });

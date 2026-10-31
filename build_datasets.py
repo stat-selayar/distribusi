@@ -335,10 +335,61 @@ def jampea_cells_from_boxes(boxes, edges, line_gap):
     return rows
 
 
-def jampea_vessel_from_rows(rows, tahun, bulan):
-    """Build one ship-visit record from a vessel row plus its extra-cargo continuation rows."""
+# (type column, quantity column, direction, category, unit) for each cargo group in the report table.
+# Through cargo (muatan lanjutan) stays aboard, so it is recorded but not added to unloaded/loaded totals.
+JAMPEA_MUATAN_COLS = [
+    (16, 17, 'bongkar', 'barang', 'ton_m3'),
+    (18, 19, 'bongkar', 'hewan', 'ekor'),
+    (20, 21, 'muat', 'barang', 'ton_m3'),
+    (22, 23, 'muat', 'hewan', 'ekor'),
+    (30, 31, 'lanjutan', 'barang', 'ton_m3'),
+]
+
+
+# No single cargo line at these ports comes near this; larger "ton" values were typed in kilograms.
+JAMPEA_MAX_TON_PER_LINE = 10_000
+
+
+def parse_jampea_quantity(jenis, qty):
+    """Return (jenis, jumlah) for a type/quantity cell pair; jumlah is None if `qty` is not a number.
+
+    Handles a unit suffix ('25M3') and type text that spilled into the quantity cell
+    ('PERALATAN PANCAN' + 'G 100').
+    """
+    m = re.fullmatch(r'(?:([A-Za-z]{1,2}) )?(\d[\d.,]*) ?(?:M3|TON)?', qty)
+    if not m:
+        return jenis, None
+    if m.group(1):
+        jenis += m.group(1)
+    return jenis, parse_id_number(m.group(2))
+
+
+def jampea_vessel_from_rows(rows, tahun, bulan, wilker='', jenis_pelayaran=''):
+    """Build one ship-visit record from a vessel row plus its extra-cargo continuation rows.
+
+    Every cargo line is kept in `muatan`; the tonnage and head-count totals are sums of it.
+    """
     r = rows[0]
-    rec = {
+    muatan = []
+    for c in rows:
+        for col_j, col_q, arah, kategori, satuan in JAMPEA_MUATAN_COLS:
+            jenis, jumlah = parse_jampea_quantity('' if c[col_j] in ('-', 'NIHIL') else c[col_j], c[col_q])
+            if jumlah is None or not (jumlah or jenis):
+                continue
+            catatan = ''
+            if satuan == 'ton_m3' and jumlah > JAMPEA_MAX_TON_PER_LINE:
+                jumlah, catatan = jumlah / 1000, f'nilai laporan {c[col_q]} dianggap kg'
+            muatan.append({'arah': arah, 'kategori': kategori, 'komoditas_asli': jenis,
+                           'jumlah': jumlah, 'satuan': satuan, 'catatan': catatan})
+
+    def total(arah, kategori):
+        return sum(m['jumlah'] for m in muatan if m['arah'] == arah and m['kategori'] == kategori)
+
+    def jenis(arah):
+        return [m['komoditas_asli'] for m in muatan
+                if m['arah'] == arah and m['kategori'] == 'barang' and m['komoditas_asli']]
+
+    return {
         'pelabuhan': 'Pelabuhan Jampea',
         'tahun': tahun,
         'bulan': bulan,
@@ -353,58 +404,192 @@ def jampea_vessel_from_rows(rows, tahun, bulan):
         'pelabuhan_tujuan': r[15],
         'penumpang_turun': int(parse_id_number(r[28]) or 0),
         'penumpang_naik': int(parse_id_number(r[29]) or 0),
-        'barang_bongkar_ton': 0.0,
-        'barang_muat_ton': 0.0,
-        'jenis_barang_bongkar': [],
-        'jenis_barang_muat': [],
-        'hewan_turun_ekor': 0,
-        'hewan_naik_ekor': 0,
+        'barang_bongkar_ton': total('bongkar', 'barang'),
+        'barang_muat_ton': total('muat', 'barang'),
+        'jenis_barang_bongkar': jenis('bongkar'),
+        'jenis_barang_muat': jenis('muat'),
+        'hewan_turun_ekor': int(total('bongkar', 'hewan')),
+        'hewan_naik_ekor': int(total('muat', 'hewan')),
+        'wilker': wilker,
+        'jenis_pelayaran': jenis_pelayaran,
+        'muatan': muatan,
     }
-    for c in rows:
-        for col_j, col_t, jenis_key, ton_key in [(16, 17, 'jenis_barang_bongkar', 'barang_bongkar_ton'),
-                                                 (20, 21, 'jenis_barang_muat', 'barang_muat_ton')]:
-            ton = parse_id_number(c[col_t])
-            if ton is not None:
-                rec[ton_key] += ton
-                if c[col_j] not in ('', '-'):
-                    rec[jenis_key].append(c[col_j])
-        rec['hewan_turun_ekor'] += int(parse_id_number(c[19]) or 0)
-        rec['hewan_naik_ekor'] += int(parse_id_number(c[23]) or 0)
-    return rec
+
+
+def jampea_section_heading(c):
+    """('wilker', name) or ('pelayaran', name) for a section heading row, else None.
+
+    A report covers the Jampea port plus its work areas (POSKER UJUNG, WILKER KAYUADI, ...),
+    each split by shipping type (PELAYARAN RAKYAT, PELAYARAN DALAM NEGERI, PERINTIS, FERRY).
+    """
+    text = ' '.join(x for x in c if x)
+    if re.fullmatch(r'(PELABUHAN|POSKER|WILKER) [A-Z .]+', text):
+        return 'wilker', text.title()
+    if not re.fullmatch(r'\d+|#+', c[0]) and re.fullmatch(r'PELAYARAN [A-Z ]+|PERINTIS|FERRY', c[1]):
+        return 'pelayaran', c[1].title()
+    return None
+
+
+def is_jampea_page_carry(c):
+    """Rows repeated at a page break (carried totals, column numbers); a vessel's cargo may continue after them."""
+    head = ' '.join(c[:2]).upper()
+    return head.startswith(('JUMLAH DIPINDAHKAN', 'JUMLAH PINDAHAN')) or (c[0], c[1]) == ('1', '2')
 
 
 def jampea_records_from_rows(rows, tahun, bulan):
     """Split table rows (35 cells each) into vessel blocks and build their records."""
     def is_subtotal(c):
         # Unlabelled section subtotal: numbers in the quantity columns but no commodity/animal type.
-        return any(c[i] for i in (17, 19, 21, 23, 28, 29)) and not any(c[i] for i in (16, 18, 20, 22))
+        return any(c[i] for i in (17, 19, 21, 23, 28, 29)) and not any(c[i] for i in (16, 18, 20, 22, 30))
 
     records, block = [], None
+    section = {'wilker': '', 'pelayaran': ''}
+
+    def close():
+        if block:
+            records.append(jampea_vessel_from_rows(block, tahun, bulan, section['wilker'], section['pelayaran']))
+
     for c in rows:
+        if is_jampea_page_carry(c):
+            continue
+        heading = jampea_section_heading(c)
         is_vessel = re.fullmatch(r'\d+|#+', c[0]) and re.search(r'[A-Za-z]', c[1])
-        if is_vessel:
-            if block:
-                records.append(jampea_vessel_from_rows(block, tahun, bulan))
-            block = [c]
+        if heading or is_vessel:
+            close()
+            block = None
+            if heading:
+                section[heading[0]] = heading[1]
+                if heading[0] == 'wilker':
+                    section['pelayaran'] = ''
+            else:
+                block = [c]
         elif block and not c[0] and not c[1].upper().startswith('JUMLAH') and not is_subtotal(c):
             block.append(c)
         else:
-            if block:
-                records.append(jampea_vessel_from_rows(block, tahun, bulan))
+            close()
             block = None
-    if block:
-        records.append(jampea_vessel_from_rows(block, tahun, bulan))
+    close()
     return records
 
 
-def parse_jampea_words_pdf(doc, tahun, bulan):
-    """Parse a Jampea report whose table is plain text/vector rules with no detectable table object."""
-    records = []
+# Fields compared with the report's JUMLAH TOTAL row, and the column holding each total.
+JAMPEA_TOTAL_COLS = {'barang_bongkar_ton': 17, 'hewan_turun_ekor': 19, 'barang_muat_ton': 21,
+                     'hewan_naik_ekor': 23, 'barang_lanjutan_ton': 31}
+
+
+def jampea_total_diffs(records, rows):
+    """[(field, parsed, report)] where parsed totals differ from the JUMLAH TOTAL row; None if there is none.
+
+    The report shows rounded sums, so differences up to 0.5 are ignored.
+    """
+    totals = [c for c in rows if 'JUMLAH TOTAL' in ' '.join(c[:2]).upper()]
+    if not totals:
+        return None
+    parsed = {f: sum(r[f] for r in records) for f in JAMPEA_TOTAL_COLS if f != 'barang_lanjutan_ton'}
+    parsed['barang_lanjutan_ton'] = sum(m['jumlah'] for r in records for m in r['muatan']
+                                        if m['arah'] == 'lanjutan')
+    diffs = []
+    for field, col in JAMPEA_TOTAL_COLS.items():
+        report = parse_id_number(totals[-1][col]) or 0.0
+        if abs(parsed[field] - report) > 0.5:
+            diffs.append((field, round(parsed[field], 3), report))
+    return diffs
+
+
+# Spelling variants in the reports -> one commodity name. Names not listed pass through cleaned.
+KOMODITAS_ALIAS = {
+    **dict.fromkeys(['B CAMPURAN', 'B. CAMP', 'B. CAMPURAN', 'B.CAMP', 'B.CAMPUR', 'B.CAMPURAN',
+                     'CAMPUAN', 'CAMPURAN'], 'BARANG CAMPURAN'),
+    **dict.fromkeys(['G. C', 'G.C', 'GC', 'GC LANJUTAN', 'KARGO UMUM', 'CARGO UMUM'], 'GENERAL CARGO'),
+    **dict.fromkeys(['ELPIJI', 'LPG 3 KG', 'TABUNG LPG', 'TABUNG 3 KG'], 'LPG'),
+    **dict.fromkeys(['ELPIJI KOSONG', 'ELPJI KSG', 'LPG KSG', 'TBG LPG KSNG', 'TABUNG KOSONG'], 'LPG KOSONG'),
+    **dict.fromkeys(['DRUM KOSNG', 'DRUM KSG'], 'DRUM KOSONG'),
+    **dict.fromkeys(['SEMEN 40 KG', 'SEMEN 40KG', 'SEMEN 50 KG'], 'SEMEN'),
+    **dict.fromkeys(['KY KLP', 'KAYU KLP'], 'KAYU KELAPA'),
+    **dict.fromkeys(['KELAPA BIJI', 'BIJI KELAPA'], 'BUAH KELAPA'),
+    **dict.fromkeys(['MENTE', 'BIJI MENTE'], 'JAMBU MENTE'),
+    **dict.fromkeys(['GABUS', 'GABUNG IKAN'], 'GABUS IKAN'),
+    **dict.fromkeys(['ERALATAN PANCAN', 'PRLTN PANCANG'], 'PERALATAN PANCANG'),
+    **dict.fromkeys(['BESI KWT BETON', 'KAWAT BETON'], 'BESI KAWAT BETON'),
+    'B. BANGUNAN': 'BAHAN BANGUNAN',
+    'BESI BEKAS': 'BESI TUA',
+    'DEDAK PADI': 'DEDAK',
+    'KACANG IJO': 'KACANG HIJAU',
+    'KANAFA': 'KAYU KANAFA',
+    'KEBAU': 'KERBAU',
+    'KRIKIL': 'KERIKIL',
+    'R. LAUT': 'RUMPUT LAUT',
+    'T. PANCANG': 'TIANG PANCANG',
+    'TEPUNG TERIGU': 'TERIGU',
+    '': 'TIDAK DISEBUT',
+    '0': 'TIDAK DISEBUT',
+}
+
+
+def normalize_komoditas(name):
+    """Upper-case, whitespace-collapsed commodity name with spelling variants merged."""
+    key = re.sub(r'\s+', ' ', name.upper()).strip(" '")
+    return KOMODITAS_ALIAS.get(key, key)
+
+
+def jampea_words_rows(doc):
+    """Rows of 35 cells for a report whose table is plain text/vector rules with no detectable table object."""
+    rows = []
     for page in doc:
         edges = jampea_column_edges(page)
         if edges:
-            records.extend(jampea_records_from_rows(jampea_cells_from_words(page, edges), tahun, bulan))
-    return records
+            rows.extend(jampea_cells_from_words(page, edges))
+    return rows
+
+
+def parse_jampea_words_pdf(doc, tahun, bulan):
+    """Parse a Jampea report from word positions only."""
+    return jampea_records_from_rows(jampea_words_rows(doc), tahun, bulan)
+
+
+def jampea_table_rows(doc):
+    """Rows of 35 text cells from every report table object in a PDF, in page order.
+
+    Tables of other widths (the signature block) are skipped.
+    """
+    rows = []
+    for page in doc:
+        for table_obj in page.find_tables().tables:
+            for r in table_obj.extract():
+                if len(r) == JAMPEA_NCOLS:
+                    rows.append([(c or '').strip() for c in r])
+    return rows
+
+
+def jampea_doc_rows(doc):
+    """Rows of 35 cells from a Jampea report PDF: table objects first, word positions as a fallback."""
+    rows = jampea_table_rows(doc)
+    return rows if any(re.fullmatch(r'\d+', c[0]) for c in rows) else jampea_words_rows(doc)
+
+
+def jampea_rows_from_sheet(ws):
+    """Rows of 35 text cells from a Jampea report worksheet, written the way the PDF reports show them."""
+    def text(v):
+        if v is None:
+            return ''
+        if isinstance(v, datetime.datetime):
+            return v.strftime('%d-%m-%y')
+        if isinstance(v, float):
+            # The workbooks are converted from the PDF reports, where '2.097' means 2097; writing the
+            # float back with a dot lets parse_id_number apply the same reading.
+            return str(int(v)) if v.is_integer() else str(v)
+        return str(v).strip()
+
+    rows = []
+    for r in ws.iter_rows(values_only=True):
+        cells = [text(v) for v in r[:JAMPEA_NCOLS]]
+        rows.append(cells + [''] * (JAMPEA_NCOLS - len(cells)))
+    return rows
+
+
+def parse_jampea_pdf(doc, tahun, bulan):
+    """Parse a Jampea report PDF into ship-visit records."""
+    return jampea_records_from_rows(jampea_doc_rows(doc), tahun, bulan)
 
 
 def process_ship_logs():
@@ -490,93 +675,69 @@ def process_ship_logs():
             if curr_vessel:
                 records.append(curr_vessel)
 
-    # B. Dari PDF Digital Jampea (2025 & 2026)
-    jampea_pdfs = sorted(glob.glob(os.path.join(RAW_DIR, 'Jampea/2025/*.pdf')) +
-                         glob.glob(os.path.join(RAW_DIR, 'Jampea/2026/*.pdf')) +
-                         glob.glob(os.path.join(RAW_DIR, 'Jampea/2026/*.PDF')))
-
-    for fpath in jampea_pdfs:
+    # B. Laporan bulanan UPP Jampea (PDF digital 2025-2026; Excel bila tersedia)
+    jampea_files = sorted(f for f in glob.glob(os.path.join(RAW_DIR, 'Jampea/*/*'))
+                          if f.lower().endswith(('.pdf', '.xlsx')))
+    for fpath in jampea_files:
+        fname = os.path.basename(fpath)
         tahun, bulan = parse_period_from_path(fpath)
         if bulan is None:
-            print(f"Warning: bulan tidak terbaca dari nama file, dilewati: {os.path.basename(fpath)}")
+            print(f"Warning: bulan tidak terbaca dari nama file, dilewati: {fname}")
             continue
 
         try:
-            doc = fitz.open(fpath)
-            n_before = len(records)
-            for page in doc:
-                tf = page.find_tables()
-                for table_obj in tf.tables:
-                    table = table_obj.extract()
-                    if not table:
-                        continue
-                    curr_j_vessel = None
-                    for r in table:
-                        if not r or len(r) < 16:
-                            continue
-                        col0 = r[0].strip() if r[0] else ''
-                        col1 = r[1].strip() if r[1] else ''
-
-                        if col0.isdigit() and col1 and not any(x in col1.upper() for x in ['NAMA', 'TOTAL', 'JUMLAH']):
-                            if curr_j_vessel:
-                                records.append(curr_j_vessel)
-
-                            gt_val = float(r[5].replace(',', '.')) if r[5] and re.match(r'^\d+([,\.]\d+)?$', r[5].strip()) else 0.0
-                            loa_val = float(r[4].replace(',', '.')) if r[4] and re.match(r'^\d+([,\.]\d+)?$', r[4].strip()) else 0.0
-
-                            pnp_turun = int(r[28]) if len(r) > 28 and r[28] and r[28].isdigit() else 0
-                            pnp_naik = int(r[29]) if len(r) > 29 and r[29] and r[29].isdigit() else 0
-
-                            b_bongkar = float(r[17].replace(',', '.')) if len(r) > 17 and r[17] and re.match(r'^\d+([,\.]\d+)?$', r[17].strip()) else 0.0
-                            b_muat = float(r[21].replace(',', '.')) if len(r) > 21 and r[21] and re.match(r'^\d+([,\.]\d+)?$', r[21].strip()) else 0.0
-
-                            curr_j_vessel = {
-                                'pelabuhan': 'Pelabuhan Jampea',
-                                'tahun': tahun,
-                                'bulan': bulan,
-                                'tanggal_tiba': r[7].strip() if len(r) > 7 and r[7] else '',
-                                'tanggal_berangkat': r[13].strip() if len(r) > 13 and r[13] else '',
-                                'nama_kapal': col1,
-                                'tipe_kapal': r[12].strip() if len(r) > 12 and r[12] else '',
-                                'bendera': r[2].strip() if len(r) > 2 and r[2] else 'ID',
-                                'gt': gt_val,
-                                'loa': loa_val,
-                                'pelabuhan_asal': r[9].strip() if len(r) > 9 and r[9] else '',
-                                'pelabuhan_tujuan': r[15].strip() if len(r) > 15 and r[15] else '',
-                                'penumpang_turun': pnp_turun,
-                                'penumpang_naik': pnp_naik,
-                                'barang_bongkar_ton': b_bongkar,
-                                'barang_muat_ton': b_muat,
-                                'jenis_barang_bongkar': [r[16].strip()] if len(r) > 16 and r[16] and r[16] != '-' else [],
-                                'jenis_barang_muat': [r[20].strip()] if len(r) > 20 and r[20] and r[20] != '-' else [],
-                                'hewan_turun_ekor': int(r[19]) if len(r) > 19 and r[19] and r[19].isdigit() else 0,
-                                'hewan_naik_ekor': int(r[23]) if len(r) > 23 and r[23] and r[23].isdigit() else 0,
-                            }
-                        elif curr_j_vessel and not col0 and col1:
-                            # baris tambahan barang
-                            if len(r) > 17 and r[17] and re.match(r'^\d+([,\.]\d+)?$', r[17].strip()):
-                                curr_j_vessel['barang_bongkar_ton'] += float(r[17].replace(',', '.'))
-                                if len(r) > 16 and r[16] and r[16] != '-':
-                                    curr_j_vessel['jenis_barang_bongkar'].append(r[16].strip())
-                            if len(r) > 21 and r[21] and re.match(r'^\d+([,\.]\d+)?$', r[21].strip()):
-                                curr_j_vessel['barang_muat_ton'] += float(r[21].replace(',', '.'))
-                                if len(r) > 20 and r[20] and r[20] != '-':
-                                    curr_j_vessel['jenis_barang_muat'].append(r[20].strip())
-
-                    if curr_j_vessel:
-                        records.append(curr_j_vessel)
-            if len(records) == n_before:
-                records.extend(parse_jampea_words_pdf(doc, tahun, bulan))
-            if len(records) == n_before:
-                print(f"Warning: tidak ada data terbaca dari {os.path.basename(fpath)} "
-                      f"(kemungkinan hasil pindaian gambar; butuh versi Excel)")
+            if fpath.lower().endswith('.xlsx'):
+                wb = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+                rows = jampea_rows_from_sheet(wb.worksheets[0])
+            else:
+                rows = jampea_doc_rows(fitz.open(fpath))
+            jampea_records = jampea_records_from_rows(rows, tahun, bulan)
         except Exception as e:
-            print(f"Warning parsing {os.path.basename(fpath)}: {e}")
+            print(f"Warning parsing {fname}: {e}")
+            continue
+        if not jampea_records:
+            print(f"Warning: tidak ada data terbaca dari {fname} "
+                  f"(kemungkinan hasil pindaian gambar; butuh versi Excel)")
+            continue
+        diffs = jampea_total_diffs(jampea_records, rows)
+        if diffs is None:
+            print(f"Warning: {fname} tidak punya baris JUMLAH TOTAL (laporan terpotong?), dilewati")
+            continue
+        for field, parsed, report in diffs or []:
+            print(f"Warning: {fname} {field} terbaca {parsed:g}, JUMLAH TOTAL laporan {report:g}")
+        for rec in jampea_records:
+            for m in rec['muatan']:
+                if m['catatan']:
+                    print(f"Warning: {fname} {rec['nama_kapal']} {m['komoditas_asli']}: {m['catatan']}")
+        records.extend(jampea_records)
 
-    # Format list jenis barang jadi string
+    # Format list jenis barang jadi string; muatan per komoditas dipisah ke tabelnya sendiri
+    komoditas_rows = []
     for rec in records:
         rec['jenis_barang_bongkar'] = "; ".join(filter(None, rec['jenis_barang_bongkar']))
         rec['jenis_barang_muat'] = "; ".join(filter(None, rec['jenis_barang_muat']))
+        rec.setdefault('wilker', '')
+        rec.setdefault('jenis_pelayaran', '')
+        for m in rec.pop('muatan', []):
+            komoditas_rows.append({
+                'pelabuhan': rec['pelabuhan'],
+                'wilker': rec['wilker'],
+                'jenis_pelayaran': rec['jenis_pelayaran'],
+                'tahun': rec['tahun'],
+                'bulan': rec['bulan'],
+                'tanggal_tiba': rec['tanggal_tiba'],
+                'tanggal_berangkat': rec['tanggal_berangkat'],
+                'nama_kapal': rec['nama_kapal'],
+                'pelabuhan_asal': rec['pelabuhan_asal'],
+                'pelabuhan_tujuan': rec['pelabuhan_tujuan'],
+                'arah': m['arah'],
+                'kategori': m['kategori'],
+                'komoditas_asli': m['komoditas_asli'],
+                'komoditas': normalize_komoditas(m['komoditas_asli']),
+                'jumlah': round(m['jumlah'], 3),
+                'satuan': m['satuan'],
+                'catatan': m['catatan'],
+            })
 
     out_csv = os.path.join(OUT_DIR, 'fact_log_pelayaran.csv')
     with open(out_csv, 'w', newline='', encoding='utf-8') as f:
@@ -585,7 +746,14 @@ def process_ship_logs():
         writer.writerows(records)
 
     print(f"[OK] fact_log_pelayaran.csv ({len(records):,} kunjungan kapal laut)")
-    return records
+
+    out_csv = os.path.join(OUT_DIR, 'fact_muatan_komoditas.csv')
+    with open(out_csv, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=list(komoditas_rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(komoditas_rows)
+    print(f"[OK] fact_muatan_komoditas.csv ({len(komoditas_rows):,} baris muatan per komoditas)")
+    return records, komoditas_rows
 
 
 # -------------------------------------------------------------
@@ -748,7 +916,7 @@ def build_fact_rekap(pamatata_records, aroeppala_records, ship_records):
 # -------------------------------------------------------------
 # 6. EXPORT KE MASTER WORKBOOK EXCEL MULTI-SHEET
 # -------------------------------------------------------------
-def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows):
+def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows):
     out_xlsx = os.path.join(OUT_DIR, 'master_transportasi_selayar.xlsx')
     wb = openpyxl.Workbook()
     # hapus sheet default
@@ -759,6 +927,7 @@ def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, s
         ('PAMATATA_FERRY_HARIAN', pamatata_rows),
         ('AROI_PENERBANGAN_HARIAN', aroeppala_rows),
         ('LOG_PELAYARAN_KAPAL', ship_rows),
+        ('MUATAN_KOMODITAS', komoditas_rows),
         ('DIM_SIMPUL', dim_simpul)
     ]
 
@@ -778,13 +947,13 @@ def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, s
             ws.append(list(r.values()))
 
     wb.save(out_xlsx)
-    print(f"[OK] master_transportasi_selayar.xlsx (5 sheet lengkap)")
+    print(f"[OK] master_transportasi_selayar.xlsx ({len(tables)} sheet lengkap)")
 
 
 # -------------------------------------------------------------
 # 6b. EXPORT JSON UNTUK WEBSITE
 # -------------------------------------------------------------
-def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows):
+def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows):
     def by_period(rows):
         grouped = {}
         for r in rows:
@@ -837,12 +1006,23 @@ def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows
                 counts[v] = counts.get(v, 0) + 1
         return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:n]
 
+    # Monthly totals per commodity; per-vessel and per-wilker detail stays in fact_muatan_komoditas.csv.
+    komoditas_bulanan = {}
+    for r in komoditas_rows:
+        k = (f"{r['tahun']}-{r['bulan']:02d}", r['pelabuhan'], r['arah'], r['kategori'], r['komoditas'], r['satuan'])
+        komoditas_bulanan[k] = komoditas_bulanan.get(k, 0.0) + r['jumlah']
+
     wita = datetime.timezone(datetime.timedelta(hours=8))
     payload = {
         'updated_at': datetime.datetime.now(wita).strftime('%Y-%m-%d %H:%M WITA'),
         'dim_simpul': dim_simpul,
         'rekap_bulanan': fact_rekap,
         'pamatata_monthly': pamatata_monthly,
+        'komoditas_bulanan': [
+            {'periode': k[0], 'pelabuhan': k[1], 'arah': k[2], 'kategori': k[3], 'komoditas': k[4],
+             'satuan': k[5], 'jumlah': round(v, 3)}
+            for k, v in sorted(komoditas_bulanan.items())
+        ],
         'aroeppala_monthly': aroeppala_monthly,
         'pelayaran_stats': {
             'total_log': len(ship_rows),
@@ -861,12 +1041,18 @@ def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows
 # -------------------------------------------------------------
 # 7. RUNNABLE SELF-CHECK (ASSERTION-BASED)
 # -------------------------------------------------------------
-def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap):
+def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows):
     print("\n--- MENJALANKAN SELF-CHECK INTEGRITAS DATA ---")
     assert len(pamatata_rows) > 2000, f"Pamatata trips terlalu sedikit: {len(pamatata_rows)}"
     assert len(aroeppala_rows) >= 270, f"Aroeppala flights terlalu sedikit: {len(aroeppala_rows)}"
     assert len(ship_rows) > 500, f"Ship logs terlalu sedikit: {len(ship_rows)}"
     assert len(fact_rekap) >= 40, f"Rekap bulanan terlalu sedikit: {len(fact_rekap)}"
+
+    # Muatan per komoditas harus menjumlah ke total bongkar/muat log kapal Jampea
+    jampea = [r for r in ship_rows if r['pelabuhan'] == 'Pelabuhan Jampea']
+    for arah, field in (('bongkar', 'barang_bongkar_ton'), ('muat', 'barang_muat_ton')):
+        dari_komoditas = sum(r['jumlah'] for r in komoditas_rows if r['arah'] == arah and r['kategori'] == 'barang')
+        assert abs(dari_komoditas - sum(r[field] for r in jampea)) < 0.01, f"Total komoditas {arah} tidak cocok"
 
     # Cek konsistensi penumpang
     for r in pamatata_rows[:50]:
@@ -880,11 +1066,11 @@ def main():
     export_dim_simpul()
     pamatata_rows = process_pamatata_ferry()
     aroeppala_rows = process_aroeppala_flights()
-    ship_rows = process_ship_logs()
+    ship_rows, komoditas_rows = process_ship_logs()
     fact_rekap = build_fact_rekap(pamatata_rows, aroeppala_rows, ship_rows)
-    export_master_excel(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows)
-    export_json(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows)
-    run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap)
+    export_master_excel(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows)
+    export_json(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows)
+    run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows)
     print("=== SELESAI: SEMUA DATA BERSIH TELAH TERSIMPAN DI data_bersih/ ===")
 
 

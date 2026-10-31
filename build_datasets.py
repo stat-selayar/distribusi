@@ -809,6 +809,9 @@ def hotel_record_from_row(row):
         'rlmt_asing': ratio(malam_wna, v['wna_masuk']),
         'rlmt_indonesia': ratio(malam_wni, v['wni_masuk']),
         'rlmt_gabungan': ratio(malam_wna + malam_wni, tamu),
+        # Guests per room (BPS): guest nights / room nights used. Not checked against the sheet's GPR
+        # column, which does not follow from its own totals (off by up to 0.17 in some months).
+        'gpr': ratio(malam_wna + malam_wni, terpakai),
     }
 
 

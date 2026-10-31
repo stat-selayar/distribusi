@@ -270,6 +270,7 @@ class HotelRecordTest(unittest.TestCase):
         self.assertEqual((r['malam_tamu_asing'], r['malam_tamu_indonesia'], r['malam_tamu']), (26, 977, 1003))
         self.assertEqual((r['tpk'], r['tptt']), (6.16, 10.74))
         self.assertEqual((r['rlmt_asing'], r['rlmt_indonesia'], r['rlmt_gabungan']), (2.17, 1.48, 1.49))
+        self.assertEqual(r['gpr'], 1.92)
 
     def test_months_not_yet_filled_are_skipped(self):
         empty = ['2026', 'April'] + ['0'] * 14 + ['#DIV/0!', '', '0', '0', '0', '0'] + ['#DIV/0!'] * 3 + ['', '#DIV/0!', '#DIV/0!']

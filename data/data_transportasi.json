@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31 10:24 WITA",
+ "updated_at": "2026-10-31 13:00 WITA",
  "dim_simpul": [
   {
    "kode_simpul": "ARO",
@@ -8550,7 +8550,8 @@
    "malam_tamu": 1003,
    "rlmt_asing": 2.17,
    "rlmt_indonesia": 1.48,
-   "rlmt_gabungan": 1.49
+   "rlmt_gabungan": 1.49,
+   "gpr": 1.92
   },
   {
    "periode": "2024-02",
@@ -8568,7 +8569,8 @@
    "malam_tamu": 1230,
    "rlmt_asing": 3.91,
    "rlmt_indonesia": 1.73,
-   "rlmt_gabungan": 1.76
+   "rlmt_gabungan": 1.76,
+   "gpr": 1.84
   },
   {
    "periode": "2024-03",
@@ -8586,7 +8588,8 @@
    "malam_tamu": 744,
    "rlmt_asing": 4.25,
    "rlmt_indonesia": 2.24,
-   "rlmt_gabungan": 2.6
+   "rlmt_gabungan": 2.6,
+   "gpr": 1.38
   },
   {
    "periode": "2024-04",
@@ -8604,7 +8607,8 @@
    "malam_tamu": 823,
    "rlmt_asing": 6.09,
    "rlmt_indonesia": 1.56,
-   "rlmt_gabungan": 1.79
+   "rlmt_gabungan": 1.79,
+   "gpr": 1.7
   },
   {
    "periode": "2024-05",
@@ -8622,7 +8626,8 @@
    "malam_tamu": 724,
    "rlmt_asing": 6.24,
    "rlmt_indonesia": 1.7,
-   "rlmt_gabungan": 2.16
+   "rlmt_gabungan": 2.16,
+   "gpr": 1.51
   },
   {
    "periode": "2024-06",
@@ -8640,7 +8645,8 @@
    "malam_tamu": 543,
    "rlmt_asing": 8.0,
    "rlmt_indonesia": 1.44,
-   "rlmt_gabungan": 1.64
+   "rlmt_gabungan": 1.64,
+   "gpr": 1.7
   },
   {
    "periode": "2024-07",
@@ -8658,7 +8664,8 @@
    "malam_tamu": 1164,
    "rlmt_asing": 2.32,
    "rlmt_indonesia": 1.62,
-   "rlmt_gabungan": 1.66
+   "rlmt_gabungan": 1.66,
+   "gpr": 1.76
   },
   {
    "periode": "2024-08",
@@ -8676,7 +8683,8 @@
    "malam_tamu": 1258,
    "rlmt_asing": 2.54,
    "rlmt_indonesia": 1.78,
-   "rlmt_gabungan": 1.88
+   "rlmt_gabungan": 1.88,
+   "gpr": 2.03
   },
   {
    "periode": "2024-09",
@@ -8694,7 +8702,8 @@
    "malam_tamu": 1938,
    "rlmt_asing": 5.12,
    "rlmt_indonesia": 2.09,
-   "rlmt_gabungan": 2.17
+   "rlmt_gabungan": 2.17,
+   "gpr": 2.76
   },
   {
    "periode": "2024-10",
@@ -8712,7 +8721,8 @@
    "malam_tamu": 1532,
    "rlmt_asing": 2.45,
    "rlmt_indonesia": 1.89,
-   "rlmt_gabungan": 1.91
+   "rlmt_gabungan": 1.91,
+   "gpr": 2.06
   },
   {
    "periode": "2024-11",
@@ -8730,7 +8740,8 @@
    "malam_tamu": 1028,
    "rlmt_asing": 4.42,
    "rlmt_indonesia": 1.89,
-   "rlmt_gabungan": 2.09
+   "rlmt_gabungan": 2.09,
+   "gpr": 1.67
   },
   {
    "periode": "2024-12",
@@ -8748,7 +8759,8 @@
    "malam_tamu": 807,
    "rlmt_asing": 6.37,
    "rlmt_indonesia": 1.77,
-   "rlmt_gabungan": 1.99
+   "rlmt_gabungan": 1.99,
+   "gpr": 1.92
   },
   {
    "periode": "2025-01",
@@ -8766,7 +8778,8 @@
    "malam_tamu": 732,
    "rlmt_asing": 3.5,
    "rlmt_indonesia": 1.5,
-   "rlmt_gabungan": 1.71
+   "rlmt_gabungan": 1.71,
+   "gpr": 2.01
   },
   {
    "periode": "2025-02",
@@ -8784,7 +8797,8 @@
    "malam_tamu": 728,
    "rlmt_asing": 2.69,
    "rlmt_indonesia": 1.73,
-   "rlmt_gabungan": 1.82
+   "rlmt_gabungan": 1.82,
+   "gpr": 1.98
   },
   {
    "periode": "2025-03",
@@ -8802,7 +8816,8 @@
    "malam_tamu": 515,
    "rlmt_asing": 4.9,
    "rlmt_indonesia": 1.98,
-   "rlmt_gabungan": 2.25
+   "rlmt_gabungan": 2.25,
+   "gpr": 1.62
   },
   {
    "periode": "2025-04",
@@ -8820,7 +8835,8 @@
    "malam_tamu": 960,
    "rlmt_asing": 2.14,
    "rlmt_indonesia": 1.61,
-   "rlmt_gabungan": 1.62
+   "rlmt_gabungan": 1.62,
+   "gpr": 2.14
   },
   {
    "periode": "2025-05",
@@ -8838,7 +8854,8 @@
    "malam_tamu": 1201,
    "rlmt_asing": 1.67,
    "rlmt_indonesia": 1.66,
-   "rlmt_gabungan": 1.66
+   "rlmt_gabungan": 1.66,
+   "gpr": 1.99
   },
   {
    "periode": "2025-06",
@@ -8856,7 +8873,8 @@
    "malam_tamu": 810,
    "rlmt_asing": 2.0,
    "rlmt_indonesia": 1.57,
-   "rlmt_gabungan": 1.58
+   "rlmt_gabungan": 1.58,
+   "gpr": 1.96
   },
   {
    "periode": "2025-07",
@@ -8874,7 +8892,8 @@
    "malam_tamu": 963,
    "rlmt_asing": 1.57,
    "rlmt_indonesia": 1.61,
-   "rlmt_gabungan": 1.61
+   "rlmt_gabungan": 1.61,
+   "gpr": 1.92
   },
   {
    "periode": "2025-08",
@@ -8892,7 +8911,8 @@
    "malam_tamu": 1830,
    "rlmt_asing": 2.9,
    "rlmt_indonesia": 2.79,
-   "rlmt_gabungan": 2.8
+   "rlmt_gabungan": 2.8,
+   "gpr": 1.91
   },
   {
    "periode": "2025-09",
@@ -8910,7 +8930,8 @@
    "malam_tamu": 851,
    "rlmt_asing": 1.35,
    "rlmt_indonesia": 1.46,
-   "rlmt_gabungan": 1.46
+   "rlmt_gabungan": 1.46,
+   "gpr": 2.13
   },
   {
    "periode": "2025-10",
@@ -8928,7 +8949,8 @@
    "malam_tamu": 890,
    "rlmt_asing": 1.89,
    "rlmt_indonesia": 1.22,
-   "rlmt_gabungan": 1.24
+   "rlmt_gabungan": 1.24,
+   "gpr": 2.25
   },
   {
    "periode": "2025-11",
@@ -8946,7 +8968,8 @@
    "malam_tamu": 1105,
    "rlmt_asing": 7.12,
    "rlmt_indonesia": 1.43,
-   "rlmt_gabungan": 1.8
+   "rlmt_gabungan": 1.8,
+   "gpr": 1.84
   },
   {
    "periode": "2025-12",
@@ -8964,7 +8987,8 @@
    "malam_tamu": 908,
    "rlmt_asing": 2.41,
    "rlmt_indonesia": 1.38,
-   "rlmt_gabungan": 1.41
+   "rlmt_gabungan": 1.41,
+   "gpr": 2.14
   },
   {
    "periode": "2026-01",
@@ -8982,7 +9006,8 @@
    "malam_tamu": 822,
    "rlmt_asing": 2.94,
    "rlmt_indonesia": 1.46,
-   "rlmt_gabungan": 1.56
+   "rlmt_gabungan": 1.56,
+   "gpr": 2.3
   },
   {
    "periode": "2026-02",
@@ -9000,7 +9025,8 @@
    "malam_tamu": 645,
    "rlmt_asing": 3.85,
    "rlmt_indonesia": 1.69,
-   "rlmt_gabungan": 1.9
+   "rlmt_gabungan": 1.9,
+   "gpr": 1.83
   },
   {
    "periode": "2026-03",
@@ -9018,7 +9044,8 @@
    "malam_tamu": 1151,
    "rlmt_asing": 4.03,
    "rlmt_indonesia": 1.33,
-   "rlmt_gabungan": 1.45
+   "rlmt_gabungan": 1.45,
+   "gpr": 2.62
   }
  ],
  "pelayaran_stats": {

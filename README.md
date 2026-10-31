@@ -35,6 +35,7 @@ Dataset disusun dengan prinsip **Tidy Data** (1 baris = 1 observasi) yang siap d
    - `catatan` terisi jika angka dikoreksi, mis. satu baris muatan di atas 10.000 "ton" dianggap ditulis dalam kg.
 7. **`fact_hotel_bulanan.csv`** (Survei VHTS, sheet **TPK**: 1 baris = 1 bulan gabungan akomodasi sampel):
    - TPK, TPTT, dan rata-rata lama menginap (`rlmt_*`) dihitung ulang dari angka dasar (malam kamar, malam tamu, tamu masuk), lalu dicocokkan dengan rumus di sheet; selisih dicetak sebagai `Warning`.
+   - `gpr` (rata-rata tamu per kamar) = malam tamu ÷ malam kamar terpakai, definisi BPS. Tidak dicocokkan dengan kolom GPR di sheet karena kolom itu tidak sesuai dengan total di sheet yang sama (selisih sampai 0,17 di beberapa bulan).
    - Bulan yang belum diisi (jumlah sampel 0) dilewati.
 8. **`dim_simpul.csv`** (Metadata geospasial simpul transportasi).
 9. **`data/data_transportasi.json`** (Data ringkas yang dibaca langsung oleh `index.html`; dihasilkan otomatis oleh `build_datasets.py`).

@@ -13,6 +13,7 @@ import bisect
 import csv
 import json
 import datetime
+import urllib.request
 import openpyxl
 import fitz  # PyMuPDF
 
@@ -757,6 +758,111 @@ def process_ship_logs():
 
 
 # -------------------------------------------------------------
+# 4b. HOTEL (VHTS, SHEET TPK)
+# -------------------------------------------------------------
+VHTS_TPK_CSV = os.path.join(RAW_DIR, 'Hotel', 'vhts_tpk.csv')
+# Base counts in the TPK sheet (0-indexed columns); the first three rows are headers.
+VHTS_COLS = {'sampel': 2, 'kamar': 3, 'tempat_tidur': 4, 'kamar_kemarin': 5, 'kamar_masuk': 6, 'kamar_keluar': 7,
+             'wna_kemarin': 8, 'wni_kemarin': 9, 'wna_masuk': 10, 'wni_masuk': 11, 'wna_keluar': 12, 'wni_keluar': 13}
+# Indicators the sheet computes with formulas, compared with our own computation.
+VHTS_FORMULA_COLS = {'tpk': 16, 'rlmt_gabungan': 22, 'tptt': 23, 'rlmt_asing': 26, 'rlmt_indonesia': 27}
+
+
+def parse_sheet_number(s):
+    """Parse a cell of the sheet's CSV export ('1.003', '6,157%'); None for blanks and '#DIV/0!'."""
+    return parse_id_number((s or '').replace('%', ''))
+
+
+def hotel_record_from_row(row):
+    """One month of the TPK sheet -> record with indicators computed from the base counts, or None.
+
+    Months not filled in yet (zero sample) and header rows give None.
+    """
+    if len(row) <= max(VHTS_FORMULA_COLS.values()) or (row[1] or '').strip().upper() not in BULAN_MAP:
+        return None
+    v = {k: int(parse_sheet_number(row[i]) or 0) for k, i in VHTS_COLS.items()}
+    if not v['sampel'] or not v['kamar']:
+        return None
+
+    def ratio(a, b, scale=1):
+        return round(a / b * scale, 2) if b else None
+
+    terpakai = v['kamar_kemarin'] + v['kamar_masuk'] - v['kamar_keluar']
+    malam_wna = v['wna_kemarin'] + v['wna_masuk'] - v['wna_keluar']
+    malam_wni = v['wni_kemarin'] + v['wni_masuk'] - v['wni_keluar']
+    tamu = v['wna_masuk'] + v['wni_masuk']
+    return {
+        'tahun': int(parse_sheet_number(row[0])),
+        'bulan': BULAN_MAP[row[1].strip().upper()],
+        'jumlah_sampel': v['sampel'],
+        'malam_kamar_tersedia': v['kamar'],
+        'malam_kamar_terpakai': terpakai,
+        'tpk': ratio(terpakai, v['kamar'], 100),
+        'malam_tempat_tidur_tersedia': v['tempat_tidur'],
+        'tptt': ratio(malam_wna + malam_wni, v['tempat_tidur'], 100),
+        'tamu_asing': v['wna_masuk'],
+        'tamu_indonesia': v['wni_masuk'],
+        'tamu_total': tamu,
+        'malam_tamu_asing': malam_wna,
+        'malam_tamu_indonesia': malam_wni,
+        'malam_tamu': malam_wna + malam_wni,
+        'rlmt_asing': ratio(malam_wna, v['wna_masuk']),
+        'rlmt_indonesia': ratio(malam_wni, v['wni_masuk']),
+        'rlmt_gabungan': ratio(malam_wna + malam_wni, tamu),
+    }
+
+
+def hotel_formula_diffs(record, row):
+    """(field, computed, sheet) for formula cells that disagree beyond the sheet's display rounding."""
+    diffs = []
+    for field, col in VHTS_FORMULA_COLS.items():
+        sheet = parse_sheet_number(row[col])
+        if sheet is not None and record[field] is not None and abs(record[field] - sheet) > 0.015:
+            diffs.append((field, record[field], sheet))
+    return diffs
+
+
+def read_vhts_tpk(path):
+    """Records from the TPK sheet CSV, plus (tahun, bulan, field, computed, sheet) formula disagreements."""
+    with open(path, newline='', encoding='utf-8') as f:
+        rows = list(csv.reader(f))
+    records, diffs = [], []
+    for row in rows:
+        rec = hotel_record_from_row(row)
+        if rec:
+            records.append(rec)
+            diffs += [(rec['tahun'], rec['bulan'], *d) for d in hotel_formula_diffs(rec, row)]
+    return records, diffs
+
+
+def process_hotel():
+    # The sheet holds confidential per-establishment data, so only the aggregate TPK sheet is downloaded,
+    # from a CSV export link kept outside the repository (VHTS_TPK_CSV_URL).
+    url = os.environ.get('VHTS_TPK_CSV_URL')
+    if url:
+        try:
+            os.makedirs(os.path.dirname(VHTS_TPK_CSV), exist_ok=True)
+            urllib.request.urlretrieve(url, VHTS_TPK_CSV)
+        except OSError as e:
+            print(f"  [Warning] Gagal mengunduh sheet TPK ({e}); memakai file lokal jika ada")
+    if not os.path.exists(VHTS_TPK_CSV):
+        print(f"  [Warning] {VHTS_TPK_CSV} tidak ada; data hotel dilewati")
+        return []
+
+    records, diffs = read_vhts_tpk(VHTS_TPK_CSV)
+    for tahun, bulan, field, ours, sheet in diffs:
+        print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} dihitung {ours}, di sheet {sheet}")
+
+    out_csv = os.path.join(OUT_DIR, 'fact_hotel_bulanan.csv')
+    with open(out_csv, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=list(records[0].keys()))
+        writer.writeheader()
+        writer.writerows(records)
+    print(f"[OK] fact_hotel_bulanan.csv ({len(records)} bulan VHTS)")
+    return records
+
+
+# -------------------------------------------------------------
 # 5. REKAP BULANAN MAKRO WAKTU (FACT_REKAP_BULANAN)
 # -------------------------------------------------------------
 def build_fact_rekap(pamatata_records, aroeppala_records, ship_records):
@@ -916,7 +1022,7 @@ def build_fact_rekap(pamatata_records, aroeppala_records, ship_records):
 # -------------------------------------------------------------
 # 6. EXPORT KE MASTER WORKBOOK EXCEL MULTI-SHEET
 # -------------------------------------------------------------
-def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows):
+def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows, hotel_rows):
     out_xlsx = os.path.join(OUT_DIR, 'master_transportasi_selayar.xlsx')
     wb = openpyxl.Workbook()
     # hapus sheet default
@@ -928,6 +1034,7 @@ def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, s
         ('AROI_PENERBANGAN_HARIAN', aroeppala_rows),
         ('LOG_PELAYARAN_KAPAL', ship_rows),
         ('MUATAN_KOMODITAS', komoditas_rows),
+        ('HOTEL_BULANAN', hotel_rows),
         ('DIM_SIMPUL', dim_simpul)
     ]
 
@@ -953,7 +1060,7 @@ def export_master_excel(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, s
 # -------------------------------------------------------------
 # 6b. EXPORT JSON UNTUK WEBSITE
 # -------------------------------------------------------------
-def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows):
+def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows, hotel_rows):
     def by_period(rows):
         grouped = {}
         for r in rows:
@@ -1024,6 +1131,10 @@ def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows
             for k, v in sorted(komoditas_bulanan.items())
         ],
         'aroeppala_monthly': aroeppala_monthly,
+        'hotel_bulanan': [
+            {'periode': f"{r['tahun']}-{r['bulan']:02d}", **{k: v for k, v in r.items() if k not in ('tahun', 'bulan')}}
+            for r in hotel_rows
+        ],
         'pelayaran_stats': {
             'total_log': len(ship_rows),
             'top_asal': [{'pelabuhan': k, 'kunjungan': v} for k, v in top_counts('pelabuhan_asal', 10)],
@@ -1041,7 +1152,7 @@ def export_json(dim_simpul, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows
 # -------------------------------------------------------------
 # 7. RUNNABLE SELF-CHECK (ASSERTION-BASED)
 # -------------------------------------------------------------
-def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows):
+def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows, hotel_rows):
     print("\n--- MENJALANKAN SELF-CHECK INTEGRITAS DATA ---")
     assert len(pamatata_rows) > 2000, f"Pamatata trips terlalu sedikit: {len(pamatata_rows)}"
     assert len(aroeppala_rows) >= 270, f"Aroeppala flights terlalu sedikit: {len(aroeppala_rows)}"
@@ -1053,6 +1164,11 @@ def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_r
     for arah, field in (('bongkar', 'barang_bongkar_ton'), ('muat', 'barang_muat_ton')):
         dari_komoditas = sum(r['jumlah'] for r in komoditas_rows if r['arah'] == arah and r['kategori'] == 'barang')
         assert abs(dari_komoditas - sum(r[field] for r in jampea)) < 0.01, f"Total komoditas {arah} tidak cocok"
+
+    # Indikator hotel harus berupa persentase/rata-rata yang wajar
+    assert len(hotel_rows) >= 24, f"Bulan hotel terlalu sedikit: {len(hotel_rows)}"
+    for r in hotel_rows:
+        assert 0 <= r['tpk'] <= 100 and 0 <= r['tptt'] <= 100, f"TPK/TPTT di luar 0-100: {r}"
 
     # Cek konsistensi penumpang
     for r in pamatata_rows[:50]:
@@ -1067,10 +1183,11 @@ def main():
     pamatata_rows = process_pamatata_ferry()
     aroeppala_rows = process_aroeppala_flights()
     ship_rows, komoditas_rows = process_ship_logs()
+    hotel_rows = process_hotel()
     fact_rekap = build_fact_rekap(pamatata_rows, aroeppala_rows, ship_rows)
-    export_master_excel(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows)
-    export_json(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows)
-    run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows)
+    export_master_excel(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows, hotel_rows)
+    export_json(SIMPUL_DATA, fact_rekap, pamatata_rows, aroeppala_rows, ship_rows, komoditas_rows, hotel_rows)
+    run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_rows, hotel_rows)
     print("=== SELESAI: SEMUA DATA BERSIH TELAH TERSIMPAN DI data_bersih/ ===")
 
 

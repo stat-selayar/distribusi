@@ -803,6 +803,7 @@ def hotel_record_from_row(row):
         'tamu_asing': v['wna_masuk'],
         'tamu_indonesia': v['wni_masuk'],
         'tamu_total': tamu,
+        'persen_tamu_asing': ratio(v['wna_masuk'], tamu, 100),
         'malam_tamu_asing': malam_wna,
         'malam_tamu_indonesia': malam_wni,
         'malam_tamu': malam_wna + malam_wni,
@@ -1172,6 +1173,7 @@ def run_checks(pamatata_rows, aroeppala_rows, ship_rows, fact_rekap, komoditas_r
     assert len(hotel_rows) >= 24, f"Bulan hotel terlalu sedikit: {len(hotel_rows)}"
     for r in hotel_rows:
         assert 0 <= r['tpk'] <= 100 and 0 <= r['tptt'] <= 100, f"TPK/TPTT di luar 0-100: {r}"
+        assert 0 <= r['persen_tamu_asing'] <= 100, f"Persentase tamu asing di luar 0-100: {r}"
 
     # Cek konsistensi penumpang
     for r in pamatata_rows[:50]:

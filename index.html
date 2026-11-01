@@ -175,7 +175,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <div class="table-wrap">
     <table id="hotel-table">
       <thead><tr>
-        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
+        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
       </tr></thead>
       <tbody id="hotel-tbody"></tbody>
     </table>
@@ -185,7 +185,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <div class="notes">
     <ul>
       <li><strong>Sumber</strong>: Survei VHTS (Volume Hotel dan Tempat Usaha Akomodasi Lainnya) BPS Kabupaten Kepulauan Selayar, 39–43 hotel bintang dan nonbintang sampel. Angka ini gambaran akomodasi sampel, bukan jumlah seluruh tamu di Selayar.</li>
-      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu per kamar</strong> (GPR) = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in, untuk semua tamu dan per asal (Indonesia, asing).</li>
+      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu asing (%)</strong> = tamu asing ÷ semua tamu yang check-in. <strong>Tamu per kamar</strong> (GPR) = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in, untuk semua tamu dan per asal (Indonesia, asing).</li>
       <li><strong>Angka olahan BPS Kabupaten</strong>: untuk beberapa bulan bisa berbeda dengan angka yang dikirim ke BPS Provinsi atau dimuat di publikasi Daerah Dalam Angka.</li>
       <li><strong>TPK dan tamu per kamar tidak dipisah menurut asal tamu</strong>: survei mencatat kamar terisi tanpa membedakan tamu Indonesia dan asing.</li>
       <li><strong>Bulan kosong</strong> berarti hasil survei belum diolah.</li>
@@ -613,7 +613,7 @@ function renderHotel() {
   const span = rows.length ? `${monthLabel(rows[0].periode)}${rows.length > 1 ? ' – ' + monthLabel(rows[rows.length - 1].periode) : ''}` : '';
   const items = [
     ['Tingkat penghunian kamar', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}`],
-    ['Tamu', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Indonesia · ${fmt.format(sum('tamu_asing'))} asing`],
+    ['Tamu', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Indonesia · ${fmt.format(sum('tamu_asing'))} asing${tamu ? ` (${fmt1.format(sum('tamu_asing') / tamu * 100)}%)` : ''}`],
     ['Lama menginap', tamu ? `${avgStay('malam_tamu', 'tamu_total')} malam` : '–',
       `Indonesia ${avgStay('malam_tamu_indonesia', 'tamu_indonesia')} · asing ${avgStay('malam_tamu_asing', 'tamu_asing')} malam`],
     ['Tamu per kamar', sum('malam_kamar_terpakai') ? fmt2.format(sum('malam_tamu') / sum('malam_kamar_terpakai')) : '–',
@@ -666,7 +666,10 @@ function renderHotel() {
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
-        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}` } },
+        tooltip: { callbacks: {
+          label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}`,
+          footer: items => { const r = byPeriod[axis[items[0].dataIndex]]; return r?.persen_tamu_asing == null ? '' : `Asing ${fmt1.format(r.persen_tamu_asing)}% dari tamu`; },
+        } },
       },
       scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { callback: v => fmt.format(v) } } },
     },
@@ -703,10 +706,11 @@ function renderHotel() {
       <td>${orDash(r.gpr, fmt2)}</td>
       <td>${fmt.format(r.tamu_indonesia)}</td>
       <td>${fmt.format(r.tamu_asing)}</td>
+      <td>${orDash(r.persen_tamu_asing, fmt1)}</td>
       <td>${orDash(r.rlmt_gabungan, fmt2)}</td>
       <td>${orDash(r.rlmt_indonesia, fmt2)}</td>
       <td>${orDash(r.rlmt_asing, fmt2)}</td>
-    </tr>`).join('') || '<tr><td colspan="10" class="empty">Tidak ada data.</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="11" class="empty">Tidak ada data.</td></tr>';
 }
 
 function drawBar(id, labels, values, color, label = c => fmt.format(c.parsed.x)) {

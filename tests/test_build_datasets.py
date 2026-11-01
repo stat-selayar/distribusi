@@ -267,6 +267,7 @@ class HotelRecordTest(unittest.TestCase):
         self.assertEqual((r['tahun'], r['bulan'], r['jumlah_sampel']), (2024, 1, 39))
         self.assertEqual((r['malam_kamar_tersedia'], r['malam_kamar_terpakai']), (8495, 523))
         self.assertEqual((r['tamu_asing'], r['tamu_indonesia'], r['tamu_total']), (12, 662, 674))
+        self.assertEqual(r['persen_tamu_asing'], 1.78)
         self.assertEqual((r['malam_tamu_asing'], r['malam_tamu_indonesia'], r['malam_tamu']), (26, 977, 1003))
         self.assertEqual((r['tpk'], r['tptt']), (6.16, 10.74))
         self.assertEqual((r['rlmt_asing'], r['rlmt_indonesia'], r['rlmt_gabungan']), (2.17, 1.48, 1.49))

@@ -9,7 +9,7 @@ import datetime
 import fitz
 import openpyxl
 
-from build_datasets import (RAW_DIR, VHTS_TPK_CSV, hotel_formula_diffs, hotel_record_from_row, jampea_records_from_rows,
+from build_datasets import (RAW_DIR, VHTS_TPK_CSV, add_tpk_change, hotel_formula_diffs, hotel_record_from_row, jampea_records_from_rows,
                             jampea_rows_from_sheet, jampea_total_diffs, normalize_komoditas, parse_id_number,
                             parse_jampea_pdf, parse_jampea_words_pdf, parse_period_from_path, read_vhts_tpk)
 
@@ -290,6 +290,13 @@ class HotelRecordTest(unittest.TestCase):
         self.assertEqual(hotel_formula_diffs(hotel_record_from_row(row), row), [('tpk', 6.16, 7.5)])
 
 
+class TpkChangeTest(unittest.TestCase):
+    def test_change_against_same_month_last_year(self):
+        records = add_tpk_change([{'tahun': 2025, 'bulan': 1, 'tpk': 4.3}, {'tahun': 2025, 'bulan': 2, 'tpk': 5.0},
+                                  {'tahun': 2026, 'bulan': 1, 'tpk': 3.66}])
+        self.assertEqual([r['tpk_perubahan_poin'] for r in records], [None, None, -0.64])
+
+
 @unittest.skipUnless(os.path.exists(VHTS_TPK_CSV), 'raw data not available')
 class HotelRealFileTest(unittest.TestCase):
     def test_sheet_months_and_formulas(self):
@@ -297,3 +304,4 @@ class HotelRealFileTest(unittest.TestCase):
         self.assertEqual((records[0]['tahun'], records[0]['bulan']), (2024, 1))
         self.assertGreaterEqual(len(records), 27)
         self.assertEqual(diffs, [])
+        self.assertEqual(records[12]['tpk_perubahan_poin'], round(records[12]['tpk'] - records[0]['tpk'], 2))

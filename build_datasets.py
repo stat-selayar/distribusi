@@ -826,6 +826,18 @@ def hotel_formula_diffs(record, row):
     return diffs
 
 
+def add_tpk_change(records):
+    """Set tpk_perubahan_poin: TPK minus TPK in the same month a year earlier, in percentage points.
+
+    Differences of the rounded TPK so they match the published monthly values; None without that month.
+    """
+    tpk = {(r['tahun'], r['bulan']): r['tpk'] for r in records}
+    for r in records:
+        before = tpk.get((r['tahun'] - 1, r['bulan']))
+        r['tpk_perubahan_poin'] = round(r['tpk'] - before, 2) if r['tpk'] is not None and before is not None else None
+    return records
+
+
 def read_vhts_tpk(path):
     """Records from the TPK sheet CSV, plus (tahun, bulan, field, computed, sheet) formula disagreements."""
     with open(path, newline='', encoding='utf-8') as f:
@@ -836,7 +848,7 @@ def read_vhts_tpk(path):
         if rec:
             records.append(rec)
             diffs += [(rec['tahun'], rec['bulan'], *d) for d in hotel_formula_diffs(rec, row)]
-    return records, diffs
+    return add_tpk_change(records), diffs
 
 
 def process_hotel():

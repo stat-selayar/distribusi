@@ -175,7 +175,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <div class="table-wrap">
     <table id="hotel-table">
       <thead><tr>
-        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
+        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPK vs tahun lalu (poin)</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
       </tr></thead>
       <tbody id="hotel-tbody"></tbody>
     </table>
@@ -185,7 +185,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border
   <div class="notes">
     <ul>
       <li><strong>Sumber</strong>: Survei VHTS (Volume Hotel dan Tempat Usaha Akomodasi Lainnya) BPS Kabupaten Kepulauan Selayar, 39–43 hotel bintang dan nonbintang sampel. Angka ini gambaran akomodasi sampel, bukan jumlah seluruh tamu di Selayar.</li>
-      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu asing (%)</strong> = tamu asing ÷ semua tamu yang check-in. <strong>Tamu per kamar</strong> (GPR) = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in, untuk semua tamu dan per asal (Indonesia, asing).</li>
+      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPK vs tahun lalu</strong> = TPK dikurangi TPK bulan yang sama tahun sebelumnya, dalam poin persen; tanda + berarti naik. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu asing (%)</strong> = tamu asing ÷ semua tamu yang check-in. <strong>Tamu per kamar</strong> (GPR) = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in, untuk semua tamu dan per asal (Indonesia, asing).</li>
       <li><strong>Angka olahan BPS Kabupaten</strong>: untuk beberapa bulan bisa berbeda dengan angka yang dikirim ke BPS Provinsi atau dimuat di publikasi Daerah Dalam Angka.</li>
       <li><strong>TPK dan tamu per kamar tidak dipisah menurut asal tamu</strong>: survei mencatat kamar terisi tanpa membedakan tamu Indonesia dan asing.</li>
       <li><strong>Bulan kosong</strong> berarti hasil survei belum diolah.</li>
@@ -598,6 +598,7 @@ function renderKomoditas() {
 
 const fmt1 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmt2Signed = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' });
 const orDash = (v, f) => v == null ? '–' : f.format(v);
 
 function renderHotel() {
@@ -611,8 +612,21 @@ function renderHotel() {
   const tamu = sum('tamu_total');
   const avgStay = (malam, tamu) => sum(tamu) ? `${fmt2.format(sum(malam) / sum(tamu))}` : '–';
   const span = rows.length ? `${monthLabel(rows[0].periode)}${rows.length > 1 ? ' – ' + monthLabel(rows[rows.length - 1].periode) : ''}` : '';
+
+  // Compare a single year with the same months a year earlier, only when every one of them was surveyed.
+  let tpkChange = '';
+  if (state.hotelYear !== 'all' && rows.length) {
+    const prevPeriods = new Set(rows.map(r => `${+r.periode.slice(0, 4) - 1}${r.periode.slice(4)}`));
+    const prev = DATA.hotel_bulanan.filter(r => prevPeriods.has(r.periode));
+    if (prev.length === rows.length) {
+      const prevTpk = prev.reduce((a, r) => a + r.malam_kamar_terpakai, 0) / prev.reduce((a, r) => a + r.malam_kamar_tersedia, 0) * 100;
+      // Rounded like the headline value, so the change matches the two percentages shown.
+      const diff = Math.round(tpk * 10) / 10 - Math.round(prevTpk * 10) / 10;
+      tpkChange = ` · ${diff > 0.01 ? `naik ${fmt1.format(diff)} poin dari` : diff < -0.01 ? `turun ${fmt1.format(-diff)} poin dari` : 'sama dengan'} periode yang sama ${+state.hotelYear - 1} (${fmt1.format(prevTpk)}%)`;
+    }
+  }
   const items = [
-    ['Tingkat penghunian kamar', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}`],
+    ['Tingkat penghunian kamar', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}${tpkChange}`],
     ['Tamu', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Indonesia · ${fmt.format(sum('tamu_asing'))} asing${tamu ? ` (${fmt1.format(sum('tamu_asing') / tamu * 100)}%)` : ''}`],
     ['Lama menginap', tamu ? `${avgStay('malam_tamu', 'tamu_total')} malam` : '–',
       `Indonesia ${avgStay('malam_tamu_indonesia', 'tamu_indonesia')} · asing ${avgStay('malam_tamu_asing', 'tamu_asing')} malam`],
@@ -702,6 +716,7 @@ function renderHotel() {
       <td>${monthLabel(r.periode)}</td>
       <td>${r.jumlah_sampel}</td>
       <td>${orDash(r.tpk, fmt2)}</td>
+      <td>${orDash(r.tpk_perubahan_poin, fmt2Signed)}</td>
       <td>${orDash(r.tptt, fmt2)}</td>
       <td>${orDash(r.gpr, fmt2)}</td>
       <td>${fmt.format(r.tamu_indonesia)}</td>
@@ -710,7 +725,7 @@ function renderHotel() {
       <td>${orDash(r.rlmt_gabungan, fmt2)}</td>
       <td>${orDash(r.rlmt_indonesia, fmt2)}</td>
       <td>${orDash(r.rlmt_asing, fmt2)}</td>
-    </tr>`).join('') || '<tr><td colspan="11" class="empty">Tidak ada data.</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="12" class="empty">Tidak ada data.</td></tr>';
 }
 
 function drawBar(id, labels, values, color, label = c => fmt.format(c.parsed.x)) {

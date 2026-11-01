@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-31 14:26 WITA",
+ "updated_at": "2026-11-01 21:44 WITA",
  "dim_simpul": [
   {
    "kode_simpul": "ARO",
@@ -8552,7 +8552,8 @@
    "rlmt_asing": 2.17,
    "rlmt_indonesia": 1.48,
    "rlmt_gabungan": 1.49,
-   "gpr": 1.92
+   "gpr": 1.92,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-02",
@@ -8572,7 +8573,8 @@
    "rlmt_asing": 3.91,
    "rlmt_indonesia": 1.73,
    "rlmt_gabungan": 1.76,
-   "gpr": 1.84
+   "gpr": 1.84,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-03",
@@ -8592,7 +8594,8 @@
    "rlmt_asing": 4.25,
    "rlmt_indonesia": 2.24,
    "rlmt_gabungan": 2.6,
-   "gpr": 1.38
+   "gpr": 1.38,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-04",
@@ -8612,7 +8615,8 @@
    "rlmt_asing": 6.09,
    "rlmt_indonesia": 1.56,
    "rlmt_gabungan": 1.79,
-   "gpr": 1.7
+   "gpr": 1.7,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-05",
@@ -8632,7 +8636,8 @@
    "rlmt_asing": 6.24,
    "rlmt_indonesia": 1.7,
    "rlmt_gabungan": 2.16,
-   "gpr": 1.51
+   "gpr": 1.51,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-06",
@@ -8652,7 +8657,8 @@
    "rlmt_asing": 8.0,
    "rlmt_indonesia": 1.44,
    "rlmt_gabungan": 1.64,
-   "gpr": 1.7
+   "gpr": 1.7,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-07",
@@ -8672,7 +8678,8 @@
    "rlmt_asing": 2.32,
    "rlmt_indonesia": 1.62,
    "rlmt_gabungan": 1.66,
-   "gpr": 1.76
+   "gpr": 1.76,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-08",
@@ -8692,7 +8699,8 @@
    "rlmt_asing": 2.54,
    "rlmt_indonesia": 1.78,
    "rlmt_gabungan": 1.88,
-   "gpr": 2.03
+   "gpr": 2.03,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-09",
@@ -8712,7 +8720,8 @@
    "rlmt_asing": 5.12,
    "rlmt_indonesia": 2.09,
    "rlmt_gabungan": 2.17,
-   "gpr": 2.76
+   "gpr": 2.76,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-10",
@@ -8732,7 +8741,8 @@
    "rlmt_asing": 2.45,
    "rlmt_indonesia": 1.89,
    "rlmt_gabungan": 1.91,
-   "gpr": 2.06
+   "gpr": 2.06,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-11",
@@ -8752,7 +8762,8 @@
    "rlmt_asing": 4.42,
    "rlmt_indonesia": 1.89,
    "rlmt_gabungan": 2.09,
-   "gpr": 1.67
+   "gpr": 1.67,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2024-12",
@@ -8772,7 +8783,8 @@
    "rlmt_asing": 6.37,
    "rlmt_indonesia": 1.77,
    "rlmt_gabungan": 1.99,
-   "gpr": 1.92
+   "gpr": 1.92,
+   "tpk_perubahan_poin": null
   },
   {
    "periode": "2025-01",
@@ -8792,7 +8804,8 @@
    "rlmt_asing": 3.5,
    "rlmt_indonesia": 1.5,
    "rlmt_gabungan": 1.71,
-   "gpr": 2.01
+   "gpr": 2.01,
+   "tpk_perubahan_poin": -2.44
   },
   {
    "periode": "2025-02",
@@ -8812,7 +8825,8 @@
    "rlmt_asing": 2.69,
    "rlmt_indonesia": 1.73,
    "rlmt_gabungan": 1.82,
-   "gpr": 1.98
+   "gpr": 1.98,
+   "tpk_perubahan_poin": -3.74
   },
   {
    "periode": "2025-03",
@@ -8832,7 +8846,8 @@
    "rlmt_asing": 4.9,
    "rlmt_indonesia": 1.98,
    "rlmt_gabungan": 2.25,
-   "gpr": 1.62
+   "gpr": 1.62,
+   "tpk_perubahan_poin": -3.31
   },
   {
    "periode": "2025-04",
@@ -8852,7 +8867,8 @@
    "rlmt_asing": 2.14,
    "rlmt_indonesia": 1.61,
    "rlmt_gabungan": 1.62,
-   "gpr": 2.14
+   "gpr": 2.14,
+   "tpk_perubahan_poin": -1.02
   },
   {
    "periode": "2025-05",
@@ -8872,7 +8888,8 @@
    "rlmt_asing": 1.67,
    "rlmt_indonesia": 1.66,
    "rlmt_gabungan": 1.66,
-   "gpr": 1.99
+   "gpr": 1.99,
+   "tpk_perubahan_poin": 0.49
   },
   {
    "periode": "2025-06",
@@ -8892,7 +8909,8 @@
    "rlmt_asing": 2.0,
    "rlmt_indonesia": 1.57,
    "rlmt_gabungan": 1.58,
-   "gpr": 1.96
+   "gpr": 1.96,
+   "tpk_perubahan_poin": 0.67
   },
   {
    "periode": "2025-07",
@@ -8912,7 +8930,8 @@
    "rlmt_asing": 1.57,
    "rlmt_indonesia": 1.61,
    "rlmt_gabungan": 1.61,
-   "gpr": 1.92
+   "gpr": 1.92,
+   "tpk_perubahan_poin": -2.4
   },
   {
    "periode": "2025-08",
@@ -8932,7 +8951,8 @@
    "rlmt_asing": 2.9,
    "rlmt_indonesia": 2.79,
    "rlmt_gabungan": 2.8,
-   "gpr": 1.91
+   "gpr": 1.91,
+   "tpk_perubahan_poin": 2.57
   },
   {
    "periode": "2025-09",
@@ -8952,7 +8972,8 @@
    "rlmt_asing": 1.35,
    "rlmt_indonesia": 1.46,
    "rlmt_gabungan": 1.46,
-   "gpr": 2.13
+   "gpr": 2.13,
+   "tpk_perubahan_poin": -4.03
   },
   {
    "periode": "2025-10",
@@ -8972,7 +8993,8 @@
    "rlmt_asing": 1.89,
    "rlmt_indonesia": 1.22,
    "rlmt_gabungan": 1.24,
-   "gpr": 2.25
+   "gpr": 2.25,
+   "tpk_perubahan_poin": -4.56
   },
   {
    "periode": "2025-11",
@@ -8992,7 +9014,8 @@
    "rlmt_asing": 7.12,
    "rlmt_indonesia": 1.43,
    "rlmt_gabungan": 1.8,
-   "gpr": 1.84
+   "gpr": 1.84,
+   "tpk_perubahan_poin": -0.94
   },
   {
    "periode": "2025-12",
@@ -9012,7 +9035,8 @@
    "rlmt_asing": 2.41,
    "rlmt_indonesia": 1.38,
    "rlmt_gabungan": 1.41,
-   "gpr": 2.14
+   "gpr": 2.14,
+   "tpk_perubahan_poin": -0.57
   },
   {
    "periode": "2026-01",
@@ -9032,7 +9056,8 @@
    "rlmt_asing": 2.94,
    "rlmt_indonesia": 1.46,
    "rlmt_gabungan": 1.56,
-   "gpr": 2.3
+   "gpr": 2.3,
+   "tpk_perubahan_poin": -0.06
   },
   {
    "periode": "2026-02",
@@ -9052,7 +9077,8 @@
    "rlmt_asing": 3.85,
    "rlmt_indonesia": 1.69,
    "rlmt_gabungan": 1.9,
-   "gpr": 1.83
+   "gpr": 1.83,
+   "tpk_perubahan_poin": 0.54
   },
   {
    "periode": "2026-03",
@@ -9072,7 +9098,8 @@
    "rlmt_asing": 4.03,
    "rlmt_indonesia": 1.33,
    "rlmt_gabungan": 1.45,
-   "gpr": 2.62
+   "gpr": 2.62,
+   "tpk_perubahan_poin": 1.89
   }
  ],
  "pelayaran_stats": {

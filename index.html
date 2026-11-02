@@ -3,323 +3,1322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Distribusi Selayar - Statistik Transportasi &amp; Pariwisata</title>
-<meta name="description" content="Data penumpang, kapal, ferry, pesawat, barang, dan hunian hotel di Kabupaten Kepulauan Selayar, 2024–2026. Dikelola BPS Kabupaten Kepulauan Selayar.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%232563eb'/%3E%3C/svg%3E">
+<title>Distribusi Selayar — Statistik Transportasi &amp; Pariwisata | BPS Selayar</title>
+<meta name="description" content="Dashboard pemantauan arus logistik, konektivitas simpul transportasi (5 pelabuhan & 1 bandara), serta perkembangan indikator pariwisata dan perhotelan di Kabupaten Kepulauan Selayar.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Preload Theme to avoid flash -->
+<script>
+  try {
+    const saved = localStorage.getItem('selayar_bisa_theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {}
+</script>
+
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --bg: #f7f8fa;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --bg: #f8fafc;
   --surface: #ffffff;
-  --border: #e3e7ee;
-  --text: #16202e;
-  --muted: #5d6b7e;
-  --accent: #2563eb;
-  --warn-bg: #fff7e0;
-  --warn-text: #7a5300;
-  --c-pmt: #2563eb;
+  --surface-muted: #f1f5f9;
+  --surface-subtle: #f8fafc;
+  --border: #e2e8f0;
+  --border-subtle: #edf2f7;
+  
+  --text: #0f172a;
+  --muted: #475569;
+  --subtle: #64748b;
+  
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --accent-bg: #e0f2fe;
+  --accent-text: #0369a1;
+  
+  --warn-bg: #fefce8;
+  --warn-border: #fef08a;
+  --warn-text: #854d0e;
+  
+  --pos-bg: #ecfdf5;
+  --pos-text: #047857;
+  --neg-bg: #fef2f2;
+  --neg-text: #b91c1c;
+
+  --c-pmt: #0284c7;
   --c-btg: #0d9488;
   --c-jmp: #d97706;
   --c-ptb: #7c3aed;
   --c-aro: #e11d48;
   --c-wni: #0d9488;
   --c-wna: #d97706;
-  --c-all: #2563eb;
+  --c-all: #0284c7;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 4px 12px -2px rgba(0, 0, 0, 0.07);
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0e141d;
-    --surface: #161e2a;
-    --border: #263243;
-    --text: #e8edf4;
-    --muted: #93a1b5;
-    --accent: #6ea0ff;
-    --warn-bg: #2b2410;
-    --warn-text: #f2cf7a;
-    --c-pmt: #6ea0ff;
-    --c-btg: #2dd4bf;
-    --c-jmp: #fbbf24;
-    --c-ptb: #a78bfa;
-    --c-aro: #fb7185;
-    --c-all: #3b82f6;
-  }
+
+[data-theme="dark"] {
+  --bg: #090d16;
+  --surface: #0f172a;
+  --surface-muted: #1e293b;
+  --surface-subtle: #131d35;
+  --border: #1e293b;
+  --border-subtle: #172033;
+  
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --subtle: #64748b;
+  
+  --accent: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-bg: rgba(56, 189, 248, 0.12);
+  --accent-text: #38bdf8;
+  
+  --warn-bg: rgba(234, 179, 8, 0.1);
+  --warn-border: rgba(234, 179, 8, 0.25);
+  --warn-text: #fde047;
+  
+  --pos-bg: rgba(16, 185, 129, 0.12);
+  --pos-text: #34d399;
+  --neg-bg: rgba(239, 68, 68, 0.12);
+  --neg-text: #f87171;
+
+  --c-pmt: #38bdf8;
+  --c-btg: #2dd4bf;
+  --c-jmp: #fbbf24;
+  --c-ptb: #a78bfa;
+  --c-aro: #fb7185;
+  --c-wni: #2dd4bf;
+  --c-wna: #fbbf24;
+  --c-all: #38bdf8;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 6px 18px -3px rgba(0, 0, 0, 0.5);
 }
-* { box-sizing: border-box; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-text-size-adjust: 100%;
 }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px 48px; }
-header { padding: 32px 0 20px; }
-h1 { margin: 0 0 6px; font-size: clamp(1.4rem, 4vw, 1.9rem); line-height: 1.2; }
-h2 { margin: 36px 0 4px; font-size: 1.15rem; }
-.lead { margin: 0; color: var(--muted); max-width: 62ch; }
-.hint { margin: 0 0 12px; color: var(--muted); font-size: .9rem; }
-.tabs { display: flex; gap: 4px; margin-top: 20px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px 48px;
+  width: 100%;
+}
+
+/* ========================================================
+   Top Navigation Bar & Header
+   ======================================================== */
+.site-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.15s ease;
+}
+
+.btn-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-back svg {
+  width: 14px;
+  height: 14px;
+}
+
+.badge-satker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.03em;
+  font-variant-numeric: tabular-nums;
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  min-height: 34px;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--accent);
+}
+
+.theme-icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-icon { color: #d97706; }
+.moon-icon { color: #38bdf8; }
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 34px;
+  transition: all 0.15s ease;
+}
+
+.github-link:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.github-link svg {
+  width: 15px;
+  height: 15px;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.page-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  background: var(--surface-muted);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.lead {
+  margin-top: 6px;
+  color: var(--muted);
+  max-width: 72ch;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+/* ========================================================
+   Tabs Navigation
+   ======================================================== */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 22px;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .tabs button {
-  border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--muted);
-  padding: 10px 14px; font: inherit; font-size: .95rem; cursor: pointer; white-space: nowrap; min-height: 44px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
 }
-.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
-.tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-[hidden] { display: none !important; }
-.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-top: 20px; }
-.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+
+.tabs button:hover {
+  color: var(--text);
+}
+
+.tabs button[aria-selected="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tabs button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ========================================================
+   Toolbar & Segmented Controls
+   ======================================================== */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 18px;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
 .seg button {
-  border: 0; background: transparent; color: var(--muted); padding: 8px 16px;
-  font: inherit; font-size: .9rem; cursor: pointer; min-height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 7px 15px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 36px;
+  transition: all 0.15s ease;
 }
-.seg button + button { border-left: 1px solid var(--border); }
-.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
-.seg button:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.updated { color: var(--muted); font-size: .85rem; }
 
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 20px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-.kpi .label { color: var(--muted); font-size: .85rem; }
-.kpi .value { font-size: 1.8rem; font-weight: 700; line-height: 1.2; margin: 2px 0; font-variant-numeric: tabular-nums; }
-.kpi .sub { color: var(--muted); font-size: .8rem; }
+.seg button + button {
+  border-left: 1px solid var(--border);
+}
 
-.nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-.node { border-top: 4px solid var(--c); }
-.node h3 { margin: 0; font-size: 1rem; }
-.node .mode { color: var(--muted); font-size: .8rem; }
-.node .desc { color: var(--muted); font-size: .85rem; margin: 6px 0 10px; }
-.node .num { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.node .small { color: var(--muted); font-size: .8rem; }
-.node .gap { color: var(--warn-text); font-size: .78rem; margin-top: 6px; }
-.card > .gap { color: var(--warn-text); font-size: .8rem; margin-top: 6px; }
-#hotel-table th:nth-child(2), #hotel-table td:nth-child(2) { text-align: right; }
-#hotel-table thead th { white-space: normal; vertical-align: bottom; }
+.seg button:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
 
-.chart-box { position: relative; height: 320px; }
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
-.two .chart-box { height: 260px; }
-.empty { color: var(--muted); font-size: .9rem; padding: 40px 8px; text-align: center; }
-.card .ct { margin: 0 0 2px; font-size: .95rem; }
-.card .cs { margin: 0 0 8px; color: var(--muted); font-size: .8rem; }
-#kom .chart-box { height: 340px; }
-#kom .gap { color: var(--warn-text); font-size: .8rem; margin-top: 6px; }
-#kom details { margin-top: 12px; }
-#kom summary { cursor: pointer; color: var(--accent); font-size: .9rem; padding: 6px 0; }
-#kom summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-#kom table th:nth-child(2), #kom table td:nth-child(2) { text-align: right; }
+.seg button[aria-pressed="true"] {
+  background: var(--accent);
+  color: #ffffff;
+}
 
-.filter { margin-bottom: 10px; }
+.seg button:focus-visible, select:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.updated {
+  color: var(--subtle);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================================
+   KPI & Node Cards
+   ======================================================== */
+h2 {
+  margin: 32px 0 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.hint {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: var(--shadow-hover);
+}
+
+.kpi .label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.kpi .value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 4px 0 2px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.kpi .sub {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+/* Nodes Section (5 Simpul) */
+.nodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.node {
+  border-top: 3.5px solid var(--c);
+  display: flex;
+  flex-direction: column;
+}
+
+.node h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.node .mode {
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.node .desc {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 6px 0 12px;
+  flex: 1;
+  line-height: 1.45;
+}
+
+.node .num {
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.node .small {
+  color: var(--subtle);
+  font-size: 0.76rem;
+  margin-top: 2px;
+}
+
+.node .gap {
+  color: var(--warn-text);
+  font-size: 0.74rem;
+  margin-top: 6px;
+  padding: 2px 6px;
+  background: var(--warn-bg);
+  border-radius: var(--radius-xs);
+  width: fit-content;
+}
+
+.card > .gap {
+  color: var(--warn-text);
+  font-size: 0.78rem;
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: var(--warn-bg);
+  border-radius: var(--radius-xs);
+  display: inline-block;
+}
+
+/* ========================================================
+   Charts & Visualizations
+   ======================================================== */
+.chart-box {
+  position: relative;
+  height: 320px;
+  width: 100%;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.two .chart-box {
+  height: 270px;
+}
+
+.card .ct {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.card .cs {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* Empty State / Fallback Box */
+.empty {
+  color: var(--muted);
+  font-size: 0.88rem;
+  padding: 36px 16px;
+  text-align: center;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+}
+
+.vehicle-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 270px;
+  text-align: center;
+  padding: 20px;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+}
+
+.vehicle-empty-icon {
+  width: 38px;
+  height: 38px;
+  color: var(--subtle);
+  margin-bottom: 10px;
+}
+
+.vehicle-empty-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.vehicle-empty-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  max-width: 280px;
+  margin-bottom: 14px;
+  line-height: 1.45;
+}
+
+.btn-switch-year {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-switch-year:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+/* Jampea Commodities */
+#kom .chart-box {
+  height: 340px;
+}
+
+#kom details {
+  margin-top: 14px;
+}
+
+#kom summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 6px 0;
+  user-select: none;
+}
+
+#kom summary:hover {
+  text-decoration: underline;
+}
+
+#kom table th:nth-child(2), #kom table td:nth-child(2) {
+  text-align: right;
+}
+
+/* ========================================================
+   Tables (Transport & Hotel)
+   ======================================================== */
+.filter {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 select {
-  font: inherit; font-size: .9rem; padding: 8px 10px; min-height: 40px;
-  background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.86rem;
+  padding: 6px 12px;
+  min-height: 36px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
 }
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); max-height: 460px; overflow-y: auto; }
-table { width: 100%; border-collapse: collapse; font-size: .88rem; font-variant-numeric: tabular-nums; }
-th, td { padding: 9px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--border); }
-th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
-thead th { position: sticky; top: 0; background: var(--surface); color: var(--muted); font-weight: 600; }
-tbody tr:last-child td { border-bottom: 0; }
-.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; background: var(--c); }
-.flag { color: var(--warn-text); }
 
-.notes { background: var(--warn-bg); color: var(--warn-text); border-radius: 10px; padding: 4px 18px 8px; }
-.notes ul { margin: 8px 0; padding-left: 18px; }
-.notes li { margin: 6px 0; font-size: .92rem; }
-.notes strong { font-weight: 600; }
-.downloads { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  max-height: 480px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+
+th, td {
+  padding: 10px 14px;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) {
+  text-align: left;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-muted);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  z-index: 2;
+}
+
+tbody tr:hover {
+  background: var(--surface-subtle);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: var(--c);
+}
+
+.flag {
+  color: var(--subtle);
+}
+
+/* Badges for Hotel YoY changes */
+.badge-pos {
+  color: var(--pos-text);
+  background: var(--pos-bg);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-weight: 600;
+}
+
+.badge-neg {
+  color: var(--neg-text);
+  background: var(--neg-bg);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-weight: 600;
+}
+
+#hotel-table th:nth-child(2), #hotel-table td:nth-child(2) {
+  text-align: right;
+}
+
+/* ========================================================
+   Methodology Notes Card
+   ======================================================== */
+.notes-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 24px;
+}
+
+.notes-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.notes-card-header svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notes-list li {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  position: relative;
+  padding-left: 18px;
+}
+
+.notes-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--subtle);
+  font-weight: 600;
+}
+
+.notes-list strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ========================================================
+   Downloads Section
+   ======================================================== */
+.downloads {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
 .downloads a {
-  display: inline-block; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
-  background: var(--surface); color: var(--accent); text-decoration: none; font-size: .88rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s ease;
 }
-footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: .85rem; }
 
-@media (max-width: 520px) {
-  .kpi .value { font-size: 1.5rem; }
-  .chart-box { height: 280px; }
-  .seg button { padding: 8px 12px; }
+.downloads a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface-muted);
+}
+
+.downloads a svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.format-badge {
+  font-size: 0.68rem;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  background: var(--surface-muted);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  margin-left: auto;
+  font-family: monospace;
+}
+
+/* ========================================================
+   Footer
+   ======================================================== */
+footer {
+  margin-top: auto;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-meta {
+  color: var(--subtle);
+  font-size: 0.76rem;
+}
+
+/* ========================================================
+   Responsive Media Queries
+   ======================================================== */
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 16px 36px;
+  }
+
+  .site-topbar {
+    padding: 12px 0;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+
+  .lead {
+    font-size: 0.88rem;
+  }
+
+  .kpis {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpi .value {
+    font-size: 1.5rem;
+  }
+
+  .two {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-box {
+    height: 260px;
+  }
+
+  .seg button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .downloads {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <h1>Transportasi &amp; Pariwisata Kepulauan Selayar</h1>
-  <p class="lead">Berapa banyak orang, barang, dan kendaraan yang keluar-masuk Selayar lewat pelabuhan dan bandara, dan seberapa penuh hotelnya, 2024–2026.</p>
-  <nav class="tabs" role="tablist" aria-label="Topik">
-    <button type="button" role="tab" id="tab-transportasi" aria-selected="true" aria-controls="view-transportasi">Transportasi</button>
-    <button type="button" role="tab" id="tab-hotel" aria-selected="false" aria-controls="view-hotel">Hotel &amp; Pariwisata</button>
+  <!-- Top Navigation Bar -->
+  <nav class="site-topbar" aria-label="Navigasi Utama">
+    <div class="topbar-left">
+      <a href="https://stat-selayar.github.io/" class="btn-back" title="Kembali ke SELAYAR BISA">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>SELAYAR BISA</span>
+      </a>
+      <span class="badge-satker">Satker 7301</span>
+    </div>
+
+    <div class="topbar-right">
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="Ganti Tema" title="Mode Tema">
+        <span class="theme-icon">
+          <!-- Sun Icon (Light Mode) -->
+          <svg id="sunIcon" class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (Dark Mode) -->
+          <svg id="moonIcon" class="moon-icon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+        <span id="themeLabel">Terang</span>
+      </button>
+
+      <a href="https://github.com/stat-selayar/distribusi" target="_blank" rel="noopener noreferrer" class="github-link" title="GitHub @stat-selayar/distribusi">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
   </nav>
-</header>
 
-<main>
-<div id="view-hotel" role="tabpanel" aria-labelledby="tab-hotel" hidden>
-  <div class="toolbar">
-    <div class="seg" role="group" aria-label="Pilih tahun" id="hotel-year-seg"></div>
-    <span class="updated">Survei VHTS, 39–43 akomodasi sampel</span>
-  </div>
-
-  <section class="kpis" id="hotel-kpis" aria-label="Ringkasan hotel"></section>
-
-  <h2>Tingkat penghunian kamar (TPK) per bulan</h2>
-  <p class="hint">Persentase malam kamar yang terisi dari seluruh malam kamar yang tersedia di akomodasi sampel.</p>
-  <div class="card"><div class="chart-box"><canvas id="hotel-tpk" role="img" aria-label="Grafik garis tingkat penghunian kamar per bulan"></canvas></div><div class="gap" id="hotel-gap" hidden></div></div>
-
-  <h2>Tamu per bulan</h2>
-  <p class="hint">Tamu yang check-in di akomodasi sampel, menurut asal.</p>
-  <div class="card"><div class="chart-box"><canvas id="hotel-tamu" role="img" aria-label="Grafik batang bertumpuk tamu Indonesia dan asing per bulan"></canvas></div></div>
-
-  <h2>Rata-rata lama menginap per bulan</h2>
-  <p class="hint">Malam menginap per tamu yang check-in. Tamu asing hanya sekitar 10–85 orang per bulan, jadi rata-ratanya mudah melonjak.</p>
-  <div class="card"><div class="chart-box"><canvas id="hotel-rlmt" role="img" aria-label="Grafik garis rata-rata lama menginap semua tamu, tamu Indonesia, dan tamu asing per bulan"></canvas></div></div>
-
-  <h2>Tabel per bulan</h2>
-  <div class="table-wrap">
-    <table id="hotel-table">
-      <thead><tr>
-        <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPK vs tahun lalu (poin)</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
-      </tr></thead>
-      <tbody id="hotel-tbody"></tbody>
-    </table>
-  </div>
-
-  <h2>Cara membaca &amp; catatan data</h2>
-  <div class="notes">
-    <ul>
-      <li><strong>Sumber</strong>: Survei VHTS (Volume Hotel dan Tempat Usaha Akomodasi Lainnya) BPS Kabupaten Kepulauan Selayar, 39–43 hotel bintang dan nonbintang sampel. Angka ini gambaran akomodasi sampel, bukan jumlah seluruh tamu di Selayar.</li>
-      <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPK vs tahun lalu</strong> = TPK dikurangi TPK bulan yang sama tahun sebelumnya, dalam poin persen; tanda + berarti naik. <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu asing (%)</strong> = tamu asing ÷ semua tamu yang check-in. <strong>Tamu per kamar</strong> (GPR) = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu yang check-in, untuk semua tamu dan per asal (Indonesia, asing).</li>
-      <li><strong>Angka olahan BPS Kabupaten</strong>: untuk beberapa bulan bisa berbeda dengan angka yang dikirim ke BPS Provinsi atau dimuat di publikasi Daerah Dalam Angka.</li>
-      <li><strong>TPK dan tamu per kamar tidak dipisah menurut asal tamu</strong>: survei mencatat kamar terisi tanpa membedakan tamu Indonesia dan asing.</li>
-      <li><strong>Bulan kosong</strong> berarti hasil survei belum diolah.</li>
-    </ul>
-  </div>
-
-  <h2>Unduh data</h2>
-  <ul class="downloads">
-    <li><a href="data_bersih/fact_hotel_bulanan.csv" download>Hotel per bulan (.csv)</a></li>
-  </ul>
-</div>
-
-<div id="view-transportasi" role="tabpanel" aria-labelledby="tab-transportasi">
-  <div class="toolbar">
-    <div class="seg" role="group" aria-label="Pilih tahun" id="year-seg"></div>
-    <span class="updated" id="updated"></span>
-  </div>
-
-  <section class="kpis" id="kpis" aria-label="Ringkasan"></section>
-
-  <h2>Lima simpul transportasi</h2>
-  <p class="hint">Pelabuhan dan bandara yang datanya dipantau. Angka mengikuti tahun yang dipilih.</p>
-  <section class="nodes" id="nodes"></section>
-
-  <h2>Penumpang per bulan</h2>
-  <p class="hint">Penumpang naik + turun. Klik nama di legenda untuk menyembunyikan simpul. Garis putus-putus: rekap ringkasan yang belum diverifikasi. Celah: bulan tanpa data.</p>
-  <div class="card"><div class="chart-box"><canvas id="trend" role="img" aria-label="Grafik garis jumlah penumpang per bulan per simpul"></canvas></div></div>
-
-  <div class="two" style="margin-top:12px">
-    <div>
-      <h2 style="margin-top:24px">Kendaraan di ferry Pamatata</h2>
-      <p class="hint">Total kendaraan yang menyeberang Bira–Pamatata.</p>
-      <div class="card"><div class="chart-box"><canvas id="vehicles" role="img" aria-label="Grafik batang jenis kendaraan ferry"></canvas></div><div class="empty" id="vehicles-empty" hidden></div></div>
+  <!-- Page Header -->
+  <header>
+    <div class="header-title-row">
+      <h1>Transportasi &amp; Pariwisata Kepulauan Selayar</h1>
+      <span class="page-badge">Distribusi Selayar</span>
     </div>
-    <div>
-      <h2 style="margin-top:24px">Kapal datang dari mana</h2>
-      <p class="hint">8 pelabuhan asal tersering, seluruh periode.</p>
-      <div class="card"><div class="chart-box"><canvas id="origins" role="img" aria-label="Grafik batang pelabuhan asal kapal"></canvas></div></div>
-    </div>
-  </div>
+    <p class="lead">Dashboard pemantauan pergerakan orang, kapal, ferry, pesawat, komoditas logistik keluar-masuk Selayar, serta indikator okupansi perhotelan 2024–2026.</p>
+    
+    <!-- Topic Navigation Tabs -->
+    <nav class="tabs" role="tablist" aria-label="Topik">
+      <button type="button" role="tab" id="tab-transportasi" aria-selected="true" aria-controls="view-transportasi">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m4.93 4.93 4.24 4.24"></path>
+          <path d="m14.83 9.17 4.24-4.24"></path>
+          <path d="m14.83 14.83 4.24 4.24"></path>
+          <path d="m9.17 14.83-4.24 4.24"></path>
+          <circle cx="12" cy="12" r="4"></circle>
+        </svg>
+        <span>Transportasi &amp; Logistik</span>
+      </button>
+      <button type="button" role="tab" id="tab-hotel" aria-selected="false" aria-controls="view-hotel">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 21h18"></path>
+          <path d="M19 21v-4"></path>
+          <path d="M19 11V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"></path>
+          <path d="M9 7h1"></path><path d="M9 11h1"></path><path d="M9 15h1"></path>
+          <path d="M14 7h1"></path><path d="M14 11h1"></path><path d="M14 15h1"></path>
+        </svg>
+        <span>Hotel &amp; Pariwisata</span>
+      </button>
+    </nav>
+  </header>
 
-  <section id="kom" aria-labelledby="kom-title">
-    <h2 id="kom-title">Barang lewat Pelabuhan Jampea</h2>
-    <p class="hint">Muatan per komoditas dari laporan UPP Jampea, termasuk Posker Ujung dan wilker Kayuadi, Bonerate, Kalaotoa, serta Jinato. Satuan ton atau m³ sesuai laporan. Muatan lanjutan (tetap di kapal) tidak dihitung.</p>
-    <div class="seg" role="group" aria-label="Pilih arah barang" id="arah-seg">
-      <button type="button" data-arah="bongkar">Masuk (dibongkar)</button>
-      <button type="button" data-arah="muat">Keluar (dimuat)</button>
-    </div>
-    <div class="two" style="margin-top:12px">
-      <div class="card">
-        <h3 class="ct">10 komoditas terbesar</h3>
-        <p class="cs" id="kom-top-sub"></p>
-        <div class="chart-box"><canvas id="kom-top" role="img" aria-label="Grafik batang sepuluh komoditas terbesar di Pelabuhan Jampea"></canvas></div>
+  <main>
+    <!-- View 1: Hotel & Pariwisata -->
+    <div id="view-hotel" role="tabpanel" aria-labelledby="tab-hotel" hidden>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Pilih tahun" id="hotel-year-seg"></div>
+        <span class="updated">Survei VHTS · 39–43 akomodasi sampel</span>
       </div>
+
+      <section class="kpis" id="hotel-kpis" aria-label="Ringkasan hotel"></section>
+
+      <h2>Tingkat Penghunian Kamar (TPK) per bulan</h2>
+      <p class="hint">Persentase malam kamar yang terisi dari seluruh malam kamar yang tersedia di akomodasi sampel.</p>
       <div class="card">
-        <h3 class="ct">Total barang per bulan</h3>
-        <p class="cs">Ton/m³, semua komoditas</p>
-        <div class="chart-box"><canvas id="kom-trend" role="img" aria-label="Grafik batang total barang per bulan di Pelabuhan Jampea"></canvas></div>
-        <div class="gap" id="kom-gap" hidden></div>
+        <div class="chart-box"><canvas id="hotel-tpk" role="img" aria-label="Grafik garis tingkat penghunian kamar per bulan"></canvas></div>
+        <div class="gap" id="hotel-gap" hidden></div>
       </div>
-    </div>
-    <p class="hint" id="kom-hewan" style="margin-top:12px"></p>
-    <details>
-      <summary id="kom-summary">Semua komoditas</summary>
+
+      <h2>Tamu per bulan</h2>
+      <p class="hint">Tamu yang check-in di akomodasi sampel, menurut asal (Wisatawan Nusantara vs Asing).</p>
+      <div class="card">
+        <div class="chart-box"><canvas id="hotel-tamu" role="img" aria-label="Grafik batang bertumpuk tamu Indonesia dan asing per bulan"></canvas></div>
+      </div>
+
+      <h2>Rata-rata lama menginap per bulan</h2>
+      <p class="hint">Malam menginap per tamu yang check-in. Tamu asing berkisar 10–85 orang per bulan, sehingga rata-ratanya sensitif terhadap fluktuasi.</p>
+      <div class="card">
+        <div class="chart-box"><canvas id="hotel-rlmt" role="img" aria-label="Grafik garis rata-rata lama menginap semua tamu, tamu Indonesia, dan tamu asing per bulan"></canvas></div>
+      </div>
+
+      <h2>Tabel indikator bulanan</h2>
       <div class="table-wrap">
-        <table>
-          <thead><tr><th>Komoditas</th><th>Ton/m³</th><th>Porsi</th><th>Bulan tercatat</th></tr></thead>
-          <tbody id="kom-tbody"></tbody>
+        <table id="hotel-table">
+          <thead><tr>
+            <th>Bulan</th><th>Sampel</th><th>TPK (%)</th><th>TPK vs tahun lalu</th><th>TPTT (%)</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
+          </tr></thead>
+          <tbody id="hotel-tbody"></tbody>
         </table>
       </div>
-    </details>
-  </section>
 
-  <h2>Tabel per bulan</h2>
-  <div class="filter">
-    <label for="node-filter" class="hint">Simpul: </label>
-    <select id="node-filter"></select>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead><tr>
-        <th>Bulan</th><th>Simpul</th><th>Kedatangan</th><th>Penumpang turun</th><th>Penumpang naik</th><th>Kendaraan</th>
-      </tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
+      <h2>Cara membaca &amp; catatan data</h2>
+      <div class="notes-card">
+        <div class="notes-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Metodologi &amp; Catatan Survei VHTS</span>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Sumber</strong>: Survei VHTS (Volume Hotel dan Tempat Usaha Akomodasi Lainnya) BPS Kabupaten Kepulauan Selayar, mencakup 39–43 hotel bintang dan nonbintang sampel. Angka ini merupakan gambaran akomodasi sampel, bukan agregat seluruh tamu di Selayar.</li>
+          <li><strong>TPK</strong> = malam kamar terisi ÷ malam kamar tersedia. <strong>TPK vs tahun lalu</strong> = TPK dikurangi TPK bulan yang sama tahun sebelumnya (dalam poin persen; positif berarti naik). <strong>TPTT</strong> = malam tamu ÷ malam tempat tidur tersedia. <strong>Tamu asing (%)</strong> = tamu asing ÷ total tamu check-in. <strong>Tamu per kamar (GPR)</strong> = malam tamu ÷ malam kamar terisi. <strong>Lama menginap</strong> = malam tamu ÷ tamu check-in.</li>
+          <li><strong>Angka olahan BPS Kabupaten</strong>: untuk beberapa periode tertentu dapat memiliki penyesuaian teknis dibanding data publikasi provinsi atau Daerah Dalam Angka.</li>
+          <li><strong>Pemisahan Asal Tamu</strong>: TPK dan kamar terisi dicatat secara agregat tanpa memisahkan kamar tamu nusantara dan mancanegara.</li>
+          <li><strong>Bulan kosong</strong> berarti dokumen survei pada bulan tersebut belum selesai diolah.</li>
+        </ul>
+      </div>
 
-  <h2>Cara membaca &amp; catatan data</h2>
-  <div class="notes">
-    <ul>
-      <li><strong>Penumpang</strong> = naik + turun. Penumpang transit (yang hanya singgah) tidak dihitung agar tidak ganda.</li>
-      <li><strong>Kedatangan</strong> = jumlah kapal atau pesawat yang tiba. Untuk ferry Pamatata, satu kedatangan = satu pelayaran.</li>
-      <li><strong>Barang (tonase)</strong> hanya ditampilkan untuk Jampea, karena angka per kapalnya sudah dicocokkan dengan baris JUMLAH TOTAL tiap laporan. Tonase simpul lain belum lolos pengecekan (banyak bulan bernilai 0 atau melonjak tidak wajar), tetapi datanya tetap ada di file unduhan.</li>
-      <li><strong>Barang Jampea</strong>: laporan mencampur ton dan m³ dalam satu kolom, jadi totalnya perkiraan kasar berat/volume. Maret dan April 2026 belum ada (laporan terpotong dan hasil pindaian). Dua muatan MITRA SINDO 20 di November 2025 tertulis dalam kg dan sudah dibagi 1.000.</li>
-      <li><strong>Benteng 2025</strong> berasal dari rekap ringkasan, bukan log per kapal. Jumlah kedatangannya tidak tersedia (tampil &ldquo;–&rdquo; dan tidak dijumlahkan), dan angka Januari 2025 (penumpang naik 18.947, sekitar 10× bulan lain) masih perlu dicek ke laporan asli.</li>
-      <li><strong>Pamatata</strong>: 2025 dari log harian ferry (lengkap dengan kendaraan); 2026 dari laporan SIMOPEL tanpa data kendaraan. Perbandingan antartahun sebaiknya hati-hati.</li>
-      <li><strong>Bulan kosong</strong> berarti laporan belum ada atau belum terbaca, bukan berarti tidak ada aktivitas.</li>
-    </ul>
-  </div>
+      <h2>Unduh dataset bersih</h2>
+      <ul class="downloads">
+        <li>
+          <a href="data_bersih/fact_hotel_bulanan.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Hotel per bulan</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  <h2>Unduh data</h2>
-  <ul class="downloads">
-    <li><a href="data_bersih/master_transportasi_selayar.xlsx" download>Excel lengkap (.xlsx)</a></li>
-    <li><a href="data_bersih/fact_rekap_bulanan.csv" download>Rekap bulanan (.csv)</a></li>
-    <li><a href="data_bersih/fact_pamatata_ferry_harian.csv" download>Ferry Pamatata harian (.csv)</a></li>
-    <li><a href="data_bersih/fact_aroeppala_penerbangan_harian.csv" download>Penerbangan harian (.csv)</a></li>
-    <li><a href="data_bersih/fact_log_pelayaran.csv" download>Log pelayaran (.csv)</a></li>
-    <li><a href="data_bersih/fact_muatan_komoditas.csv" download>Muatan per komoditas Jampea (.csv)</a></li>
-  </ul>
-</div>
-</main>
+    <!-- View 2: Transportasi -->
+    <div id="view-transportasi" role="tabpanel" aria-labelledby="tab-transportasi">
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Pilih tahun" id="year-seg"></div>
+        <span class="updated" id="updated"></span>
+      </div>
 
-<footer>
-  Sumber: SIMOPPEL Ditjen Perhubungan Laut, BPTD Kelas II Sulsel (Satpel Pamatata), UPBU Kelas III H. Aroeppala, dan Survei VHTS BPS.
-  Dikelola BPS Kabupaten Kepulauan Selayar.
-</footer>
+      <section class="kpis" id="kpis" aria-label="Ringkasan transportasi"></section>
+
+      <h2>Lima simpul transportasi</h2>
+      <p class="hint">Pelabuhan dan bandar udara yang dipantau secara berkala. Indikator mengikuti tahun yang aktif.</p>
+      <section class="nodes" id="nodes"></section>
+
+      <h2>Arus penumpang per bulan</h2>
+      <p class="hint">Total penumpang naik + turun. Klik label di legenda untuk memfilter simpul. Garis putus-putus menandakan rekap ringkasan.</p>
+      <div class="card">
+        <div class="chart-box"><canvas id="trend" role="img" aria-label="Grafik garis jumlah penumpang per bulan per simpul"></canvas></div>
+      </div>
+
+      <div class="two" style="margin-top:14px">
+        <div>
+          <h2 style="margin-top:24px">Kendaraan di ferry Pamatata</h2>
+          <p class="hint">Total kendaraan yang menyeberang lintasan Bira–Pamatata.</p>
+          <div class="card">
+            <div class="chart-box" id="vehicles-box"><canvas id="vehicles" role="img" aria-label="Grafik batang jenis kendaraan ferry"></canvas></div>
+            <div class="vehicle-empty-card" id="vehicles-empty" hidden>
+              <svg class="vehicle-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+              <div class="vehicle-empty-title">Rincian Golongan Tidak Tercatat di 2026</div>
+              <p class="vehicle-empty-desc">Laporan SIMOPEL Pamatata 2026 mencatat rekap umum. Rincian 12 golongan kendaraan ferry tersedia lengkap pada log harian 2025.</p>
+              <button type="button" class="btn-switch-year" id="btnSwitch2025">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Buka Data Kendaraan 2025</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="margin-top:24px">Asal kedatangan kapal</h2>
+          <p class="hint">8 pelabuhan asal kedatangan tersering (kumulatif seluruh periode).</p>
+          <div class="card">
+            <div class="chart-box"><canvas id="origins" role="img" aria-label="Grafik batang pelabuhan asal kapal"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <section id="kom" aria-labelledby="kom-title">
+        <h2 id="kom-title">Komoditas logistik lewat Pelabuhan Jampea</h2>
+        <p class="hint">Muatan per komoditas dari laporan UPP Jampea (termasuk Posker Ujung &amp; wilker Kayuadi, Bonerate, Kalaotoa, Jinato). Satuan ton atau m³ sesuai manifes resmi.</p>
+        <div class="seg" role="group" aria-label="Pilih arah barang" id="arah-seg">
+          <button type="button" data-arah="bongkar">Masuk (dibongkar)</button>
+          <button type="button" data-arah="muat">Keluar (dimuat)</button>
+        </div>
+        <div class="two" style="margin-top:14px">
+          <div class="card">
+            <h3 class="ct">10 komoditas terbesar</h3>
+            <p class="cs" id="kom-top-sub"></p>
+            <div class="chart-box"><canvas id="kom-top" role="img" aria-label="Grafik batang sepuluh komoditas terbesar di Pelabuhan Jampea"></canvas></div>
+          </div>
+          <div class="card">
+            <h3 class="ct">Total muatan barang per bulan</h3>
+            <p class="cs">Ton/m³, semua komoditas</p>
+            <div class="chart-box"><canvas id="kom-trend" role="img" aria-label="Grafik batang total barang per bulan di Pelabuhan Jampea"></canvas></div>
+            <div class="gap" id="kom-gap" hidden></div>
+          </div>
+        </div>
+        <p class="hint" id="kom-hewan" style="margin-top:12px"></p>
+        <details>
+          <summary id="kom-summary">Semua komoditas</summary>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Komoditas</th><th>Ton/m³</th><th>Porsi</th><th>Bulan tercatat</th></tr></thead>
+              <tbody id="kom-tbody"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <h2>Tabel rekap bulanan per simpul</h2>
+      <div class="filter">
+        <label for="node-filter" class="hint">Filter simpul: </label>
+        <select id="node-filter"></select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Bulan</th><th>Simpul</th><th>Kedatangan</th><th>Penumpang turun</th><th>Penumpang naik</th><th>Kendaraan</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <h2>Cara membaca &amp; catatan data</h2>
+      <div class="notes-card">
+        <div class="notes-card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Metodologi &amp; Catatan Statistik Transportasi</span>
+        </div>
+        <ul class="notes-list">
+          <li><strong>Penumpang</strong> = naik + turun. Penumpang transit (hanya singgah di kapal) tidak dihitung agar tidak terjadi duplikasi.</li>
+          <li><strong>Kedatangan</strong> = jumlah kapal atau pesawat yang tiba. Untuk ferry ASDP Pamatata, satu kedatangan dihitung sebagai satu pelayaran tiba.</li>
+          <li><strong>Tonase Barang</strong>: ditampilkan spesifik untuk Jampea karena angka per kapalnya telah terverifikasi dengan baris TOTAL tiap laporan.</li>
+          <li><strong>Barang Jampea</strong>: laporan mencakup ton dan m³ dalam manifes kapal. Periode Maret–April 2026 belum tersedia karena berkas pindaian belum terbaca utuh.</li>
+          <li><strong>Benteng 2025</strong> bersumber dari rekapitulasi ringkasan dinas; kedatangan kapal tidak tersedia (ditandai &ldquo;–&rdquo;).</li>
+          <li><strong>Pamatata</strong>: data 2025 bersumber dari log harian penyeberangan BPTD; data 2026 bersumber dari laporan SIMOPEL.</li>
+          <li><strong>Bulan kosong</strong> berarti laporan pada periode tersebut belum diterima atau sedang dalam tahap kompilasi.</li>
+        </ul>
+      </div>
+
+      <h2>Unduh dataset lengkap</h2>
+      <ul class="downloads">
+        <li>
+          <a href="data_bersih/master_transportasi_selayar.xlsx" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Master Excel Selayar</span>
+            <span class="format-badge">XLSX</span>
+          </a>
+        </li>
+        <li>
+          <a href="data_bersih/fact_rekap_bulanan.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Rekap bulanan</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+        <li>
+          <a href="data_bersih/fact_pamatata_ferry_harian.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Ferry Pamatata harian</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+        <li>
+          <a href="data_bersih/fact_aroeppala_penerbangan_harian.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Penerbangan harian</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+        <li>
+          <a href="data_bersih/fact_log_pelayaran.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Log pelayaran</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+        <li>
+          <a href="data_bersih/fact_muatan_komoditas.csv" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Muatan Jampea</span>
+            <span class="format-badge">CSV</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      Sumber Data: SIMOPPEL Ditjen Perhubungan Laut, BPTD Kelas II Sulsel (Satpel Pamatata), UPBU Kelas III H. Aroeppala, dan Survei VHTS BPS.
+    </div>
+    <div class="footer-meta">
+      &copy; 2026 <strong>BPS Kabupaten Kepulauan Selayar</strong> (Satker 7301). Bagian dari inisiatif <a href="https://stat-selayar.github.io/" style="color:inherit">SELAYAR BISA</a>.
+    </div>
+  </footer>
 
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 const NODES = {
-  PMT: { name: 'Pamatata', mode: 'Ferry ASDP', color: '--c-pmt', desc: 'Penyeberangan Bira–Pamatata, pintu utama dari daratan Sulawesi.' },
-  BTG: { name: 'Benteng', mode: 'Pelabuhan laut', color: '--c-btg', desc: 'Pelabuhan ibu kota kabupaten: kapal perintis, Pelni, dan kapal layar motor.' },
-  JMP: { name: 'Jampea', mode: 'Pelabuhan laut', color: '--c-jmp', desc: 'Penghubung Pulau Jampea dengan Selayar, Bulukumba, dan Flores.' },
-  PTB: { name: 'Pattumbukang', mode: 'Pelabuhan laut', color: '--c-ptb', desc: 'Simpul pelayaran wilayah timur dan selatan pulau.' },
-  ARO: { name: 'Aroeppala', mode: 'Bandar udara', color: '--c-aro', desc: 'Penerbangan Makassar–Selayar.' },
+  PMT: { name: 'Pamatata', mode: 'Ferry ASDP', color: '--c-pmt', desc: 'Penyeberangan Bira–Pamatata, gerbang utama dari daratan Sulawesi Selatan.' },
+  BTG: { name: 'Benteng', mode: 'Pelabuhan laut', color: '--c-btg', desc: 'Pelabuhan ibukota kabupaten: logistik, Pelni, perintis, dan KLM.' },
+  JMP: { name: 'Jampea', mode: 'Pelabuhan laut', color: '--c-jmp', desc: 'Penghubung kepulauan luar dengan daratan Selayar, Bulukumba, & Flores.' },
+  PTB: { name: 'Pattumbukang', mode: 'Pelabuhan laut', color: '--c-ptb', desc: 'Simpul pelayaran wilayah timur dan gugusan pulau selatan.' },
+  ARO: { name: 'Aroeppala', mode: 'Bandar udara', color: '--c-aro', desc: 'Penerbangan perintis rute Makassar (UPG) – Selayar (KSR).' },
 };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 const fmt = new Intl.NumberFormat('id-ID');
+const fmt1 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmt2Signed = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' });
 
 let DATA = null;
 let state = { year: 'all', node: 'all', arah: 'bongkar', hotelYear: 'all' };
-// Each view opens on the latest year it has data for.
 const latestYear = years => years[years.length - 1] ?? 'all';
 const charts = {};
 
@@ -330,6 +1329,49 @@ const titleCase = s => s.toLowerCase().replace(/(^|[\s/(-])\p{L}/gu, m => m.toUp
 const ACRONYMS = new Set(['LPG', 'BBM']);
 const komLabel = s => s.split(' ').map(w => ACRONYMS.has(w) ? w : w.toLowerCase().replace(/(^|[.,/&(-])\p{L}/gu, m => m.toUpperCase())).join(' ');
 const ARAH = { bongkar: { label: 'masuk (dibongkar)', hewan: 'Hewan turun' }, muat: { label: 'keluar (dimuat)', hewan: 'Hewan naik' } };
+const orDash = (v, f) => v == null ? '–' : f.format(v);
+
+// Theme Toggle Management
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+const themeLabel = document.getElementById('themeLabel');
+
+function updateThemeUI(isDark) {
+  if (isDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+    if (themeLabel) themeLabel.textContent = 'Gelap';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    moonIcon.style.display = 'none';
+    sunIcon.style.display = 'block';
+    if (themeLabel) themeLabel.textContent = 'Terang';
+  }
+}
+
+function initTheme() {
+  const saved = localStorage.getItem('selayar_bisa_theme');
+  const isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  updateThemeUI(isDark);
+
+  themeToggle?.addEventListener('click', () => {
+    const currentIsDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const nextIsDark = !currentIsDark;
+    updateThemeUI(nextIsDark);
+    try {
+      localStorage.setItem('selayar_bisa_theme', nextIsDark ? 'dark' : 'light');
+    } catch (e) {}
+    // Re-draw charts with updated theme colors
+    chartDefaults();
+    if (DATA) {
+      const isHotel = !document.getElementById('view-hotel').hidden;
+      isHotel ? renderHotel() : render();
+    }
+  });
+}
+initTheme();
 
 // Benteng 2025 comes from a summary table: no per-ship arrivals, and values are unverified.
 const isSummary = r => r.kode_simpul === 'BTG' && r.tahun === 2025;
@@ -354,8 +1396,8 @@ function init(data) {
   });
 
   const sel = document.getElementById('node-filter');
-  sel.innerHTML = '<option value="all">Semua simpul</option>' +
-    Object.entries(NODES).map(([k, n]) => `<option value="${k}">${n.name}</option>`).join('');
+  sel.innerHTML = '<option value="all">Semua simpul (5 simpul)</option>' +
+    Object.entries(NODES).map(([k, n]) => `<option value="${k}">${n.name} (${n.mode})</option>`).join('');
   sel.addEventListener('change', () => { state.node = sel.value; renderTable(); });
 
   document.getElementById('arah-seg').addEventListener('click', e => {
@@ -363,6 +1405,12 @@ function init(data) {
     if (!b) return;
     state.arah = b.dataset.arah;
     renderKomoditas();
+  });
+
+  // Action button to switch to 2025 from empty vehicle card
+  document.getElementById('btnSwitch2025')?.addEventListener('click', () => {
+    state.year = '2025';
+    render();
   });
 
   const hotelYears = [...new Set(DATA.hotel_bulanan.map(r => r.periode.slice(0, 4)))].sort();
@@ -384,11 +1432,18 @@ function init(data) {
     document.getElementById('tab-hotel').setAttribute('aria-selected', String(hotel));
     document.getElementById('view-transportasi').hidden = hotel;
     document.getElementById('view-hotel').hidden = !hotel;
-    // Charts drawn while the panel was hidden have no size, so draw the visible panel again.
     hotel ? renderHotel() : render();
   });
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { render(); renderHotel(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (!localStorage.getItem('selayar_bisa_theme')) {
+      updateThemeUI(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      chartDefaults();
+      render();
+      renderHotel();
+    }
+  });
+
   render();
   renderHotel();
 }
@@ -413,9 +1468,9 @@ function renderKpis() {
     .reduce((a, r) => a + r.total_kend, 0);
 
   const items = [
-    ['Penumpang', fmt.format(penumpang), 'Naik + turun di semua simpul'],
-    ['Kedatangan', fmt.format(kedatangan), 'Kapal, ferry, dan pesawat tiba'],
-    ['Kendaraan ferry', kendaraan ? fmt.format(kendaraan) : '–', kendaraan ? 'Menyeberang lewat Pamatata' : 'Data kendaraan hanya ada untuk 2025'],
+    ['Total Penumpang', fmt.format(penumpang), 'Naik + turun di seluruh 5 simpul'],
+    ['Kedatangan Armada', fmt.format(kedatangan), 'Kapal, ferry, dan pesawat tiba'],
+    ['Kendaraan Ferry', kendaraan ? fmt.format(kendaraan) : '–', kendaraan ? 'Lintasan Bira–Pamatata' : 'Log harian kendaraan tersedia di 2025'],
   ];
   document.getElementById('kpis').innerHTML = items.map(([l, v, s]) =>
     `<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join('');
@@ -448,9 +1503,12 @@ function renderNodes() {
     const gapText = gaps.length
       ? `<div class="gap">Tanpa data: ${gaps.length > 4 ? gaps.length + ' bulan' : gaps.map(monthLabel).join(', ')}</div>` : '';
     return `<article class="card node" style="--c:var(${n.color})">
-      <h3>${n.name}</h3><div class="mode">${n.mode}</div>
+      <h3>${n.name}</h3>
+      <div class="mode">${n.mode}</div>
       <p class="desc">${n.desc}</p>
-      <div class="num">${fmt.format(total)}</div><div class="small">penumpang · ${esc(span)}</div>${gapText}
+      <div class="num">${fmt.format(total)}</div>
+      <div class="small">penumpang · ${esc(span)}</div>
+      ${gapText}
     </article>`;
   }).join('');
 }
@@ -464,7 +1522,6 @@ function chartDefaults() {
 function renderTrend() {
   chartDefaults();
   const periods = [...new Set(DATA.rekap_bulanan.filter(inYear).map(r => r.periode))].sort();
-  // Continuous month axis so missing months show as gaps instead of being skipped.
   const axis = [];
   if (periods.length) {
     let [y, m] = periods[0].split('-').map(Number);
@@ -481,8 +1538,11 @@ function renderTrend() {
       data: axis.map(p => byPeriod[p] ? pax(byPeriod[p]) : null),
       borderColor: cssVar(n.color),
       backgroundColor: cssVar(n.color),
-      borderWidth: 2, pointRadius: 3, tension: 0.25, spanGaps: false,
-      segment: { borderDash: ctx => (code === 'BTG' && axis[ctx.p1DataIndex].startsWith('2025') ? [5, 4] : undefined) },
+      borderWidth: 2.2,
+      pointRadius: 3.5,
+      tension: 0.25,
+      spanGaps: false,
+      segment: { borderDash: ctx => (code === 'BTG' && axis[ctx.p1DataIndex]?.startsWith('2025') ? [5, 4] : undefined) },
     };
   });
   draw('trend', {
@@ -492,10 +1552,13 @@ function renderTrend() {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
-        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}` } },
+        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 16 } },
+        tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${fmt.format(c.parsed.y)} penumpang` } },
       },
-      scales: { y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } }, x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } },
+        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }
+      },
     },
   });
 }
@@ -512,17 +1575,25 @@ function renderVehicles() {
     ['Tronton, trailer, alat berat', sum(['gol_7', 'gol_8', 'gol_9'])],
   ].sort((a, b) => b[1] - a[1]);
   const empty = groups.every(g => g[1] === 0);
-  document.getElementById('vehicles').parentElement.hidden = empty;
-  const note = document.getElementById('vehicles-empty');
-  note.hidden = !empty;
-  note.textContent = 'Data kendaraan hanya tersedia untuk 2025.';
-  if (empty) { charts.vehicles?.destroy(); delete charts.vehicles; return; }
+
+  const box = document.getElementById('vehicles-box');
+  const emptyEl = document.getElementById('vehicles-empty');
+  if (empty) {
+    if (box) box.hidden = true;
+    if (emptyEl) emptyEl.hidden = false;
+    charts.vehicles?.destroy();
+    delete charts.vehicles;
+    return;
+  }
+  if (box) box.hidden = false;
+  if (emptyEl) emptyEl.hidden = true;
   drawBar('vehicles', groups.map(g => g[0]), groups.map(g => g[1]), cssVar('--c-pmt'));
 }
 
 function renderOrigins() {
   const top = DATA.pelayaran_stats.top_asal.slice(0, 8);
-  drawBar('origins', top.map(t => titleCase(t.pelabuhan)), top.map(t => t.kunjungan), cssVar('--c-btg'));
+  drawBar('origins', top.map(t => titleCase(t.pelabuhan)), top.map(t => t.kunjungan), cssVar('--c-btg'),
+    c => ` ${fmt.format(c.parsed.x)} kedatangan`);
 }
 
 function renderKomoditas() {
@@ -531,7 +1602,6 @@ function renderKomoditas() {
   const all = DATA.komoditas_bulanan.filter(r => state.year === 'all' || r.periode.startsWith(state.year));
   const rows = all.filter(r => r.arah === state.arah);
 
-  // Totals per commodity (goods only: livestock is counted in heads, not tons).
   const byKom = {};
   rows.filter(r => r.kategori === 'barang').forEach(r => {
     const k = byKom[r.komoditas] ??= { jumlah: 0, periods: new Set() };
@@ -546,12 +1616,11 @@ function renderKomoditas() {
 
   document.getElementById('kom-top-sub').textContent = total
     ? `Barang ${ARAH[state.arah].label}, total ${fmt.format(Math.round(total))} ton/m³. ` +
-      (ranked.length > 10 ? `10 teratas = ${pct(topShare * total)}; ${ranked.length - 10} komoditas lain tidak digambar.` : '')
-    : 'Tidak ada data.';
+      (ranked.length > 10 ? `10 teratas mencakup ${pct(topShare * total)}; ${ranked.length - 10} komoditas lain disajikan di tabel.` : '')
+    : 'Tidak ada data muatan barang.';
   drawBar('kom-top', top.map(([n]) => komLabel(n)), top.map(([, k]) => Math.round(k.jumlah * 10) / 10), cssVar('--c-jmp'),
-    c => `${fmt.format(c.parsed.x)} ton/m³ (${pct(c.parsed.x)})`);
+    c => ` ${fmt.format(c.parsed.x)} ton/m³ (${pct(c.parsed.x)})`);
 
-  // Continuous month axis over every month with a Jampea report, so missing reports show as gaps.
   const reported = [...new Set(all.map(r => r.periode))].sort();
   const axis = [];
   if (reported.length) {
@@ -567,11 +1636,24 @@ function renderKomoditas() {
   chartDefaults();
   draw('kom-trend', {
     type: 'bar',
-    data: { labels: axis.map(monthLabel), datasets: [{ data: axis.map(p => have.has(p) ? Math.round((perMonth[p] || 0) * 10) / 10 : null), backgroundColor: cssVar('--c-jmp'), borderRadius: 4 }] },
+    data: {
+      labels: axis.map(monthLabel),
+      datasets: [{
+        data: axis.map(p => have.has(p) ? Math.round((perMonth[p] || 0) * 10) / 10 : null),
+        backgroundColor: cssVar('--c-jmp'),
+        borderRadius: 4
+      }]
+    },
     options: {
       maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `${fmt.format(c.parsed.y)} ton/m³` } } },
-      scales: { y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } }, x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } } },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => ` ${fmt.format(c.parsed.y)} ton/m³` } }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } },
+        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } }
+      },
     },
   });
   const gaps = axis.filter(p => !have.has(p));
@@ -585,7 +1667,7 @@ function renderKomoditas() {
   const hewanTotal = hewanList.reduce((a, [, v]) => a + v, 0);
   document.getElementById('kom-hewan').textContent = hewanTotal
     ? `${ARAH[state.arah].hewan}: ${fmt.format(hewanTotal)} ekor (${hewanList.map(([n, v]) => `${komLabel(n)} ${fmt.format(v)}`).join(', ')}).`
-    : `${ARAH[state.arah].hewan}: tidak ada.`;
+    : `${ARAH[state.arah].hewan}: tidak ada catatan ternak.`;
 
   document.getElementById('kom-summary').textContent = `Semua komoditas (${ranked.length})`;
   document.getElementById('kom-tbody').innerHTML = ranked.map(([n, k]) => `<tr>
@@ -596,47 +1678,38 @@ function renderKomoditas() {
     </tr>`).join('') || '<tr><td colspan="4" class="empty">Tidak ada data.</td></tr>';
 }
 
-const fmt1 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-const fmt2Signed = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' });
-const orDash = (v, f) => v == null ? '–' : f.format(v);
-
 function renderHotel() {
   document.querySelectorAll('#hotel-year-seg button').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.year === state.hotelYear)));
   const rows = DATA.hotel_bulanan.filter(r => state.hotelYear === 'all' || r.periode.startsWith(state.hotelYear));
   const sum = k => rows.reduce((a, r) => a + r[k], 0);
 
-  // Period indicators come from summed counts, not from averaging the monthly percentages.
   const tpk = sum('malam_kamar_tersedia') ? sum('malam_kamar_terpakai') / sum('malam_kamar_tersedia') * 100 : null;
   const tamu = sum('tamu_total');
   const avgStay = (malam, tamu) => sum(tamu) ? `${fmt2.format(sum(malam) / sum(tamu))}` : '–';
   const span = rows.length ? `${monthLabel(rows[0].periode)}${rows.length > 1 ? ' – ' + monthLabel(rows[rows.length - 1].periode) : ''}` : '';
 
-  // Compare a single year with the same months a year earlier, only when every one of them was surveyed.
   let tpkChange = '';
   if (state.hotelYear !== 'all' && rows.length) {
     const prevPeriods = new Set(rows.map(r => `${+r.periode.slice(0, 4) - 1}${r.periode.slice(4)}`));
     const prev = DATA.hotel_bulanan.filter(r => prevPeriods.has(r.periode));
     if (prev.length === rows.length) {
       const prevTpk = prev.reduce((a, r) => a + r.malam_kamar_terpakai, 0) / prev.reduce((a, r) => a + r.malam_kamar_tersedia, 0) * 100;
-      // Rounded like the headline value, so the change matches the two percentages shown.
       const diff = Math.round(tpk * 10) / 10 - Math.round(prevTpk * 10) / 10;
-      tpkChange = ` · ${diff > 0.01 ? `naik ${fmt1.format(diff)} poin dari` : diff < -0.01 ? `turun ${fmt1.format(-diff)} poin dari` : 'sama dengan'} periode yang sama ${+state.hotelYear - 1} (${fmt1.format(prevTpk)}%)`;
+      tpkChange = ` · ${diff > 0.01 ? `naik ${fmt1.format(diff)} poin dari` : diff < -0.01 ? `turun ${fmt1.format(-diff)} poin dari` : 'sama dengan'} periode ${+state.hotelYear - 1} (${fmt1.format(prevTpk)}%)`;
     }
   }
   const items = [
-    ['Tingkat penghunian kamar', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}${tpkChange}`],
-    ['Tamu', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Indonesia · ${fmt.format(sum('tamu_asing'))} asing${tamu ? ` (${fmt1.format(sum('tamu_asing') / tamu * 100)}%)` : ''}`],
-    ['Lama menginap', tamu ? `${avgStay('malam_tamu', 'tamu_total')} malam` : '–',
-      `Indonesia ${avgStay('malam_tamu_indonesia', 'tamu_indonesia')} · asing ${avgStay('malam_tamu_asing', 'tamu_asing')} malam`],
-    ['Tamu per kamar', sum('malam_kamar_terpakai') ? fmt2.format(sum('malam_tamu') / sum('malam_kamar_terpakai')) : '–',
-      'Malam tamu per malam kamar terisi'],
+    ['Tingkat Penghunian Kamar (TPK)', tpk == null ? '–' : `${fmt1.format(tpk)}%`, `Gabungan ${span}${tpkChange}`],
+    ['Total Tamu Menginap', fmt.format(tamu), `${fmt.format(sum('tamu_indonesia'))} Nusantara · ${fmt.format(sum('tamu_asing'))} Mancanegara${tamu ? ` (${fmt1.format(sum('tamu_asing') / tamu * 100)}%)` : ''}`],
+    ['Rata-rata Lama Menginap', tamu ? `${avgStay('malam_tamu', 'tamu_total')} malam` : '–',
+      `Nusantara ${avgStay('malam_tamu_indonesia', 'tamu_indonesia')} · Asing ${avgStay('malam_tamu_asing', 'tamu_asing')} malam`],
+    ['Tamu per Kamar Terisi (GPR)', sum('malam_kamar_terpakai') ? fmt2.format(sum('malam_tamu') / sum('malam_kamar_terpakai')) : '–',
+      'Malam tamu per malam kamar terpakai'],
   ];
   document.getElementById('hotel-kpis').innerHTML = items.map(([l, v, s]) =>
     `<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="sub">${s}</div></div>`).join('');
 
-  // Continuous month axis so months not processed yet show as gaps.
   const byPeriod = Object.fromEntries(rows.map(r => [r.periode, r]));
   const axis = [];
   if (rows.length) {
@@ -655,68 +1728,101 @@ function renderHotel() {
   const xAxis = { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } };
   draw('hotel-tpk', {
     type: 'line',
-    data: { labels: axis.map(monthLabel), datasets: [{
-      label: 'TPK', data: axis.map(p => byPeriod[p]?.tpk ?? null),
-      borderColor: cssVar('--accent'), backgroundColor: cssVar('--accent'), borderWidth: 2, pointRadius: 3, tension: 0.25, spanGaps: false,
-    }] },
+    data: {
+      labels: axis.map(monthLabel),
+      datasets: [{
+        label: 'TPK',
+        data: axis.map(p => byPeriod[p]?.tpk ?? null),
+        borderColor: cssVar('--accent'),
+        backgroundColor: cssVar('--accent'),
+        borderWidth: 2.2,
+        pointRadius: 3.5,
+        tension: 0.25,
+        spanGaps: false,
+      }]
+    },
     options: {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => `TPK ${fmt2.format(c.parsed.y)}%` } } },
-      scales: { y: { beginAtZero: true, ticks: { callback: v => `${fmt.format(v)}%` } }, x: xAxis },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => ` TPK: ${fmt2.format(c.parsed.y)}%` } }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => `${fmt.format(v)}%` } },
+        x: xAxis
+      },
     },
   });
 
   const surface = cssVar('--surface');
   draw('hotel-tamu', {
     type: 'bar',
-    data: { labels: axis.map(monthLabel), datasets: [
-      { label: 'Indonesia', data: axis.map(p => byPeriod[p]?.tamu_indonesia ?? null), backgroundColor: cssVar('--c-wni') },
-      { label: 'Asing', data: axis.map(p => byPeriod[p]?.tamu_asing ?? null), backgroundColor: cssVar('--c-wna'),
-        borderColor: surface, borderWidth: { bottom: 2 }, borderSkipped: false, borderRadius: { topLeft: 4, topRight: 4 } },
-    ] },
+    data: {
+      labels: axis.map(monthLabel),
+      datasets: [
+        { label: 'Nusantara (WNI)', data: axis.map(p => byPeriod[p]?.tamu_indonesia ?? null), backgroundColor: cssVar('--c-wni'), borderRadius: 3 },
+        { label: 'Mancanegara (WNA)', data: axis.map(p => byPeriod[p]?.tamu_asing ?? null), backgroundColor: cssVar('--c-wna'),
+          borderColor: surface, borderWidth: { bottom: 2 }, borderSkipped: false, borderRadius: { topLeft: 4, topRight: 4 } },
+      ]
+    },
     options: {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
+        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 14 } },
         tooltip: { callbacks: {
-          label: c => `${c.dataset.label}: ${fmt.format(c.parsed.y)}`,
-          footer: items => { const r = byPeriod[axis[items[0].dataIndex]]; return r?.persen_tamu_asing == null ? '' : `Asing ${fmt1.format(r.persen_tamu_asing)}% dari tamu`; },
+          label: c => ` ${c.dataset.label}: ${fmt.format(c.parsed.y)} tamu`,
+          footer: items => { const r = byPeriod[axis[items[0].dataIndex]]; return r?.persen_tamu_asing == null ? '' : `Mancanegara ${fmt1.format(r.persen_tamu_asing)}% dari total tamu`; },
         } },
       },
-      scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { callback: v => fmt.format(v) } } },
+      scales: {
+        x: { ...xAxis, stacked: true },
+        y: { stacked: true, beginAtZero: true, ticks: { callback: v => fmt.format(v) } }
+      },
     },
   });
 
   const stayLine = (label, key, color, extra = {}) => ({
     label, data: axis.map(p => byPeriod[p]?.[key] ?? null),
-    borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 3, tension: 0.25, spanGaps: false, ...extra,
+    borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 3.5, tension: 0.25, spanGaps: false, ...extra,
   });
   draw('hotel-rlmt', {
     type: 'line',
-    data: { labels: axis.map(monthLabel), datasets: [
-      stayLine('Semua tamu', 'rlmt_gabungan', cssVar('--c-all')),
-      stayLine('Indonesia', 'rlmt_indonesia', cssVar('--c-wni')),
-      // Dashed with triangle markers so foreign guests stay distinct from Indonesian without colour.
-      stayLine('Asing', 'rlmt_asing', cssVar('--c-wna'), { borderDash: [6, 4], pointStyle: 'triangle', pointRadius: 4 }),
-    ] },
+    data: {
+      labels: axis.map(monthLabel),
+      datasets: [
+        stayLine('Semua Tamu', 'rlmt_gabungan', cssVar('--c-all')),
+        stayLine('Nusantara', 'rlmt_indonesia', cssVar('--c-wni')),
+        stayLine('Mancanegara', 'rlmt_asing', cssVar('--c-wna'), { borderDash: [6, 4], pointStyle: 'triangle', pointRadius: 4 }),
+      ]
+    },
     options: {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
-        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } },
-        tooltip: { callbacks: { label: c => `${c.dataset.label}: ${orDash(c.parsed.y, fmt2)} malam` } },
+        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 14 } },
+        tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${orDash(c.parsed.y, fmt2)} malam` } },
       },
-      scales: { y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } }, x: xAxis },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => fmt.format(v) } },
+        x: xAxis
+      },
     },
   });
 
-  document.getElementById('hotel-tbody').innerHTML = rows.slice().reverse().map(r => `<tr>
+  document.getElementById('hotel-tbody').innerHTML = rows.slice().reverse().map(r => {
+    let changeBadge = '–';
+    if (r.tpk_perubahan_poin != null) {
+      if (r.tpk_perubahan_poin > 0) changeBadge = `<span class="badge-pos">+${fmt2.format(r.tpk_perubahan_poin)}</span>`;
+      else if (r.tpk_perubahan_poin < 0) changeBadge = `<span class="badge-neg">${fmt2.format(r.tpk_perubahan_poin)}</span>`;
+      else changeBadge = `0,00`;
+    }
+    return `<tr>
       <td>${monthLabel(r.periode)}</td>
       <td>${r.jumlah_sampel}</td>
       <td>${orDash(r.tpk, fmt2)}</td>
-      <td>${orDash(r.tpk_perubahan_poin, fmt2Signed)}</td>
+      <td>${changeBadge}</td>
       <td>${orDash(r.tptt, fmt2)}</td>
       <td>${orDash(r.gpr, fmt2)}</td>
       <td>${fmt.format(r.tamu_indonesia)}</td>
@@ -725,18 +1831,26 @@ function renderHotel() {
       <td>${orDash(r.rlmt_gabungan, fmt2)}</td>
       <td>${orDash(r.rlmt_indonesia, fmt2)}</td>
       <td>${orDash(r.rlmt_asing, fmt2)}</td>
-    </tr>`).join('') || '<tr><td colspan="12" class="empty">Tidak ada data.</td></tr>';
+    </tr>`;
+  }).join('') || '<tr><td colspan="12" class="empty">Tidak ada data.</td></tr>';
 }
 
-function drawBar(id, labels, values, color, label = c => fmt.format(c.parsed.x)) {
+function drawBar(id, labels, values, color, label = c => ` ${fmt.format(c.parsed.x)}`) {
   chartDefaults();
   draw(id, {
     type: 'bar',
     data: { labels, datasets: [{ data: values, backgroundColor: color, borderRadius: 4 }] },
     options: {
-      indexAxis: 'y', maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label } } },
-      scales: { x: { ticks: { callback: v => fmt.format(v) } }, y: { grid: { display: false } } },
+      indexAxis: 'y',
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label } }
+      },
+      scales: {
+        x: { ticks: { callback: v => fmt.format(v) } },
+        y: { grid: { display: false } }
+      },
     },
   });
 }
@@ -752,7 +1866,7 @@ function renderTable() {
     .sort((a, b) => b.periode.localeCompare(a.periode) || a.kode_simpul.localeCompare(b.kode_simpul));
   document.getElementById('tbody').innerHTML = rows.map(r => {
     const n = NODES[r.kode_simpul];
-    const arrivals = isSummary(r) ? '<span class="flag" title="Rekap ringkasan, tidak tersedia">–</span>' : fmt.format(r.kunjungan_datang);
+    const arrivals = isSummary(r) ? '<span class="flag" title="Rekap ringkasan dinas, belum ada log per kapal">–</span>' : fmt.format(r.kunjungan_datang);
     return `<tr style="--c:var(${n.color})">
       <td>${monthLabel(r.periode)}</td>
       <td><span class="dot"></span>${n.name}</td>
@@ -769,7 +1883,7 @@ fetch('data/data_transportasi.json')
   .then(init)
   .catch(err => {
     console.error(err);
-    document.querySelector('main').innerHTML = '<p class="empty">Data tidak dapat dimuat. Coba muat ulang halaman.</p>';
+    document.querySelector('main').innerHTML = '<p class="empty">Data tidak dapat dimuat. Pastikan berkas <code>data/data_transportasi.json</code> tersedia atau muat ulang halaman.</p>';
   });
 </script>
 </body>

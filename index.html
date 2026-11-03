@@ -343,9 +343,15 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 16px;
 }
+.two > * { min-width: 0; }
 .two > div { display: flex; flex-direction: column; }
 .two > div > .card { flex: 1; }
 .two h2 { margin-top: 48px; }
+/* Paired charts with their own headings: line up headings, hints and cards across columns */
+.pair { row-gap: 0; }
+@supports (grid-template-rows: subgrid) {
+  .pair > div { display: grid; grid-row: span 3; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); }
+}
 #kom .chart-box { height: 320px; }
 #kom .seg { margin-bottom: 16px; }
 
@@ -492,7 +498,7 @@ footer a { color: inherit; }
   h1 { font-size: 26px; }
   .lead { font-size: 15px; }
   h2 { margin-top: 40px; font-size: 18px; }
-  .two { grid-template-columns: 1fr; }
+  .two { grid-template-columns: minmax(0, 1fr); }
   .chart-box, .chart-box.main { height: 260px; }
   #kom .chart-box { height: 300px; }
   .empty-state { height: auto; padding: 32px 0; }
@@ -541,13 +547,30 @@ footer a { color: inherit; }
       <section class="kpis" id="hotel-kpis" aria-label="Ringkasan hotel"></section>
 
       <h2>Tingkat penghunian kamar (TPK) per bulan</h2>
-      <p class="hint">Persentase malam kamar yang terisi dari seluruh malam kamar yang tersedia di akomodasi sampel. Garis abu-abu: bulan yang sama tahun sebelumnya.</p>
+      <p class="hint">Persentase malam kamar yang terisi dari seluruh malam kamar yang tersedia di akomodasi sampel. Garis abu-abu di grafik TPK, TPTT, dan tamu per kamar: bulan yang sama tahun sebelumnya.</p>
       <div class="card pad">
         <div class="chart-box main"><canvas id="hotel-tpk" role="img" aria-label="Grafik garis tingkat penghunian kamar per bulan"></canvas></div>
         <p class="note" id="hotel-gap" hidden></p>
       </div>
 
-      <div class="two">
+      <div class="two pair">
+        <div>
+          <h2>Tingkat pemakaian tempat tidur (TPTT) per bulan</h2>
+          <p class="hint">Persentase malam tempat tidur yang terisi tamu dari seluruh malam tempat tidur yang tersedia.</p>
+          <div class="card pad">
+            <div class="chart-box"><canvas id="hotel-tptt" role="img" aria-label="Grafik garis tingkat pemakaian tempat tidur per bulan"></canvas></div>
+          </div>
+        </div>
+        <div>
+          <h2>Tamu per kamar (GPR) per bulan</h2>
+          <p class="hint">Rata-rata tamu yang menginap di satu kamar terisi: malam tamu ÷ malam kamar terisi.</p>
+          <div class="card pad">
+            <div class="chart-box"><canvas id="hotel-gpr" role="img" aria-label="Grafik garis rata-rata tamu per kamar terisi per bulan"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two pair">
         <div>
           <h2>Tamu per bulan</h2>
           <p class="hint">Tamu yang check-in di akomodasi sampel, menurut asal.</p>
@@ -613,7 +636,7 @@ footer a { color: inherit; }
         <div class="chart-box main"><canvas id="trend" role="img" aria-label="Grafik garis jumlah penumpang per bulan per simpul"></canvas></div>
       </div>
 
-      <div class="two">
+      <div class="two pair">
         <div>
           <h2>Kendaraan di ferry Pamatata</h2>
           <p class="hint">Total kendaraan yang menyeberang Bira–Pamatata.</p>
@@ -1159,47 +1182,53 @@ function renderHotel() {
   const allByPeriod = Object.fromEntries(DATA.hotel_bulanan.map(r => [r.periode, r]));
   const prevOf = p => `${+p.slice(0, 4) - 1}${p.slice(4)}`;
   const showPrev = state.hotelYear !== 'all' && axis.some(p => allByPeriod[prevOf(p)]);
-  const tpkSets = [{
-    label: state.hotelYear === 'all' ? 'TPK' : `TPK ${state.hotelYear}`,
-    data: axis.map(p => byPeriod[p]?.tpk ?? null),
-    borderColor: cssVar('--c-pmt'),
-    backgroundColor: cssVar('--c-pmt'),
-    borderWidth: 2.5,
-    pointRadius: 3,
-    pointHoverRadius: 5,
-    pointBorderColor: cssVar('--card'),
-    pointBorderWidth: 1.5,
-    cubicInterpolationMode: 'monotone',
-    spanGaps: false,
-  }];
-  if (showPrev) tpkSets.push({
-    label: `TPK ${+state.hotelYear - 1}`,
-    data: axis.map(p => allByPeriod[prevOf(p)]?.tpk ?? null),
-    borderColor: cssVar('--c-ref'),
-    backgroundColor: cssVar('--c-ref'),
-    borderWidth: 1.75,
-    borderDash: [5, 4],
-    pointRadius: 0,
-    pointHoverRadius: 4,
-    cubicInterpolationMode: 'monotone',
-    spanGaps: false,
-  });
-  draw('hotel-tpk', {
-    type: 'line',
-    data: { labels: axis.map(monthLabel), datasets: tpkSets },
-    options: {
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: showPrev, position: 'top' },
-        tooltip: { callbacks: {
-          label: c => ` ${c.dataset.label}: ${orDash(c.parsed.y, fmt2)}%`,
-          footer: items => { const r = byPeriod[axis[items[0].dataIndex]]; return r?.tpk_perubahan_poin == null ? '' : `${fmt2Signed.format(r.tpk_perubahan_poin)} poin vs tahun lalu`; },
-        } },
+  const yearOnYearLine = (id, key, name, unit, footer = () => '') => {
+    const sets = [{
+      label: state.hotelYear === 'all' ? name : `${name} ${state.hotelYear}`,
+      data: axis.map(p => byPeriod[p]?.[key] ?? null),
+      borderColor: cssVar('--c-pmt'),
+      backgroundColor: cssVar('--c-pmt'),
+      borderWidth: 2.5,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      pointBorderColor: cssVar('--card'),
+      pointBorderWidth: 1.5,
+      cubicInterpolationMode: 'monotone',
+      spanGaps: false,
+    }];
+    if (showPrev) sets.push({
+      label: `${name} ${+state.hotelYear - 1}`,
+      data: axis.map(p => allByPeriod[prevOf(p)]?.[key] ?? null),
+      borderColor: cssVar('--c-ref'),
+      backgroundColor: cssVar('--c-ref'),
+      borderWidth: 1.75,
+      borderDash: [5, 4],
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      cubicInterpolationMode: 'monotone',
+      spanGaps: false,
+    });
+    draw(id, {
+      type: 'line',
+      data: { labels: axis.map(monthLabel), datasets: sets },
+      options: {
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: showPrev, position: 'top' },
+          tooltip: { callbacks: {
+            label: c => ` ${c.dataset.label}: ${orDash(c.parsed.y, fmt2)}${unit}`,
+            footer: items => footer(byPeriod[axis[items[0].dataIndex]]),
+          } },
+        },
+        scales: { y: yAxis(v => `${fmt.format(v)}${unit}`), x: xAxis() },
       },
-      scales: { y: yAxis(v => `${fmt.format(v)}%`), x: xAxis() },
-    },
-  });
+    });
+  };
+  yearOnYearLine('hotel-tpk', 'tpk', 'TPK', '%',
+    r => r?.tpk_perubahan_poin == null ? '' : `${fmt2Signed.format(r.tpk_perubahan_poin)} poin vs tahun lalu`);
+  yearOnYearLine('hotel-tptt', 'tptt', 'TPTT', '%');
+  yearOnYearLine('hotel-gpr', 'gpr', 'Tamu per kamar', '');
 
   const surface = cssVar('--card');
   draw('hotel-tamu', {

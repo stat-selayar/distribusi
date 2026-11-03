@@ -9,7 +9,8 @@ import datetime
 import fitz
 import openpyxl
 
-from build_datasets import (RAW_DIR, VHTS_TPK_CSV, add_tpk_change, hotel_formula_diffs, hotel_record_from_row, jampea_records_from_rows,
+from build_datasets import (RAW_DIR, VHTS_REKAP_GLOB, VHTS_TPK_CSV, add_tpk_change, hotel_formula_diffs, hotel_record_from_row,
+                            jampea_records_from_rows, merge_hotel_records, read_vhts_rekap,
                             jampea_rows_from_sheet, jampea_total_diffs, normalize_komoditas, parse_id_number,
                             parse_jampea_pdf, parse_jampea_words_pdf, parse_period_from_path, read_vhts_tpk)
 
@@ -297,6 +298,41 @@ class TpkChangeTest(unittest.TestCase):
         self.assertEqual([r['tpk_perubahan_poin'] for r in records], [None, None, -0.64])
 
 
+class VhtsRekapTest(unittest.TestCase):
+    def write_rekap(self, path, months):
+        wb = openpyxl.Workbook()
+        wb.active.title = 'Rekap Total Hotel'
+        ws = wb.create_sheet('Ringkasan Per Periode')
+        ws.append(['RINGKASAN REKAPITULASI VHTS 2026 PER BULAN'])
+        ws.append([])
+        ws.append(['No', 'Periode Survei', 'Jumlah Hotel\nAktif'])
+        ws.append([None] * 8 + ['Asing', 'Indonesia'])
+        for i, row in enumerate(months, 1):
+            ws.append([i, *row])
+        ws.append([None, 'TOTAL TAHUN 2026 (JAN - SEP)'])
+        wb.save(path)
+
+    def test_monthly_summary_read_with_year_from_title(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, 'Rekap_Data_VHTS_2026.xlsx')
+            self.write_rekap(path, [['01 JANUARI', 43, 9762, 13869, 350, 228, 221, 100, 690, 36, 490, 30, 464],
+                                    ['10 OKTOBER', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+            records = read_vhts_rekap(path)
+        self.assertEqual(len(records), 1)
+        r = records[0]
+        self.assertEqual((r['tahun'], r['bulan'], r['jumlah_sampel'], r['malam_kamar_terpakai']), (2026, 1, 43, 357))
+        self.assertEqual((r['tpk'], r['malam_tamu'], r['tamu_total']), (3.66, 822, 526))
+
+    def test_rekap_replaces_and_extends_sheet_months(self):
+        sheet = [{'tahun': 2025, 'bulan': 4, 'tpk': 6.0}, {'tahun': 2026, 'bulan': 3, 'tpk': 5.1}]
+        rekap = [{'tahun': 2026, 'bulan': 3, 'tpk': 5.2}, {'tahun': 2026, 'bulan': 4, 'tpk': 7.39}]
+        records, conflicts = merge_hotel_records(sheet, rekap)
+        self.assertEqual([(r['tahun'], r['bulan'], r['tpk']) for r in records], [(2025, 4, 6.0), (2026, 3, 5.2), (2026, 4, 7.39)])
+        self.assertEqual(conflicts, [(2026, 3, 'tpk', 5.1, 5.2)])
+        self.assertEqual(records[2]['tpk_perubahan_poin'], 1.39)
+
+
 @unittest.skipUnless(os.path.exists(VHTS_TPK_CSV), 'raw data not available')
 class HotelRealFileTest(unittest.TestCase):
     def test_sheet_months_and_formulas(self):
@@ -305,3 +341,11 @@ class HotelRealFileTest(unittest.TestCase):
         self.assertGreaterEqual(len(records), 27)
         self.assertEqual(diffs, [])
         self.assertEqual(records[12]['tpk_perubahan_poin'], round(records[12]['tpk'] - records[0]['tpk'], 2))
+
+    def test_rekap_agrees_with_sheet_on_shared_months(self):
+        import glob
+        rekap = [r for f in sorted(glob.glob(VHTS_REKAP_GLOB)) for r in read_vhts_rekap(f)]
+        if not rekap:
+            self.skipTest('no rekap workbook')
+        _, conflicts = merge_hotel_records(read_vhts_tpk(VHTS_TPK_CSV)[0], rekap)
+        self.assertEqual(conflicts, [])

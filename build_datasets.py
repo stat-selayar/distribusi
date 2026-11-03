@@ -761,6 +761,9 @@ def process_ship_logs():
 # 4b. HOTEL (VHTS, SHEET TPK)
 # -------------------------------------------------------------
 VHTS_TPK_CSV = os.path.join(RAW_DIR, 'Hotel', 'vhts_tpk.csv')
+# Rekap workbooks exported from the VHTS application (one per year). Their other sheets hold
+# per-establishment data, so they stay in data_mentah and only the monthly summary is read.
+VHTS_REKAP_GLOB = os.path.join(RAW_DIR, 'Hotel', 'Rekap_Data_VHTS_*.xlsx')
 # Base counts in the TPK sheet (0-indexed columns); the first three rows are headers.
 VHTS_COLS = {'sampel': 2, 'kamar': 3, 'tempat_tidur': 4, 'kamar_kemarin': 5, 'kamar_masuk': 6, 'kamar_keluar': 7,
              'wna_kemarin': 8, 'wni_kemarin': 9, 'wna_masuk': 10, 'wni_masuk': 11, 'wna_keluar': 12, 'wni_keluar': 13}
@@ -781,6 +784,11 @@ def hotel_record_from_row(row):
     if len(row) <= max(VHTS_FORMULA_COLS.values()) or (row[1] or '').strip().upper() not in BULAN_MAP:
         return None
     v = {k: int(parse_sheet_number(row[i]) or 0) for k, i in VHTS_COLS.items()}
+    return hotel_record(int(parse_sheet_number(row[0])), BULAN_MAP[row[1].strip().upper()], v)
+
+
+def hotel_record(tahun, bulan, v):
+    """One month of VHTS base counts (keys of VHTS_COLS) -> record with indicators, or None when not filled in."""
     if not v['sampel'] or not v['kamar']:
         return None
 
@@ -792,8 +800,8 @@ def hotel_record_from_row(row):
     malam_wni = v['wni_kemarin'] + v['wni_masuk'] - v['wni_keluar']
     tamu = v['wna_masuk'] + v['wni_masuk']
     return {
-        'tahun': int(parse_sheet_number(row[0])),
-        'bulan': BULAN_MAP[row[1].strip().upper()],
+        'tahun': tahun,
+        'bulan': bulan,
         'jumlah_sampel': v['sampel'],
         'malam_kamar_tersedia': v['kamar'],
         'malam_kamar_terpakai': terpakai,
@@ -851,6 +859,40 @@ def read_vhts_tpk(path):
     return add_tpk_change(records), diffs
 
 
+def read_vhts_rekap(path):
+    """Records from the 'Ringkasan Per Periode' sheet of a VHTS rekap workbook (monthly totals of all hotels).
+
+    The sheet uses the same column order as the TPK sheet; the year comes from the title row.
+    """
+    ws = openpyxl.load_workbook(path, read_only=True, data_only=True)['Ringkasan Per Periode']
+    rows = list(ws.iter_rows(values_only=True))
+    tahun = int(re.search(r'\b(20\d\d)\b', str(rows[0][0])).group(1))
+    records = []
+    for row in rows:
+        periode = re.sub(r'^\d+\s*', '', str(row[1] or '')).strip().upper()
+        if periode not in BULAN_MAP or len(row) <= max(VHTS_COLS.values()):
+            continue
+        rec = hotel_record(tahun, BULAN_MAP[periode], {k: int(row[i] or 0) for k, i in VHTS_COLS.items()})
+        if rec:
+            records.append(rec)
+    return records
+
+
+def merge_hotel_records(sheet_records, rekap_records):
+    """Months from the TPK sheet, replaced or extended by the rekap workbooks.
+
+    Returns (records sorted by month, months whose two sources disagree as (tahun, bulan, field, sheet, rekap)).
+    """
+    merged = {(r['tahun'], r['bulan']): r for r in sheet_records}
+    conflicts = []
+    for r in rekap_records:
+        old = merged.get((r['tahun'], r['bulan']))
+        if old:
+            conflicts += [(r['tahun'], r['bulan'], k, old[k], r[k]) for k in r if k in old and old[k] != r[k]]
+        merged[(r['tahun'], r['bulan'])] = r
+    return add_tpk_change([merged[k] for k in sorted(merged)]), conflicts
+
+
 def process_hotel():
     # The sheet holds confidential per-establishment data, so only the aggregate TPK sheet is downloaded,
     # from a CSV export link kept outside the repository (VHTS_TPK_CSV_URL).
@@ -861,13 +903,20 @@ def process_hotel():
             urllib.request.urlretrieve(url, VHTS_TPK_CSV)
         except OSError as e:
             print(f"  [Warning] Gagal mengunduh sheet TPK ({e}); memakai file lokal jika ada")
-    if not os.path.exists(VHTS_TPK_CSV):
-        print(f"  [Warning] {VHTS_TPK_CSV} tidak ada; data hotel dilewati")
+    rekap_files = sorted(glob.glob(VHTS_REKAP_GLOB))
+    if not os.path.exists(VHTS_TPK_CSV) and not rekap_files:
+        print(f"  [Warning] {VHTS_TPK_CSV} dan rekap VHTS tidak ada; data hotel dilewati")
         return []
 
-    records, diffs = read_vhts_tpk(VHTS_TPK_CSV)
-    for tahun, bulan, field, ours, sheet in diffs:
-        print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} dihitung {ours}, di sheet {sheet}")
+    sheet_records = []
+    if os.path.exists(VHTS_TPK_CSV):
+        sheet_records, diffs = read_vhts_tpk(VHTS_TPK_CSV)
+        for tahun, bulan, field, ours, sheet in diffs:
+            print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} dihitung {ours}, di sheet {sheet}")
+    rekap_records = [r for f in rekap_files for r in read_vhts_rekap(f)]
+    records, conflicts = merge_hotel_records(sheet_records, rekap_records)
+    for tahun, bulan, field, sheet, rekap in conflicts:
+        print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} di sheet TPK {sheet}, di rekap {rekap}; dipakai rekap")
 
     out_csv = os.path.join(OUT_DIR, 'fact_hotel_bulanan.csv')
     with open(out_csv, 'w', newline='', encoding='utf-8') as f:

@@ -9,10 +9,10 @@ import datetime
 import fitz
 import openpyxl
 
-from build_datasets import (RAW_DIR, VHTS_REKAP_GLOB, VHTS_TPK_CSV, add_tpk_change, hotel_formula_diffs, hotel_record_from_row,
-                            jampea_records_from_rows, merge_hotel_records, read_vhts_rekap,
+from build_datasets import (RAW_DIR, VHTS_PUB_2023_GLOB, VHTS_REKAP_GLOB, VHTS_TPK_CSV, add_tpk_change, hotel_formula_diffs, hotel_record_from_row,
+                            jampea_records_from_rows, merge_hotel_records, read_vhts_pdf_2023, read_vhts_rekap,
                             jampea_rows_from_sheet, jampea_total_diffs, normalize_komoditas, parse_id_number,
-                            parse_jampea_pdf, parse_jampea_words_pdf, parse_period_from_path, read_vhts_tpk)
+                            parse_jampea_pdf, parse_jampea_words_pdf, parse_period_from_path, read_vhts_tpk, solve_hotel_counts)
 
 
 class ParsePeriodFromPathTest(unittest.TestCase):
@@ -366,5 +366,38 @@ class DashboardHtmlTest(unittest.TestCase):
         self.assertIn('id="copy-hotel-table"', content)
         self.assertIn('id="copy-transport-table"', content)
         self.assertIn('function setupCopyTable', content)
+
+
+class HotelPubPdfTest(unittest.TestCase):
+    def test_solve_hotel_counts_matches_target_ratios(self):
+        mktj, mkts, mt, mtts = solve_hotel_counts(231, 2.33, 1.72, 1.74, 3.81)
+        self.assertEqual(round(mktj / mkts * 100, 2), 2.33)
+        self.assertEqual(round(mt / 231, 2), 1.72)
+        self.assertEqual(round(mt / mktj, 2), 1.74)
+        self.assertEqual(round(mt / mtts * 100, 2), 3.81)
+
+    def test_pdf_extraction_if_file_exists(self):
+        import glob
+        pdf_files = glob.glob(VHTS_PUB_2023_GLOB)
+        if not pdf_files:
+            self.skipTest('2023 hotel publication PDF not available')
+        records = read_vhts_pdf_2023(pdf_files[0])
+        self.assertEqual(len(records), 12)
+        self.assertEqual(records[0]['tahun'], 2023)
+        self.assertEqual(records[0]['bulan'], 1)
+        self.assertEqual(records[0]['tpk'], 2.33)
+        self.assertEqual(records[0]['tamu_total'], 231)
+        self.assertEqual(records[4]['bulan'], 5)
+        self.assertEqual(records[4]['tamu_total'], 1298)
+        self.assertEqual(records[4]['tpk'], 14.32)
+
+    def test_merge_with_extra_records_computes_yoy_change(self):
+        pdf_recs = [{'tahun': 2023, 'bulan': 1, 'tpk': 2.33, 'malam_kamar_tersedia': 9785, 'malam_kamar_terpakai': 228}]
+        sheet_recs = [{'tahun': 2024, 'bulan': 1, 'tpk': 6.16, 'malam_kamar_tersedia': 8495, 'malam_kamar_terpakai': 523}]
+        records, conflicts = merge_hotel_records(sheet_recs, [], extra_records=pdf_recs)
+        self.assertEqual(len(records), 2)
+        self.assertIsNone(records[0]['tpk_perubahan_poin'])
+        self.assertEqual(records[1]['tpk_perubahan_poin'], 3.83)
+
 
 

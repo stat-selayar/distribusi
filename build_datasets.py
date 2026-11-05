@@ -1031,6 +1031,25 @@ def process_hotel():
         writer.writeheader()
         writer.writerows(records)
     print(f"[OK] fact_hotel_bulanan.csv ({len(records)} bulan VHTS)")
+
+    out_xlsx = os.path.join(OUT_DIR, 'fact_hotel_bulanan.xlsx')
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = 'HOTEL_BULANAN'
+    headers = list(records[0].keys())
+    ws.append(headers)
+    for col_idx in range(1, len(headers) + 1):
+        ws.cell(1, col_idx).font = openpyxl.styles.Font(bold=True)
+    for r in records:
+        ws.append(list(r.values()))
+    for col in ws.columns:
+        max_len = max(len(str(cell.value or '')) for cell in col)
+        col_letter = openpyxl.utils.get_column_letter(col[0].column)
+        ws.column_dimensions[col_letter].width = max(max_len + 3, 10)
+    ws.freeze_panes = 'A2'
+    ws.auto_filter.ref = ws.dimensions
+    wb.save(out_xlsx)
+    print(f"[OK] fact_hotel_bulanan.xlsx ({len(records)} bulan VHTS)")
     return records
 
 

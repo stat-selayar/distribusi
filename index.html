@@ -401,6 +401,7 @@ details[open] summary { margin-bottom: 12px; }
 }
 .table-bar .hint { margin-bottom: 0; }
 .filter-group { display: flex; align-items: center; gap: 8px; }
+.table-actions { display: flex; align-items: center; gap: 8px; }
 .copy-btn {
   border: 1px solid var(--line);
   background: var(--card);
@@ -618,10 +619,16 @@ footer a { color: inherit; }
       <h2>Tabel per bulan</h2>
       <div class="table-bar">
         <p class="hint">MKTJ dalam malam kamar; TPK, TPTT, dan tamu asing dalam persen; perubahan TPK dalam poin persen.</p>
-        <button type="button" class="quiet-btn copy-btn" id="copy-hotel-table" title="Salin data tabel ke clipboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
-          <span>Salin tabel</span>
-        </button>
+        <div class="table-actions">
+          <a href="data_bersih/fact_hotel_bulanan.xlsx" class="quiet-btn copy-btn" download title="Unduh data hotel dalam format Excel (.xlsx)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Unduh Excel</span>
+          </a>
+          <button type="button" class="quiet-btn copy-btn" id="copy-hotel-table" title="Salin data tabel ke clipboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            <span>Salin tabel</span>
+          </button>
+        </div>
       </div>
       <div class="table-wrap">
         <table id="hotel-table">
@@ -643,6 +650,7 @@ footer a { color: inherit; }
 
       <h2>Unduh data</h2>
       <ul class="downloads">
+        <li><a href="data_bersih/fact_hotel_bulanan.xlsx" download>Hotel per bulan <span class="ext">.xlsx</span></a></li>
         <li><a href="data_bersih/fact_hotel_bulanan.csv" download>Hotel per bulan <span class="ext">.csv</span></a></li>
       </ul>
     </div>
@@ -729,10 +737,16 @@ footer a { color: inherit; }
           <label for="node-filter">Simpul</label>
           <select id="node-filter"></select>
         </div>
-        <button type="button" class="quiet-btn copy-btn" id="copy-transport-table" title="Salin data tabel ke clipboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
-          <span>Salin tabel</span>
-        </button>
+        <div class="table-actions">
+          <a href="data_bersih/master_transportasi_selayar.xlsx" class="quiet-btn copy-btn" download title="Unduh data transportasi dalam format Excel (.xlsx)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Unduh Excel</span>
+          </a>
+          <button type="button" class="quiet-btn copy-btn" id="copy-transport-table" title="Salin data tabel ke clipboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            <span>Salin tabel</span>
+          </button>
+        </div>
       </div>
       <div class="table-wrap">
         <table id="transport-table">

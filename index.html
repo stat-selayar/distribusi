@@ -391,6 +391,28 @@ details[open] summary { margin-bottom: 12px; }
 /* Tables */
 .filter { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .filter label { color: var(--text-2); font-size: 14px; }
+.table-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.table-bar .hint { margin-bottom: 0; }
+.filter-group { display: flex; align-items: center; gap: 8px; }
+.copy-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.copy-btn:hover {
+  background: var(--raised);
+  border-color: var(--line-strong);
+}
+.copy-btn.copied {
+  color: var(--pos);
+  border-color: var(--pos);
+}
 select {
   height: 36px;
   padding: 0 32px 0 12px;
@@ -594,11 +616,17 @@ footer a { color: inherit; }
       </div>
 
       <h2>Tabel per bulan</h2>
-      <p class="hint">TPK, TPTT, dan tamu asing dalam persen; perubahan TPK dalam poin persen.</p>
+      <div class="table-bar">
+        <p class="hint">MKTJ dalam malam kamar; TPK, TPTT, dan tamu asing dalam persen; perubahan TPK dalam poin persen.</p>
+        <button type="button" class="quiet-btn copy-btn" id="copy-hotel-table" title="Salin data tabel ke clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          <span>Salin tabel</span>
+        </button>
+      </div>
       <div class="table-wrap">
         <table id="hotel-table">
           <thead><tr>
-            <th>Bulan</th><th>Sampel</th><th>TPK</th><th>TPK vs tahun lalu</th><th>TPTT</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
+            <th>Bulan</th><th>Sampel</th><th>TPK</th><th>TPK vs tahun lalu</th><th>MKTJ</th><th>TPTT</th><th>Tamu per kamar</th><th>Tamu Indonesia</th><th>Tamu asing</th><th>Tamu asing (%)</th><th>Lama menginap (malam)</th><th>Lama menginap Indonesia</th><th>Lama menginap asing</th>
           </tr></thead>
           <tbody id="hotel-tbody"></tbody>
         </table>
@@ -696,12 +724,18 @@ footer a { color: inherit; }
       </section>
 
       <h2>Tabel per bulan</h2>
-      <div class="filter">
-        <label for="node-filter">Simpul</label>
-        <select id="node-filter"></select>
+      <div class="filter table-bar">
+        <div class="filter-group">
+          <label for="node-filter">Simpul</label>
+          <select id="node-filter"></select>
+        </div>
+        <button type="button" class="quiet-btn copy-btn" id="copy-transport-table" title="Salin data tabel ke clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          <span>Salin tabel</span>
+        </button>
       </div>
       <div class="table-wrap">
-        <table>
+        <table id="transport-table">
           <thead><tr>
             <th>Bulan</th><th class="t-left">Simpul</th><th>Kedatangan</th><th>Penumpang turun</th><th>Penumpang naik</th><th>Kendaraan</th>
           </tr></thead>
@@ -833,10 +867,61 @@ function yearButtons(el, years, selected) {
   el.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.year === selected)));
 }
 
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {}
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    const ok = document.execCommand('copy');
+    ta.remove();
+    return ok;
+  } catch (e) {
+    ta.remove();
+    return false;
+  }
+}
+
+function setupCopyTable(btnId, tableSelector) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const tbl = typeof tableSelector === 'string' ? document.querySelector(tableSelector) : tableSelector;
+    if (!tbl) return;
+    const text = Array.from(tbl.querySelectorAll('tr'))
+      .map(tr => Array.from(tr.querySelectorAll('th, td'))
+        .map(cell => (cell.innerText || cell.textContent || '').trim().replace(/[\t\r\n]+/g, ' '))
+        .join('\t'))
+      .join('\n');
+    const ok = await copyText(text);
+    if (ok) {
+      const span = btn.querySelector('span');
+      const orig = span ? span.textContent : btn.textContent;
+      if (span) span.textContent = 'Tersalin!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        if (span) span.textContent = orig;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  });
+}
+
 function init(data) {
   DATA = data;
   DATA.rekap_bulanan = DATA.rekap_bulanan.filter(hasData);
   document.getElementById('updated').textContent = `Diperbarui ${data.updated_at}`;
+
+  setupCopyTable('copy-hotel-table', '#hotel-table');
+  setupCopyTable('copy-transport-table', '#transport-table');
 
   const years = [...new Set(DATA.rekap_bulanan.map(r => String(r.tahun)))].sort();
   state.year = latestYear(years);
@@ -1304,6 +1389,7 @@ function renderHotel() {
       <td>${r.jumlah_sampel}</td>
       <td>${orDash(r.tpk, fmt2)}</td>
       <td>${changeCell}</td>
+      <td>${orDash(r.malam_kamar_terpakai, fmt)}</td>
       <td>${orDash(r.tptt, fmt2)}</td>
       <td>${orDash(r.gpr, fmt2)}</td>
       <td>${fmt.format(r.tamu_indonesia)}</td>
@@ -1313,7 +1399,7 @@ function renderHotel() {
       <td>${orDash(r.rlmt_indonesia, fmt2)}</td>
       <td>${orDash(r.rlmt_asing, fmt2)}</td>
     </tr>`;
-  }).join('') || '<tr><td colspan="12" class="empty">Tidak ada data</td></tr>';
+  }).join('') || '<tr><td colspan="13" class="empty">Tidak ada data</td></tr>';
 }
 
 function drawBar(id, labels, values, color, label = c => ` ${fmt.format(c.parsed.x)}`) {

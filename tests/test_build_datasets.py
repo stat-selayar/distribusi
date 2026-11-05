@@ -358,3 +358,13 @@ class DashboardHtmlTest(unittest.TestCase):
         self.assertIn('id="hotel-mktj"', content)
         self.assertIn("yearOnYearLine('hotel-mktj', 'malam_kamar_terpakai', 'MKTJ'", content)
 
+    def test_hotel_table_has_mktj_column_and_copy_buttons(self):
+        with open('index.html', encoding='utf-8') as f:
+            content = f.read()
+        self.assertIn('<th>MKTJ</th>', content)
+        self.assertIn('orDash(r.malam_kamar_terpakai, fmt)', content)
+        self.assertIn('id="copy-hotel-table"', content)
+        self.assertIn('id="copy-transport-table"', content)
+        self.assertIn('function setupCopyTable', content)
+
+

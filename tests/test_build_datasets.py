@@ -366,6 +366,8 @@ class DashboardHtmlTest(unittest.TestCase):
         self.assertIn('id="copy-hotel-table"', content)
         self.assertIn('id="copy-transport-table"', content)
         self.assertIn('function setupCopyTable', content)
+        self.assertIn('href="data_bersih/fact_hotel_bulanan.xlsx"', content)
+        self.assertIn('Unduh Excel', content)
 
 
 class HotelPubPdfTest(unittest.TestCase):

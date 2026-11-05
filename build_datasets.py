@@ -764,6 +764,7 @@ VHTS_TPK_CSV = os.path.join(RAW_DIR, 'Hotel', 'vhts_tpk.csv')
 # Rekap workbooks exported from the VHTS application (one per year). Their other sheets hold
 # per-establishment data, so they stay in data_mentah and only the monthly summary is read.
 VHTS_REKAP_GLOB = os.path.join(RAW_DIR, 'Hotel', 'Rekap_Data_VHTS_*.xlsx')
+VHTS_PUB_2023_GLOB = os.path.join(RAW_DIR, 'Hotel', '*statistik_perhotelan*2023*.pdf')
 # Base counts in the TPK sheet (0-indexed columns); the first three rows are headers.
 VHTS_COLS = {'sampel': 2, 'kamar': 3, 'tempat_tidur': 4, 'kamar_kemarin': 5, 'kamar_masuk': 6, 'kamar_keluar': 7,
              'wna_kemarin': 8, 'wni_kemarin': 9, 'wna_masuk': 10, 'wni_masuk': 11, 'wna_keluar': 12, 'wni_keluar': 13}
@@ -878,12 +879,116 @@ def read_vhts_rekap(path):
     return records
 
 
-def merge_hotel_records(sheet_records, rekap_records):
-    """Months from the TPK sheet, replaced or extended by the rekap workbooks.
+def solve_hotel_counts(tamu, tpk, rlmt, gpr, tptt):
+    """Solve for integer (mktj, mkts, malam_tamu, mtts) matching published rounded ratios."""
+    mt_est = tamu * rlmt
+    best = None
+    min_err = 999
+    mt_center = int(round(mt_est))
+    for mt in range(mt_center - 10, mt_center + 11):
+        if round(mt / tamu, 2) != rlmt:
+            continue
+        mktj_center = int(round(mt / gpr))
+        for mktj in range(mktj_center - 5, mktj_center + 6):
+            if round(mt / mktj, 2) != gpr:
+                continue
+            mkts_center = int(round(mktj / (tpk / 100)))
+            for mkts in range(mkts_center - 50, mkts_center + 51):
+                if round(mktj / mkts * 100, 2) != tpk:
+                    continue
+                mtts_center = int(round(mt / (tptt / 100)))
+                for mtts in range(mtts_center - 50, mtts_center + 51):
+                    if round(mt / mtts * 100, 2) != tptt:
+                        continue
+                    err = abs(mktj - mt / gpr) + abs(mkts - mktj / (tpk / 100)) * 0.001
+                    if err < min_err:
+                        min_err = err
+                        best = (mktj, mkts, mt, mtts)
+    return best or (int(round(mt_center / gpr)), int(round(mt_center / (tpk / 100))), mt_center, int(round(mt_center / (tptt / 100))))
+
+
+def read_vhts_pdf_2023(path):
+    """Read 2023 hotel indicators and monthly counts from the BPS annual publication PDF."""
+    doc = fitz.open(path)
+
+    def parse_num(s):
+        s = s.replace(',', '.').replace('%', '').strip()
+        try:
+            return float(s) if '.' in s else int(s)
+        except ValueError:
+            return None
+
+    def parse_table(page):
+        lines = [l.strip() for l in page.get_text().split('\n') if l.strip()]
+        data = {}
+        i = 0
+        while i < len(lines):
+            m = lines[i].upper()
+            if m in BULAN_MAP and i + 3 < len(lines):
+                b = BULAN_MAP[m]
+                data[b] = (parse_num(lines[i + 1]), parse_num(lines[i + 2]), parse_num(lines[i + 3]))
+                i += 4
+            else:
+                i += 1
+        return data
+
+    tab_pages = {}
+    for p in range(len(doc)):
+        text = doc[p].get_text()
+        for t_num in range(1, 7):
+            if re.search(rf'Tabel {t_num}\.\s*', text) and t_num not in tab_pages:
+                tab_pages[t_num] = p
+
+    t1 = parse_table(doc[tab_pages[1]])
+    t2 = parse_table(doc[tab_pages[2]])
+    t3 = parse_table(doc[tab_pages[3]])
+    t4 = parse_table(doc[tab_pages[4]])
+    t5 = parse_table(doc[tab_pages[5]])
+    t6 = parse_table(doc[tab_pages[6]])
+
+    records = []
+    for bulan in range(1, 13):
+        if not (bulan in t1 and bulan in t2 and bulan in t3 and bulan in t4 and bulan in t5 and bulan in t6):
+            continue
+        wna = t2[bulan][0]
+        wni = t2[bulan][1]
+        total_tamu = t2[bulan][2]
+        tpk = t3[bulan][2]
+        rlmt = t4[bulan][2]
+        gpr = t5[bulan][2]
+        tptt = t6[bulan][2]
+
+        mktj, mkts, mt, mtts = solve_hotel_counts(total_tamu, tpk, rlmt, gpr, tptt)
+        records.append({
+            'tahun': 2023,
+            'bulan': bulan,
+            'jumlah_sampel': 39,
+            'malam_kamar_tersedia': mkts,
+            'malam_kamar_terpakai': mktj,
+            'tpk': tpk,
+            'malam_tempat_tidur_tersedia': mtts,
+            'tptt': tptt,
+            'tamu_asing': wna,
+            'tamu_indonesia': wni,
+            'tamu_total': total_tamu,
+            'persen_tamu_asing': round(wna / total_tamu * 100, 2) if total_tamu else 0.0,
+            'malam_tamu_asing': None,
+            'malam_tamu_indonesia': None,
+            'malam_tamu': mt,
+            'rlmt_asing': None,
+            'rlmt_indonesia': None,
+            'rlmt_gabungan': rlmt,
+            'gpr': gpr,
+        })
+    return records
+
+
+def merge_hotel_records(sheet_records, rekap_records, extra_records=None):
+    """Months from extra sources (e.g. publication PDF) and the TPK sheet, replaced or extended by rekap workbooks.
 
     Returns (records sorted by month, months whose two sources disagree as (tahun, bulan, field, sheet, rekap)).
     """
-    merged = {(r['tahun'], r['bulan']): r for r in sheet_records}
+    merged = {(r['tahun'], r['bulan']): r for r in (extra_records or []) + sheet_records}
     conflicts = []
     for r in rekap_records:
         old = merged.get((r['tahun'], r['bulan']))
@@ -903,9 +1008,10 @@ def process_hotel():
             urllib.request.urlretrieve(url, VHTS_TPK_CSV)
         except OSError as e:
             print(f"  [Warning] Gagal mengunduh sheet TPK ({e}); memakai file lokal jika ada")
+    pdf_files = sorted(glob.glob(VHTS_PUB_2023_GLOB))
     rekap_files = sorted(glob.glob(VHTS_REKAP_GLOB))
-    if not os.path.exists(VHTS_TPK_CSV) and not rekap_files:
-        print(f"  [Warning] {VHTS_TPK_CSV} dan rekap VHTS tidak ada; data hotel dilewati")
+    if not os.path.exists(VHTS_TPK_CSV) and not rekap_files and not pdf_files:
+        print(f"  [Warning] {VHTS_TPK_CSV}, rekap VHTS, dan PDF publikasi tidak ada; data hotel dilewati")
         return []
 
     sheet_records = []
@@ -913,8 +1019,9 @@ def process_hotel():
         sheet_records, diffs = read_vhts_tpk(VHTS_TPK_CSV)
         for tahun, bulan, field, ours, sheet in diffs:
             print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} dihitung {ours}, di sheet {sheet}")
+    pdf_records = [r for f in pdf_files for r in read_vhts_pdf_2023(f)]
     rekap_records = [r for f in rekap_files for r in read_vhts_rekap(f)]
-    records, conflicts = merge_hotel_records(sheet_records, rekap_records)
+    records, conflicts = merge_hotel_records(sheet_records, rekap_records, extra_records=pdf_records)
     for tahun, bulan, field, sheet, rekap in conflicts:
         print(f"  [Warning] Hotel {tahun}-{bulan:02d}: {field} di sheet TPK {sheet}, di rekap {rekap}; dipakai rekap")
 

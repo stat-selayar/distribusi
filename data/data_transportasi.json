@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-03 08:27 WITA",
+ "updated_at": "2026-11-05 14:49 WITA",
  "dim_simpul": [
   {
    "kode_simpul": "ARO",
@@ -8535,6 +8535,258 @@
  ],
  "hotel_bulanan": [
   {
+   "periode": "2023-01",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9785,
+   "malam_kamar_terpakai": 228,
+   "tpk": 2.33,
+   "malam_tempat_tidur_tersedia": 10407,
+   "tptt": 3.81,
+   "tamu_asing": 4,
+   "tamu_indonesia": 227,
+   "tamu_total": 231,
+   "persen_tamu_asing": 1.73,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 397,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.72,
+   "gpr": 1.74,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-02",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 8787,
+   "malam_kamar_terpakai": 449,
+   "tpk": 5.11,
+   "malam_tempat_tidur_tersedia": 9566,
+   "tptt": 7.93,
+   "tamu_asing": 20,
+   "tamu_indonesia": 261,
+   "tamu_total": 281,
+   "persen_tamu_asing": 7.12,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 759,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 2.7,
+   "gpr": 1.69,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-03",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9783,
+   "malam_kamar_terpakai": 722,
+   "tpk": 7.38,
+   "malam_tempat_tidur_tersedia": 10420,
+   "tptt": 12.26,
+   "tamu_asing": 77,
+   "tamu_indonesia": 464,
+   "tamu_total": 541,
+   "persen_tamu_asing": 14.23,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 1278,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 2.36,
+   "gpr": 1.77,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-04",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9409,
+   "malam_kamar_terpakai": 573,
+   "tpk": 6.09,
+   "malam_tempat_tidur_tersedia": 10016,
+   "tptt": 9.55,
+   "tamu_asing": 34,
+   "tamu_indonesia": 430,
+   "tamu_total": 464,
+   "persen_tamu_asing": 7.33,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 957,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 2.06,
+   "gpr": 1.67,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-05",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9735,
+   "malam_kamar_terpakai": 1394,
+   "tpk": 14.32,
+   "malam_tempat_tidur_tersedia": 10341,
+   "tptt": 38.01,
+   "tamu_asing": 7,
+   "tamu_indonesia": 1291,
+   "tamu_total": 1298,
+   "persen_tamu_asing": 0.54,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 3931,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 3.03,
+   "gpr": 2.82,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-06",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9586,
+   "malam_kamar_terpakai": 532,
+   "tpk": 5.55,
+   "malam_tempat_tidur_tersedia": 10052,
+   "tptt": 8.78,
+   "tamu_asing": 0,
+   "tamu_indonesia": 568,
+   "tamu_total": 568,
+   "persen_tamu_asing": 0.0,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 883,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.55,
+   "gpr": 1.66,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-07",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9858,
+   "malam_kamar_terpakai": 554,
+   "tpk": 5.62,
+   "malam_tempat_tidur_tersedia": 10316,
+   "tptt": 9.34,
+   "tamu_asing": 2,
+   "tamu_indonesia": 613,
+   "tamu_total": 615,
+   "persen_tamu_asing": 0.33,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 964,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.57,
+   "gpr": 1.74,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-08",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 10824,
+   "malam_kamar_terpakai": 749,
+   "tpk": 6.92,
+   "malam_tempat_tidur_tersedia": 11431,
+   "tptt": 9.89,
+   "tamu_asing": 3,
+   "tamu_indonesia": 709,
+   "tamu_total": 712,
+   "persen_tamu_asing": 0.42,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 1131,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.59,
+   "gpr": 1.51,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-09",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9705,
+   "malam_kamar_terpakai": 920,
+   "tpk": 9.48,
+   "malam_tempat_tidur_tersedia": 10159,
+   "tptt": 19.83,
+   "tamu_asing": 0,
+   "tamu_indonesia": 949,
+   "tamu_total": 949,
+   "persen_tamu_asing": 0.0,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 2015,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 2.12,
+   "gpr": 2.19,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-10",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 10239,
+   "malam_kamar_terpakai": 771,
+   "tpk": 7.53,
+   "malam_tempat_tidur_tersedia": 10735,
+   "tptt": 11.63,
+   "tamu_asing": 0,
+   "tamu_indonesia": 879,
+   "tamu_total": 879,
+   "persen_tamu_asing": 0.0,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 1249,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.42,
+   "gpr": 1.62,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-11",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 9837,
+   "malam_kamar_terpakai": 725,
+   "tpk": 7.37,
+   "malam_tempat_tidur_tersedia": 10318,
+   "tptt": 11.8,
+   "tamu_asing": 5,
+   "tamu_indonesia": 758,
+   "tamu_total": 763,
+   "persen_tamu_asing": 0.66,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 1218,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.6,
+   "gpr": 1.68,
+   "tpk_perubahan_poin": null
+  },
+  {
+   "periode": "2023-12",
+   "jumlah_sampel": 39,
+   "malam_kamar_tersedia": 7181,
+   "malam_kamar_terpakai": 433,
+   "tpk": 6.03,
+   "malam_tempat_tidur_tersedia": 7533,
+   "tptt": 11.32,
+   "tamu_asing": 30,
+   "tamu_indonesia": 491,
+   "tamu_total": 521,
+   "persen_tamu_asing": 5.76,
+   "malam_tamu_asing": null,
+   "malam_tamu_indonesia": null,
+   "malam_tamu": 853,
+   "rlmt_asing": null,
+   "rlmt_indonesia": null,
+   "rlmt_gabungan": 1.64,
+   "gpr": 1.97,
+   "tpk_perubahan_poin": null
+  },
+  {
    "periode": "2024-01",
    "jumlah_sampel": 39,
    "malam_kamar_tersedia": 8495,
@@ -8553,7 +8805,7 @@
    "rlmt_indonesia": 1.48,
    "rlmt_gabungan": 1.49,
    "gpr": 1.92,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": 3.83
   },
   {
    "periode": "2024-02",
@@ -8574,7 +8826,7 @@
    "rlmt_indonesia": 1.73,
    "rlmt_gabungan": 1.76,
    "gpr": 1.84,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": 2.61
   },
   {
    "periode": "2024-03",
@@ -8595,7 +8847,7 @@
    "rlmt_indonesia": 2.24,
    "rlmt_gabungan": 2.6,
    "gpr": 1.38,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -0.86
   },
   {
    "periode": "2024-04",
@@ -8616,7 +8868,7 @@
    "rlmt_indonesia": 1.56,
    "rlmt_gabungan": 1.79,
    "gpr": 1.7,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -0.43
   },
   {
    "periode": "2024-05",
@@ -8637,7 +8889,7 @@
    "rlmt_indonesia": 1.7,
    "rlmt_gabungan": 2.16,
    "gpr": 1.51,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -8.84
   },
   {
    "periode": "2024-06",
@@ -8658,7 +8910,7 @@
    "rlmt_indonesia": 1.44,
    "rlmt_gabungan": 1.64,
    "gpr": 1.7,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -1.93
   },
   {
    "periode": "2024-07",
@@ -8679,7 +8931,7 @@
    "rlmt_indonesia": 1.62,
    "rlmt_gabungan": 1.66,
    "gpr": 1.76,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": 1.87
   },
   {
    "periode": "2024-08",
@@ -8700,7 +8952,7 @@
    "rlmt_indonesia": 1.78,
    "rlmt_gabungan": 1.88,
    "gpr": 2.03,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": 0.23
   },
   {
    "periode": "2024-09",
@@ -8721,7 +8973,7 @@
    "rlmt_indonesia": 2.09,
    "rlmt_gabungan": 2.17,
    "gpr": 2.76,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -1.3
   },
   {
    "periode": "2024-10",
@@ -8742,7 +8994,7 @@
    "rlmt_indonesia": 1.89,
    "rlmt_gabungan": 1.91,
    "gpr": 2.06,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": 1.05
   },
   {
    "periode": "2024-11",
@@ -8763,7 +9015,7 @@
    "rlmt_indonesia": 1.89,
    "rlmt_gabungan": 2.09,
    "gpr": 1.67,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -0.18
   },
   {
    "periode": "2024-12",
@@ -8784,7 +9036,7 @@
    "rlmt_indonesia": 1.77,
    "rlmt_gabungan": 1.99,
    "gpr": 1.92,
-   "tpk_perubahan_poin": null
+   "tpk_perubahan_poin": -1.17
   },
   {
    "periode": "2025-01",

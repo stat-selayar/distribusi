@@ -617,8 +617,11 @@ footer a { color: inherit; }
       </div>
 
       <h2>Tabel per bulan</h2>
-      <div class="table-bar">
-        <p class="hint">MKTJ dalam malam kamar; TPK, TPTT, dan tamu asing dalam persen; perubahan TPK dalam poin persen.</p>
+      <p class="hint">MKTJ dalam malam kamar; TPK, TPTT, dan tamu asing dalam persen; perubahan TPK dalam poin persen.</p>
+      <div class="filter table-bar">
+        <div class="filter-group">
+          <div class="seg" role="group" aria-label="Pilih tahun tabel hotel" id="hotel-table-year-seg"></div>
+        </div>
         <div class="table-actions">
           <a href="data_bersih/fact_hotel_bulanan.xlsx" class="quiet-btn copy-btn" download title="Unduh data hotel dalam format Excel (.xlsx)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -803,7 +806,7 @@ const fmt2 = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumF
 const fmt2Signed = new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: 'exceptZero' });
 
 let DATA = null;
-let state = { year: 'all', node: 'all', arah: 'bongkar', hotelYear: 'all' };
+let state = { year: 'all', node: 'all', arah: 'bongkar', hotelYear: 'all', hotelTableYear: 'all' };
 const latestYear = years => years[years.length - 1] ?? 'all';
 const charts = {};
 
@@ -974,6 +977,15 @@ function init(data) {
     if (!b) return;
     state.hotelYear = b.dataset.year;
     renderHotel();
+  });
+
+  const hotelTableSeg = document.getElementById('hotel-table-year-seg');
+  yearButtons(hotelTableSeg, hotelYears, state.hotelTableYear);
+  hotelTableSeg.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.hotelTableYear = b.dataset.year;
+    renderHotelTable();
   });
 
   document.querySelector('.tabs').addEventListener('click', e => {
@@ -1400,6 +1412,13 @@ function renderHotel() {
     },
   });
 
+  renderHotelTable();
+}
+
+function renderHotelTable() {
+  document.querySelectorAll('#hotel-table-year-seg button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.year === state.hotelTableYear)));
+  const rows = DATA.hotel_bulanan.filter(r => state.hotelTableYear === 'all' || r.periode.startsWith(state.hotelTableYear));
   document.getElementById('hotel-tbody').innerHTML = rows.slice().reverse().map(r => {
     const change = r.tpk_perubahan_poin;
     const changeCell = change == null ? '–'

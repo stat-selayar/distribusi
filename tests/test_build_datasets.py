@@ -369,6 +369,14 @@ class DashboardHtmlTest(unittest.TestCase):
         self.assertIn('href="data_bersih/fact_hotel_bulanan.xlsx"', content)
         self.assertIn('Unduh Excel', content)
 
+    def test_hotel_table_has_independent_year_filter(self):
+        with open('index.html', encoding='utf-8') as f:
+            content = f.read()
+        self.assertIn('id="hotel-table-year-seg"', content)
+        self.assertIn('hotelTableYear', content)
+        self.assertIn('function renderHotelTable', content)
+
+
 
 class HotelPubPdfTest(unittest.TestCase):
     def test_solve_hotel_counts_matches_target_ratios(self):

@@ -349,3 +349,12 @@ class HotelRealFileTest(unittest.TestCase):
             self.skipTest('no rekap workbook')
         _, conflicts = merge_hotel_records(read_vhts_tpk(VHTS_TPK_CSV)[0], rekap)
         self.assertEqual(conflicts, [])
+
+
+class DashboardHtmlTest(unittest.TestCase):
+    def test_hotel_mktj_canvas_and_chart_call_present(self):
+        with open('index.html', encoding='utf-8') as f:
+            content = f.read()
+        self.assertIn('id="hotel-mktj"', content)
+        self.assertIn("yearOnYearLine('hotel-mktj', 'malam_kamar_terpakai', 'MKTJ'", content)
+
